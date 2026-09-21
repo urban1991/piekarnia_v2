@@ -42,7 +42,7 @@ export default async function HomePage() {
   return (
     <main>
       <div className={s.heroWrap}>
-        <Header variant="onHero" phone={settings.phone} phoneHref={settings.phoneHref} />
+        <Header variant="onDark" phone={settings.phone} phoneHref={settings.phoneHref} />
         <Hero
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
           title="Chleb, który pachnie jak w domu."

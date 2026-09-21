@@ -2,7 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--color-bg);
+  background: rgba(247, 241, 232, .88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -10,34 +12,39 @@
 .transparent {
   position: absolute;
   inset-inline: 0;
-  background: transparent;
-  border-bottom: 0;
+  background: rgba(247, 241, 232, .72);
+  border-bottom: 1px solid rgba(34, 27, 24, .08);
   color: var(--color-ink);
 }
 
-/* onDark: transparent header over a dark photo (white text) */
-.onDark { color: #fff; }
+/* onDark: translucent dark bar over a photo (white text) */
+.onDark {
+  background: rgba(20, 10, 8, .42);
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+  color: #fff;
+}
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-6);
   height: var(--header-h);
 }
 
 .brand { display: flex; align-items: center; gap: var(--space-3); color: inherit; }
 .logo { width: 56px; height: 56px; object-fit: contain; }
 .onDark .logo { background: #fff; border-radius: 50%; padding: 4px; }
-.wordmark { font-family: var(--font-serif); font-size: 20px; }
+.wordmark { font-family: var(--font-serif); font-size: 21px; }
 
-.nav { display: flex; gap: var(--space-8); font-size: 15px; font-weight: 500; }
-.nav a { color: inherit; }
+.nav { display: flex; gap: var(--space-8); font-size: 17px; font-weight: 600; letter-spacing: .01em; }
+.nav a { color: inherit; padding-block: 6px; border-bottom: 2px solid transparent; transition: color var(--ease), border-color var(--ease); }
 .nav a:hover { color: var(--color-brand); }
-.onDark .nav a:hover { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
-.active { color: var(--color-brand); font-weight: 600; }
-.onDark .active { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+.onDark .nav a:hover { color: #fff; border-color: rgba(255, 255, 255, .7); }
+.active { color: var(--color-brand); border-color: var(--color-brand) !important; }
+.onDark .active { color: #fff; border-color: #fff !important; }
 
-.phone { color: var(--color-brand); font-weight: 600; }
+.phone { color: var(--color-brand); font-weight: 600; font-size: 16px; white-space: nowrap; }
 .transparent .phone {
   border: 1.5px solid var(--color-line-strong);
   padding: 10px 18px;
@@ -46,9 +53,9 @@
 .transparent .phone:hover { border-color: var(--color-brand); }
 .onDark .phone {
   color: #fff;
-  border-color: rgba(255, 255, 255, .5);
+  border-color: rgba(255, 255, 255, .55);
 }
-.onDark .phone:hover { border-color: #fff; }
+.onDark .phone:hover { border-color: #fff; background: rgba(255, 255, 255, .12); }
 
 .mobileActions { display: none; gap: var(--space-2); }
 .iconBtn {
@@ -63,8 +70,8 @@
   font-size: 13px;
   font-weight: 600;
 }
-.onDark .iconBtn { color: #fff; border-color: rgba(255, 255, 255, .5); }
-.burger { width: 44px; height: 44px; display: grid; gap: 5px; place-content: center; border: 0; background: transparent; cursor: pointer; }
+.onDark .iconBtn { color: #fff; border-color: rgba(255, 255, 255, .55); }
+.burger { width: 44px; height: 44px; display: grid; gap: 5px; place-content: center; border: 0; background: transparent; cursor: pointer; color: inherit; }
 .burger span { display: block; width: 24px; height: 2px; background: currentColor; }
 
 .menu {
@@ -72,20 +79,20 @@
   inset: 0;
   z-index: 60;
   background: var(--color-bg);
-  padding: var(--space-6) var(--gutter) var(--space-10);
+  padding: var(--space-4) var(--gutter) var(--space-10);
   display: grid;
   align-content: start;
   gap: 18px;
   font-family: var(--font-serif);
-  font-size: 28px;
+  font-size: 30px;
   color: var(--color-ink);
   overflow-y: auto;
 }
-.menuTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); }
-.menu a { color: inherit; }
+.menuTop { display: flex; justify-content: space-between; align-items: center; height: var(--header-h); margin-bottom: var(--space-4); }
+.menu a { color: inherit; padding-block: 4px; border-bottom: 1px solid var(--color-sand); }
 .menuActive { color: var(--color-brand) !important; }
 .menuCall {
-  margin-top: var(--space-2);
+  margin-top: var(--space-4);
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 600;
@@ -94,6 +101,7 @@
   color: #fff !important;
   padding: 16px;
   border-radius: var(--radius-pill);
+  border-bottom: 0 !important;
 }
 
 @media (max-width: 1100px) {

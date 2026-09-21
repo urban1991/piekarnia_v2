@@ -39,3 +39,5 @@ button, input, textarea, select { font: inherit; color: inherit; }
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+html, body { overflow-x: clip; }

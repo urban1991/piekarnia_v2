@@ -29,3 +29,10 @@
   .aboutImages img { height: 220px; }
   .aboutOffset { margin-top: 0; }
 }
+
+@media (max-width: 700px) {
+  .aboutImages { gap: var(--space-3); }
+  .aboutImages img { height: 180px; border-radius: var(--radius-sm); }
+  .paragraph { font-size: 17px; }
+  .centeredTitle { margin-bottom: var(--space-6); }
+}
