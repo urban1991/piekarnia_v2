@@ -36,12 +36,12 @@ export default function HomePage() {
   return (
     <main>
       <div className={s.heroWrap}>
-        <Header variant="onHero" />
+        <Header variant="onDark" />
         <Hero
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
           title="Chleb, który pachnie jak w domu."
           lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
-          image="/photos/hero-chleb.jpg"
+          image="/photos/piekarnia-1.jpg"
           stats={[
             { value: '4 sklepy', label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
@@ -66,7 +66,7 @@ export default function HomePage() {
       <Section tone="surface">
         <div className={s.about}>
           <div className={s.aboutImages}>
-            <img className={s.aboutOffset} src="/photos/piekarnia-1.jpg" alt="" />
+            <img className={s.aboutOffset} src="/photos/piekarnia-3.jpg" alt="" />
             <img src="/photos/piekarnia-2.jpg" alt="" />
           </div>
           <div>

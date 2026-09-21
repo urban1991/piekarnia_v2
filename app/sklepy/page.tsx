@@ -1,6 +1,8 @@
 import { Header } from '../../components/layout/Header';
 import { Section } from '../../components/layout/Section';
+import { SectionHeading } from '../../components/layout/SectionHeading';
 import { PageHeader } from '../../components/sections/PageHeader';
+import { FeaturedStore } from '../../components/sections/FeaturedStore';
 import { MapEmbed } from '../../components/sections/MapEmbed';
 import { CtaBand } from '../../components/sections/CtaBand';
 import { Grid } from '../../components/ui/Grid';
@@ -13,7 +15,12 @@ export const metadata = {
   description: 'Cztery sklepy firmowe: Świdnica (Składowa 3, Kazimierza Wielkiego 5), Jaworzyna Śląska, Bielawa.',
 };
 
+const MAIN_STORE_ID = 'swidnica-skladowa';
+
 export default function SklepyPage() {
+  const main = stores.find((store) => store.id === MAIN_STORE_ID) ?? stores[0];
+  const others = stores.filter((store) => store.id !== main.id);
+
   return (
     <main>
       <Header />
@@ -24,20 +31,27 @@ export default function SklepyPage() {
       />
 
       <Section flush>
-        <MapEmbed />
+        <FeaturedStore
+          store={main}
+          phone={contact.phone}
+          phoneHref={contact.phoneHref}
+          disclaimer="godziny przykładowe — do potwierdzenia"
+        />
+      </Section>
+
+      <Section>
+        <SectionHeading eyebrow="Pozostałe sklepy" title="Blisko Ciebie" />
         <div className={s.cards}>
-          <Grid cols={4}>
-            {stores.map((store) => (
+          <Grid cols={3}>
+            {others.map((store) => (
               <StoreCard key={store.id} store={store} />
             ))}
           </Grid>
         </div>
-        <p className={s.disclaimer}>
-          godziny przykładowe — obecna strona ich nie podaje, prosimy o potwierdzenie
-        </p>
+        <div className={s.map}>
+          <MapEmbed />
+        </div>
       </Section>
-
-      <div style={{ height: 'var(--section-y)' }} />
 
       <CtaBand
         title="Współpraca hurtowa"
