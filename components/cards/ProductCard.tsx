@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import { Tag } from '../ui/Tag';
 import { NutritionDisclosure } from './NutritionDisclosure';
 import type { Product } from '../../lib/types';
+import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './ProductCard.module.css';
 
 export function ProductCard({
@@ -32,9 +33,21 @@ export function ProductCard({
     <article className={s.card}>
       <div className={mediaClass} style={mediaStyle}>
         {hasPhoto ? (
-          <Image src={product.photo!} alt={product.name} width={640} height={480} />
+          <Image
+            src={product.photo!}
+            alt={product.name}
+            width={640}
+            height={480}
+            loader={isSanityUrl(product.photo!) ? sanityImageLoader : undefined}
+          />
         ) : product.image ? (
-          <Image src={product.image} alt={product.name} width={520} height={400} />
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={520}
+            height={400}
+            loader={isSanityUrl(product.image) ? sanityImageLoader : undefined}
+          />
         ) : null}
         {badge ? (
           <span className={s.badge}>

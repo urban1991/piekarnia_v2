@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from './Container';
-import { contact } from '../../lib/data';
+import { getSiteSettings } from '../../lib/data';
 import s from './Footer.module.css';
 
-export function Footer() {
+export async function Footer() {
+  const contact = await getSiteSettings();
   return (
     <footer className={s.footer}>
       <Container>

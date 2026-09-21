@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Container } from './Container';
-import { contact } from '../../lib/data';
 import s from './Header.module.css';
 
 const links = [
@@ -21,7 +20,15 @@ const links = [
  * variant="onHero"  — transparent header over the cream hero on the homepage (Ink text).
  * variant="onDark"  — transparent header over a dark photo (white text).
  */
-export function Header({ variant = 'solid' }: { variant?: 'solid' | 'onHero' | 'onDark' }) {
+export function Header({
+  variant = 'solid',
+  phone,
+  phoneHref,
+}: {
+  variant?: 'solid' | 'onHero' | 'onDark';
+  phone: string;
+  phoneHref: string;
+}) {
   const pathname = usePathname() ?? '';
   const [open, setOpen] = useState(false);
   const className = [
@@ -53,12 +60,12 @@ export function Header({ variant = 'solid' }: { variant?: 'solid' | 'onHero' | '
             ))}
           </nav>
 
-          <a className={s.phone} href={contact.phoneHref}>
-            {contact.phone}
+          <a className={s.phone} href={phoneHref}>
+            {phone}
           </a>
 
           <div className={s.mobileActions}>
-            <a className={s.iconBtn} href={contact.phoneHref} aria-label={'Zadzwoń ' + contact.phone}>
+            <a className={s.iconBtn} href={phoneHref} aria-label={'Zadzwoń ' + phone}>
               tel
             </a>
             <button
@@ -94,8 +101,8 @@ export function Header({ variant = 'solid' }: { variant?: 'solid' | 'onHero' | '
               {link.label}
             </Link>
           ))}
-          <a className={s.menuCall} href={contact.phoneHref}>
-            Zadzwoń: {contact.phone}
+          <a className={s.menuCall} href={phoneHref}>
+            Zadzwoń: {phone}
           </a>
         </div>
       ) : null}

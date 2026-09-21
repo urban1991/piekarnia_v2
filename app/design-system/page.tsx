@@ -10,7 +10,7 @@ import { TestimonialCard } from '../../components/cards/TestimonialCard';
 import { ContactForm } from '../../components/sections/ContactForm';
 import { CtaBand } from '../../components/sections/CtaBand';
 import { MapEmbed } from '../../components/sections/MapEmbed';
-import { categories, contact, products, stores, testimonials } from '../../lib/data';
+import { categories, contact, getSiteSettings, products, stores, testimonials } from '../../lib/data';
 import { DesignSystemChips } from './DesignSystemChips';
 import s from './page.module.css';
 
@@ -66,12 +66,13 @@ function Heading({ n, title, lead }: { n: string; title: string; lead?: string }
   );
 }
 
-export default function DesignSystemPage() {
+export default async function DesignSystemPage() {
+  const settings = await getSiteSettings();
   const sampleProduct = products.find((p) => p.id === 'chleb-zytni-firmowy') ?? products[0];
 
   return (
     <main>
-      <Header />
+      <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <div className={s.page}>
         <header className={s.intro}>
           <div className={s.brandRow}>
@@ -260,7 +261,7 @@ export default function DesignSystemPage() {
             <div className={s.demoCard}>
               <div className={s.demoLabel}>Header · podstrona (solid, linia dolna) · aktywny link = Brand 600</div>
               <div className={s.demoHeaderSolid}>
-                <Header />
+                <Header phone={settings.phone} phoneHref={settings.phoneHref} />
               </div>
             </div>
             <div className={s.demoDark}>
@@ -268,7 +269,7 @@ export default function DesignSystemPage() {
                 Header · strona główna (przezroczysty nad hero) — wariant „onDark”
               </div>
               <div className={s.demoHeaderDark}>
-                <Header variant="onDark" />
+                <Header variant="onDark" phone={settings.phone} phoneHref={settings.phoneHref} />
               </div>
             </div>
             <div className={s.mobileRow}>

@@ -1,11 +1,20 @@
 import Image from 'next/image';
 import type { Store } from '../../lib/types';
+import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './StoreCard.module.css';
 
 export function StoreCard({ store }: { store: Store }) {
   return (
     <article className={s.card}>
-      {store.image ? <Image src={store.image} alt="" width={520} height={340} /> : null}
+      {store.image ? (
+        <Image
+          src={store.image}
+          alt=""
+          width={520}
+          height={340}
+          loader={isSanityUrl(store.image) ? sanityImageLoader : undefined}
+        />
+      ) : null}
       <div className={s.body}>
         <div className={s.kicker}>
           {store.city} · {store.label}

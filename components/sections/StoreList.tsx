@@ -1,7 +1,8 @@
-import { stores } from '../../lib/data';
+import { getStores } from '../../lib/data';
 import s from './StoreList.module.css';
 
-export function StoreList({ disclaimer }: { disclaimer?: string }) {
+export async function StoreList({ disclaimer }: { disclaimer?: string }) {
+  const stores = await getStores();
   return (
     <div>
       <div className={s.list}>

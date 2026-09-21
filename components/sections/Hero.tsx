@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { Container } from '../layout/Container';
+import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './Hero.module.css';
 
 export type HeroStat = { value: string; label: string };
@@ -46,7 +47,14 @@ export function Hero({
         </div>
 
         <div className={s.media}>
-          <Image src={image} alt="" width={900} height={1120} priority />
+          <Image
+            src={image}
+            alt=""
+            width={900}
+            height={1120}
+            priority
+            loader={isSanityUrl(image) ? sanityImageLoader : undefined}
+          />
           {badge ? (
             <div className={s.badge}>
               <span className={s.badgeMark} aria-hidden="true">

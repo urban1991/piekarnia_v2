@@ -1,7 +1,8 @@
-import { history } from '../../lib/data';
+import { getHistory } from '../../lib/data';
 import s from './Timeline.module.css';
 
-export function Timeline() {
+export async function Timeline() {
+  const history = await getHistory();
   return (
     <div className={s.grid}>
       {history.map((entry) => (
