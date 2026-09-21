@@ -45,3 +45,16 @@ export type Store = {
 export type Testimonial = { text: string; author: string };
 
 export type HistoryEntry = { year: string; title: string; text: string };
+
+export type SiteSettings = {
+  phone: string;
+  phoneHref: string;
+  email: string;
+  address: string;
+  facebook: string;
+  instagram: string;
+  catalogPdf: string;
+  legal: { nota: string; privacy: string; cookies: string };
+  /** image URLs (cdn.sanity.io) */
+  gallery: string[];
+};
