@@ -7,17 +7,29 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "seed:sanity": "tsx --env-file=.env.local scripts/seed-sanity.ts",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/locale-pl-pl": "^1.2.36",
+    "@sanity/webhook": "^4.0.4",
     "next": "^15.5.0",
+    "next-sanity": "^13.3.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "sanity": "^6.15.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.20.4",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "typescript": "^5.6.0"
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.0",
+    "vitest": "^5.0.1"
   }
 }
