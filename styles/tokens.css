@@ -1,0 +1,84 @@
+:root {
+  /* brand */
+  --color-brand: #A6192E;
+  --color-brand-dark: #8A1426;
+  --color-brand-tint: #F6E3E5;
+
+  /* neutrals */
+  --color-bg: #F7F1E8;
+  --color-surface: #FFFFFF;
+  --color-sand: #EFE6D8;
+  --color-line: #D9CDBD;
+  --color-line-strong: #C9B9A6;
+  --color-ink: #221B18;
+  --color-ink-soft: #5E524B;
+  --color-ink-muted: #7A6B60;
+  --color-footer-muted: #8F8177;
+
+  /* type — --font-*-next are injected by next/font in app/layout.tsx */
+  --font-serif: var(--font-serif-next, 'Libre Caslon Text'), Georgia, serif;
+  --font-sans: var(--font-sans-next, 'Source Sans 3'), system-ui, sans-serif;
+
+  --text-display: 64px;
+  --text-h1: 60px;
+  --text-h2: 44px;
+  --text-h3: 26px;
+  --text-lead: 19px;
+  --text-body: 17px;
+  --text-small: 15px;
+  --text-caption: 13px;
+  --text-eyebrow: 12px;
+
+  /* space (4px scale) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 36px;
+  --space-10: 40px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --space-22: 88px;
+  --space-24: 96px;
+
+  /* shape */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+  --shadow-float: 0 12px 40px rgba(60, 30, 10, .14);
+
+  /* layout */
+  --container: 1280px;
+  --gutter: 64px;
+  --header-h: 88px;
+  --section-y: 96px;
+
+  --ease: 300ms cubic-bezier(.2, .7, .3, 1);
+}
+
+@media (max-width: 1200px) {
+  :root { --gutter: 32px; }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --text-display: 40px;
+    --text-h1: 40px;
+    --text-h2: 30px;
+    --text-h3: 22px;
+    --text-lead: 17px;
+    --text-body: 16px;
+    --gutter: 20px;
+    --header-h: 64px;
+    --section-y: 64px;
+  }
+}

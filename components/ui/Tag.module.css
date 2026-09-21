@@ -1,0 +1,12 @@
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.brand { background: var(--color-brand-tint); color: var(--color-brand-dark); }
+.neutral { background: var(--color-sand); color: var(--color-ink-soft); }
+.solid { background: var(--color-brand); color: #fff; }

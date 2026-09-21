@@ -1,0 +1,41 @@
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+}
+
+.onBrand { color: rgba(255, 255, 255, .85); }
+
+.split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.title { margin-block: var(--space-4) 0; }
+.lead {
+  margin-top: var(--space-4);
+  max-width: 560px;
+  font-size: var(--text-lead);
+  color: var(--color-ink-soft);
+}
+.onBrand .lead, .brandLead { color: rgba(255, 255, 255, .92); }
+.action { white-space: nowrap; font-weight: 600; font-size: 15px; }
+
+@media (max-width: 900px) {
+  .split { flex-direction: column; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-6); }
+}

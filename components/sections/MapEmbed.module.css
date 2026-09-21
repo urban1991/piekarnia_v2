@@ -1,0 +1,28 @@
+.map {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 460px;
+  background: repeating-linear-gradient(135deg, #E9DFD0 0 12px, #F1E9DC 12px 24px);
+}
+.map iframe { width: 100%; height: 100%; min-height: 460px; border: 0; display: block; }
+.note {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 13px;
+  color: var(--color-ink-muted);
+}
+.note span { background: #fff; padding: var(--space-2) var(--space-3); border-radius: 6px; position: relative; z-index: 1; }
+.pin {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  box-shadow: 0 0 0 6px rgba(166, 25, 46, .2);
+}
+
+@media (max-width: 900px) { .map, .map iframe { min-height: 240px; } }

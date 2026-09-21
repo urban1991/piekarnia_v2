@@ -1,0 +1,901 @@
+{
+  "source": "https://www.biezynski.swidnica.pl (pobrano 2026-09-14). Strona nie podaje list składników — tylko wartości odżywcze na 100 g. Pole `weight` w gramach, `nutrition` per 100 g.",
+  "categories": [
+    {
+      "slug": "chleby",
+      "name": "Chleby",
+      "lead": "Każdy bochenek rośnie powoli, na naszym własnym zakwasie. Dlatego długo zostaje świeży i dobrze się kroi także trzeciego dnia.",
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/1.jpg"
+    },
+    {
+      "slug": "bulki-i-rogale",
+      "name": "Bułki i rogale",
+      "lead": "Kajzerki, grahamki, rogale z makiem. Najlepsze, kiedy są jeszcze ciepłe — czyli od 6:00 rano.",
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/2-1.jpg"
+    },
+    {
+      "slug": "inne-wypieki",
+      "name": "Inne wypieki",
+      "lead": "Chałki, pączki, drożdżówki i ciasta na niedzielę. Słodkie zakończenie każdych zakupów.",
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/13.jpg"
+    }
+  ],
+  "filters": {
+    "chleby": [
+      "Wszystkie",
+      "Na zakwasie",
+      "Żytnie",
+      "Pszenne",
+      "Z dodatkami"
+    ]
+  },
+  "products": [
+    {
+      "id": "chleb-zwykly",
+      "category": "chleby",
+      "name": "Chleb zwykły",
+      "weight": "350 / 500 / 600 g",
+      "tags": [
+        "Na zakwasie"
+      ],
+      "description": "Tradycyjny chleb pszenno-żytni na naturalnym zakwasie. Możliwość zamówienia w wersji z makiem.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2927-removebg-preview-2.png",
+      "nutrition": {
+        "kcal": 234,
+        "fat": "1,3 g",
+        "carbs": "49,5 g",
+        "fiber": "4,2 g",
+        "protein": "6,2 g",
+        "salt": "3,66 g"
+      }
+    },
+    {
+      "id": "chleb-wiejski",
+      "category": "chleby",
+      "name": "Chleb wiejski",
+      "weight": "500 g",
+      "tags": [
+        "Na zakwasie"
+      ],
+      "description": "Połączenie mąki pszennej, żytniej oraz zakwasu żytniego. Klasyk naszej piekarni.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/1-1.png",
+      "nutrition": {
+        "kcal": 234,
+        "fat": "1,3 g",
+        "carbs": "49,5 g",
+        "fiber": "4,2 g",
+        "protein": "6,2 g",
+        "salt": "3,66 g"
+      }
+    },
+    {
+      "id": "chleb-pszenny",
+      "category": "chleby",
+      "name": "Chleb pszenny",
+      "weight": "400 g",
+      "tags": [
+        "Pszenne"
+      ],
+      "description": "Lekkie pieczywo pszenne z posypką z maku.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/chleb-pszenny.png",
+      "nutrition": {
+        "kcal": 234,
+        "fat": "1,3 g",
+        "carbs": "49,5 g",
+        "fiber": "4,2 g",
+        "protein": "6,2 g",
+        "salt": "3,66 g"
+      }
+    },
+    {
+      "id": "chleb-slonecznikowy",
+      "category": "chleby",
+      "name": "Chleb słonecznikowy",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami",
+        "Żytnie"
+      ],
+      "description": "Pieczywo żytnio-pszenne z dodatkiem słonecznika.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5829-removebg-preview.png",
+      "nutrition": {
+        "kcal": 312,
+        "fat": "9,62 g",
+        "carbs": "49,68 g",
+        "fiber": "5,26 g",
+        "protein": "5,13 g",
+        "salt": "2,6 g"
+      }
+    },
+    {
+      "id": "chleb-zytni-firmowy",
+      "category": "chleby",
+      "name": "Chleb żytni (firmowy)",
+      "weight": "500 g",
+      "tags": [
+        "Żytnie",
+        "Na zakwasie"
+      ],
+      "description": "Pieczywo 100% żytnie z dodatkiem naturalnego zakwasu żytniego.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_6155-removebg-preview.png",
+      "nutrition": {
+        "kcal": 230,
+        "fat": "1,57 g",
+        "carbs": "55,11 g",
+        "fiber": "4,83 g",
+        "protein": "5,25 g",
+        "salt": "2,9 g"
+      }
+    },
+    {
+      "id": "chleb-zytni-zurawina",
+      "category": "chleby",
+      "name": "Chleb żytni z żurawiną",
+      "weight": "450 g",
+      "tags": [
+        "Żytnie",
+        "Z dodatkami"
+      ],
+      "description": "Pieczywo żytnie, w którym dla lepszego smaku dodano żurawinę.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5751-removebg-preview.png",
+      "nutrition": {
+        "kcal": 207,
+        "fat": "1,42 g",
+        "carbs": "48,48 g",
+        "fiber": "4,34 g",
+        "protein": "4,95 g",
+        "salt": "2,8 g"
+      }
+    },
+    {
+      "id": "chleb-zytni-cebula",
+      "category": "chleby",
+      "name": "Chleb żytni z cebulą",
+      "weight": "500 g",
+      "tags": [
+        "Żytnie",
+        "Z dodatkami"
+      ],
+      "description": "Pieczywo żytnie wzbogacone prażoną cebulą.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5777-removebg-preview.png",
+      "nutrition": {
+        "kcal": 259,
+        "fat": "4,53 g",
+        "carbs": "52,72 g",
+        "fiber": "5,27 g",
+        "protein": "6,49 g",
+        "salt": "2,66 g"
+      }
+    },
+    {
+      "id": "chleb-zytni",
+      "category": "chleby",
+      "name": "Chleb żytni",
+      "weight": "450 g",
+      "tags": [
+        "Żytnie"
+      ],
+      "description": "95% mąki żytniej. Wypiekany w foremce, z chrupiącą skórką.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_6202-removebg-preview.png",
+      "nutrition": {
+        "kcal": 207,
+        "fat": "1,42 g",
+        "carbs": "48,48 g",
+        "fiber": "4,34 g",
+        "protein": "4,95 g",
+        "salt": "2,8 g"
+      }
+    },
+    {
+      "id": "chleb-zytni-zurawina-orzechy",
+      "category": "chleby",
+      "name": "Chleb żytni z żurawiną i orzechami",
+      "weight": "500 g",
+      "tags": [
+        "Żytnie",
+        "Na zakwasie",
+        "Z dodatkami"
+      ],
+      "description": "Pieczywo żytnie na zakwasie żytnim. Orzech i żurawina to prawdziwe bomby witaminowe.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5751-removebg-preview.png",
+      "nutrition": {
+        "kcal": 248,
+        "fat": "3,52 g",
+        "carbs": "55,24 g",
+        "fiber": "4,64 g",
+        "protein": "5,35 g",
+        "salt": "3,03 g"
+      }
+    },
+    {
+      "id": "chleb-graham",
+      "category": "chleby",
+      "name": "Chleb graham",
+      "weight": "400 g",
+      "tags": [
+        "Pszenne"
+      ],
+      "description": "Charakterystyczny wygląd i smak zawdzięcza 38% mąki pszennej typu graham.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_6550.png",
+      "nutrition": {
+        "kcal": 257,
+        "fat": "1,7 g",
+        "carbs": "54,74 g",
+        "fiber": "5,38 g",
+        "protein": "8,04 g",
+        "salt": "2,6 g"
+      }
+    },
+    {
+      "id": "baton-duzy",
+      "category": "chleby",
+      "name": "Baton duży",
+      "weight": "400 g",
+      "tags": [
+        "Pszenne"
+      ],
+      "description": "Lekkie pieczywo pszenne o niewielkim dodatku drożdży.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2608-removebg-preview.png",
+      "nutrition": {
+        "kcal": 241,
+        "fat": "0,89 g",
+        "carbs": "49,82 g",
+        "fiber": "1,9 g",
+        "protein": "7,83 g",
+        "salt": "2,75 g"
+      }
+    },
+    {
+      "id": "chleb-ukrainski",
+      "category": "chleby",
+      "name": "Chleb ukraiński",
+      "weight": "450 g",
+      "tags": [
+        "Żytnie",
+        "Z dodatkami"
+      ],
+      "description": "Pieczywo żytnio-pszenne z prażoną mąką żytnią i mieszanką ziół: kminek, koper włoski, kolendra.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_6162-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 235,
+        "fat": "1,56 g",
+        "carbs": "53,28 g",
+        "fiber": "5,12 g",
+        "protein": "5,86 g",
+        "salt": "2,75 g"
+      }
+    },
+    {
+      "id": "chleb-tostowy",
+      "category": "chleby",
+      "name": "Chleb tostowy",
+      "weight": "450 g",
+      "tags": [
+        "Pszenne"
+      ],
+      "description": "Kwadratowa foremka sprawia, że kromki idealnie pasują do każdego tostera.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_6320-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 276,
+        "fat": "1 g",
+        "carbs": "57,29 g",
+        "fiber": "2,13 g",
+        "protein": "8,78 g",
+        "salt": "3,08 g"
+      }
+    },
+    {
+      "id": "chleb-rozmaitosci",
+      "category": "chleby",
+      "name": "Chleb rozmaitości",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Chleb z foremki. Żytnio-pszenny, z siemieniem lnianym, słonecznikiem, sezamem, prosem, płatkami kukurydzianymi i soją.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2869-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 207,
+        "fat": "1,42 g",
+        "carbs": "48,48 g",
+        "fiber": "4,34 g",
+        "protein": "4,95 g",
+        "salt": "2,8 g"
+      }
+    },
+    {
+      "id": "chleb-rodzinny",
+      "category": "chleby",
+      "name": "Chleb rodzinny",
+      "weight": "900 g",
+      "tags": [
+        "Pszenne"
+      ],
+      "description": "Chleb dla dużej rodziny — większa waga i spora liczba kromek.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_3238-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 259,
+        "fat": "3,36 g",
+        "carbs": "53,85 g",
+        "fiber": "2,88 g",
+        "protein": "8,61 g",
+        "salt": "2,43 g"
+      }
+    },
+    {
+      "id": "bagietka-finska",
+      "category": "chleby",
+      "name": "Bagietka fińska",
+      "weight": "500 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Lekkie pieczywo pszenno-żytnie z mąką słodowo-jęczmienną, płatkami żytnimi i ziemniaczanymi oraz słonecznikiem.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2656-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 276,
+        "fat": "3,36 g",
+        "carbs": "53,85 g",
+        "fiber": "2,88 g",
+        "protein": "8,61 g",
+        "salt": "2,43 g"
+      }
+    },
+    {
+      "id": "chleb-sloneczko",
+      "category": "chleby",
+      "name": "Chleb słoneczko",
+      "weight": "550 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Okrągły chleb pszenno-żytni z dodatkiem mąki sojowej.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_5336.png",
+      "nutrition": {
+        "kcal": 310,
+        "fat": "7,71 g",
+        "carbs": "53,41 g",
+        "fiber": "4,52 g",
+        "protein": "7,62 g",
+        "salt": "3,08 g"
+      }
+    },
+    {
+      "id": "chleb-klasztorny",
+      "category": "chleby",
+      "name": "Chleb klasztorny",
+      "weight": "400 g",
+      "tags": [
+        "Żytnie",
+        "Na zakwasie",
+        "Z dodatkami"
+      ],
+      "description": "100% żytni, na naturalnym zakwasie, z ziarnami lnu. Dostępny także w wersji z ziarnami.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_3090-removebg-preview.png",
+      "nutrition": {
+        "kcal": 255,
+        "fat": "4,96 g",
+        "carbs": "53,93 g",
+        "fiber": "4,43 g",
+        "protein": "6,34 g",
+        "salt": "2,66 g"
+      }
+    },
+    {
+      "id": "chleb-owsiany",
+      "category": "chleby",
+      "name": "Chleb owsiany",
+      "weight": "450 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Pieczywo pszenno-żytnie z dodatkiem płatków owsianych.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5910-removebg-preview.png",
+      "nutrition": {
+        "kcal": 268,
+        "fat": "2,19 g",
+        "carbs": "53,92 g",
+        "fiber": "5,54 g",
+        "protein": "7,55 g",
+        "salt": "3,65 g"
+      }
+    },
+    {
+      "id": "chleb-mazurski",
+      "category": "chleby",
+      "name": "Chleb mazurski",
+      "weight": "450 g",
+      "tags": [
+        "Żytnie",
+        "Na zakwasie"
+      ],
+      "description": "Żytnio-pszenny, na naturalnym zakwasie żytnim. Maślanka poprawia sprężystość miękiszu.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_6493-1.png",
+      "nutrition": {
+        "kcal": 236,
+        "fat": "1,63 g",
+        "carbs": "53,57 g",
+        "fiber": "4,68 g",
+        "protein": "5,79 g",
+        "salt": "2,68 g"
+      }
+    },
+    {
+      "id": "chleb-wieloziarnisty",
+      "category": "chleby",
+      "name": "Chleb wieloziarnisty",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Pszenno-żytni z pszenicą, żytem, soją, kaszą jęczmienną, siemieniem lnianym, słonecznikiem, sezamem i płatkami owsianymi.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/Bez-nazwy-1.png",
+      "nutrition": {
+        "kcal": 327,
+        "fat": "6,58 g",
+        "carbs": "56,98 g",
+        "fiber": "4,88 g",
+        "protein": "9,45 g",
+        "salt": "3,52 g"
+      }
+    },
+    {
+      "id": "chleb-razowy",
+      "category": "chleby",
+      "name": "Chleb razowy",
+      "weight": "400 g",
+      "tags": [
+        "Żytnie"
+      ],
+      "description": "Pszenno-żytni, z 23% mąki razowej, która daje charakterystyczny smak i kolor.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_5777-removebg-preview.png",
+      "nutrition": {
+        "kcal": 279,
+        "fat": "1,58 g",
+        "carbs": "58,12 g",
+        "fiber": "5,48 g",
+        "protein": "7,5 g",
+        "salt": "3,86 g"
+      }
+    },
+    {
+      "id": "chleb-farmerski",
+      "category": "chleby",
+      "name": "Chleb farmerski",
+      "weight": "400 g",
+      "tags": [
+        "Na zakwasie"
+      ],
+      "description": "Pszenno-żytni na zakwasie żytnim, z maślanką i posypką z grysiku pszennego.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/3195.png",
+      "nutrition": {
+        "kcal": 246,
+        "fat": "1,59 g",
+        "carbs": "51,77 g",
+        "fiber": "4,23 g",
+        "protein": "6,83 g",
+        "salt": "2,91 g"
+      }
+    },
+    {
+      "id": "chleb-kukurydziany",
+      "category": "chleby",
+      "name": "Chleb kukurydziany",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Pszenno-żytni z mąką kukurydzianą. Wypiekamy tylko na środę.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2779-removebg-preview.png",
+      "nutrition": {
+        "kcal": 268,
+        "fat": "2,19 g",
+        "carbs": "53,92 g",
+        "fiber": "5,54 g",
+        "protein": "7,55 g",
+        "salt": "3,65 g"
+      }
+    },
+    {
+      "id": "chleb-vitalis",
+      "category": "chleby",
+      "name": "Chleb vitalis",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Chleb o obniżonym indeksie glikemicznym, z mąką z pestek winogron i prażoną mąką słodową.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_2750.png",
+      "nutrition": {
+        "kcal": 246,
+        "fat": "1,8 g",
+        "carbs": "47,48 g",
+        "fiber": "7,51 g",
+        "protein": "8,69 g",
+        "salt": "2,96 g"
+      }
+    },
+    {
+      "id": "chleb-sojowy",
+      "category": "chleby",
+      "name": "Chleb sojowy",
+      "weight": "400 g",
+      "tags": [
+        "Z dodatkami"
+      ],
+      "description": "Z mąką sojową, soją, płatkami owsianymi i siemieniem lnianym.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_3121.png",
+      "nutrition": {
+        "kcal": 331,
+        "fat": "5,05 g",
+        "carbs": "59,17 g",
+        "fiber": "4,46 g",
+        "protein": "8,04 g",
+        "salt": "3,73 g"
+      }
+    },
+    {
+      "id": "bulka-grahamka",
+      "category": "bulki-i-rogale",
+      "name": "Bułka grahamka",
+      "weight": "90 g",
+      "tags": [],
+      "description": "Bułka pszenna, która dzięki mące graham jest pożywna i sycąca.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_1459-1.png",
+      "nutrition": {
+        "kcal": 308,
+        "fat": "1,88 g",
+        "carbs": "67,07 g",
+        "fiber": "5,74 g",
+        "protein": "11,04 g",
+        "salt": "2,8 g"
+      }
+    },
+    {
+      "id": "bulka-kajzerka",
+      "category": "bulki-i-rogale",
+      "name": "Bułka kajzerka",
+      "weight": "30 g",
+      "tags": [],
+      "description": "Klasyk wśród bułek: mąka pszenna, olej, drożdże. Pieczemy ją od lat.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_1312.png",
+      "nutrition": {
+        "kcal": 163,
+        "fat": "0,98 g",
+        "carbs": "34,71 g",
+        "fiber": "3,1 g",
+        "protein": "4,36 g",
+        "salt": "0,49 g"
+      }
+    },
+    {
+      "id": "rogal",
+      "category": "bulki-i-rogale",
+      "name": "Rogal",
+      "weight": "90 g",
+      "tags": [],
+      "description": "Z posypką z maku. Pasuje do śniadania także w wersji na słodko.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2489-removebg-preview.png",
+      "nutrition": {
+        "kcal": 268,
+        "fat": "2,19 g",
+        "carbs": "53,92 g",
+        "fiber": "5,54 g",
+        "protein": "7,55 g",
+        "salt": "3,65 g"
+      }
+    },
+    {
+      "id": "bulka-dyniowa",
+      "category": "bulki-i-rogale",
+      "name": "Bułka dyniowa",
+      "weight": "60 g",
+      "tags": [],
+      "description": "Okrągła bułeczka o chrupiącej skórce, posypana pestkami dyni.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/DSC_1370-remov-ebg-previeww.png",
+      "nutrition": {
+        "kcal": 163,
+        "fat": "0,98 g",
+        "carbs": "34,70 g",
+        "fiber": "3,1 g",
+        "protein": "4,36 g",
+        "salt": "1,23 g"
+      }
+    },
+    {
+      "id": "bulka-alpejska",
+      "category": "bulki-i-rogale",
+      "name": "Bułka alpejska",
+      "weight": "90 g",
+      "tags": [],
+      "description": "Nasz hit. Słodkawe ciasto przełamane słoną posypką.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2427-removebg-preview.png",
+      "nutrition": {
+        "kcal": 436,
+        "fat": "10,9 g",
+        "carbs": "68,8 g",
+        "fiber": "3,4 g",
+        "protein": "11,2 g",
+        "salt": "3,5 g"
+      }
+    },
+    {
+      "id": "bulka-zwykla-mala",
+      "category": "bulki-i-rogale",
+      "name": "Bułka zwykła mała",
+      "weight": "50 g",
+      "tags": [],
+      "description": "Bułka pszenna o mniejszej gramaturze, z charakterystycznym nacięciem.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_1475-removebg-preview.png",
+      "nutrition": {
+        "kcal": 325,
+        "fat": "1,2 g",
+        "carbs": "67,3 g",
+        "fiber": "2,4 g",
+        "protein": "10,4 g",
+        "salt": "3,7 g"
+      }
+    },
+    {
+      "id": "bulka-zwykla-duza",
+      "category": "bulki-i-rogale",
+      "name": "Bułka zwykła duża",
+      "weight": "90 g",
+      "tags": [],
+      "description": "Większa gramatura — idealna na szkolne śniadania.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_1475-removebg-preview.png",
+      "nutrition": {
+        "kcal": 325,
+        "fat": "1,2 g",
+        "carbs": "67,3 g",
+        "fiber": "2,4 g",
+        "protein": "10,4 g",
+        "salt": "3,7 g"
+      }
+    },
+    {
+      "id": "bulka-mieszczanska",
+      "category": "bulki-i-rogale",
+      "name": "Bułka mieszczańska",
+      "weight": "90 g",
+      "tags": [],
+      "description": "Podłużna, ciemna bułeczka o wyśmienitym smaku.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/DSC_2452-removebg-preview-1.png",
+      "nutrition": {
+        "kcal": 163,
+        "fat": "0,98 g",
+        "carbs": "34,70 g",
+        "fiber": "3,1 g",
+        "protein": "4,36 g",
+        "salt": "1,23 g"
+      }
+    },
+    {
+      "id": "chalka",
+      "category": "inne-wypieki",
+      "name": "Chałka",
+      "weight": "",
+      "tags": [],
+      "description": "Pleciona, maślana, lekko słodka.",
+      "image": "",
+      "nutrition": null,
+      "photo": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/1-13.jpg"
+    },
+    {
+      "id": "paczki",
+      "category": "inne-wypieki",
+      "name": "Pączki z różnymi nadzieniami",
+      "weight": "",
+      "tags": [],
+      "description": "Róża, adwokat, budyń — zależnie od dnia.",
+      "image": "",
+      "nutrition": null,
+      "photo": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/kazimierza-wielkiego_13.jpg"
+    },
+    {
+      "id": "bulki-slodkie",
+      "category": "inne-wypieki",
+      "name": "Bułki słodkie",
+      "weight": "",
+      "tags": [],
+      "description": "Drożdżówki z serem, makiem i owocami.",
+      "image": "",
+      "nutrition": null,
+      "photo": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/12-1.jpg"
+    },
+    {
+      "id": "babki-piaskowe",
+      "category": "inne-wypieki",
+      "name": "Babki piaskowe",
+      "weight": "",
+      "tags": [],
+      "description": "Zwyczajna i czekoladowa.",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/muffin.png",
+      "nutrition": null
+    },
+    {
+      "id": "babki-z-metra",
+      "category": "inne-wypieki",
+      "name": "Babki z metra",
+      "weight": "",
+      "tags": [],
+      "description": "Cytrynowa, pomarańczowa, brownie.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "makowce",
+      "category": "inne-wypieki",
+      "name": "Makowce",
+      "weight": "",
+      "tags": [],
+      "description": "Zawijane, z dużą ilością maku.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "kule-serowe",
+      "category": "inne-wypieki",
+      "name": "Kule serowe",
+      "weight": "",
+      "tags": [],
+      "description": "Kruche ciasto z serowym nadzieniem.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "jagodzianki",
+      "category": "inne-wypieki",
+      "name": "Jagodzianki",
+      "weight": "",
+      "tags": [
+        "Sezonowo"
+      ],
+      "description": "Sezonowo, latem.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "ciasta-drozdzowe",
+      "category": "inne-wypieki",
+      "name": "Ciasta drożdżowe",
+      "weight": "",
+      "tags": [
+        "Sezonowo"
+      ],
+      "description": "Sezonowo, z owocami i kruszonką.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "pizzerinki",
+      "category": "inne-wypieki",
+      "name": "Pizzerinki",
+      "weight": "",
+      "tags": [],
+      "description": "Małe, na drugie śniadanie.",
+      "image": "",
+      "nutrition": null
+    },
+    {
+      "id": "bulka-tarta",
+      "category": "inne-wypieki",
+      "name": "Bułka tarta",
+      "weight": "",
+      "tags": [],
+      "description": "Z naszego własnego pieczywa.",
+      "image": "",
+      "nutrition": null
+    }
+  ],
+  "stores": [
+    {
+      "id": "swidnica-skladowa",
+      "city": "Świdnica",
+      "street": "ul. Składowa 3",
+      "label": "Sklep przy piekarni",
+      "hours": "Pn–Pt 6:00–18:00 · Sb 6:00–14:00 · Nd zamknięte",
+      "hoursNote": "PRZYKŁADOWE — do potwierdzenia",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/elementor/thumbs/2-3-qyoxx1t2dsuztxatnyfjv031ef4n5y3oxlnfot5x9g.jpg",
+      "maps": "https://maps.google.com/maps?q=Piekarnia%20Bie%C5%BCy%C5%84ski%20Sk%C5%82adowa%203%2C%20%C5%9Awidnica"
+    },
+    {
+      "id": "swidnica-kw",
+      "city": "Świdnica",
+      "street": "ul. Kazimierza Wielkiego 5",
+      "label": "Sklep firmowy",
+      "hours": "Pn–Pt 6:00–18:00 · Sb 6:00–14:00 · Nd zamknięte",
+      "hoursNote": "PRZYKŁADOWE — do potwierdzenia",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/elementor/thumbs/3-1-qyoxx1t2dsuztxatnyfjv031ef4n5y3oxlnfot5x9g.jpg",
+      "maps": "https://maps.google.com/maps?q=Kazimierza%20Wielkiego%205%20%C5%9Awidnica"
+    },
+    {
+      "id": "jaworzyna",
+      "city": "Jaworzyna Śląska",
+      "street": "ul. Wolności 15D",
+      "label": "Sklep firmowy",
+      "hours": "Pn–Pt 6:00–17:00 · Sb 6:00–13:00 · Nd zamknięte",
+      "hoursNote": "PRZYKŁADOWE — do potwierdzenia",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/elementor/thumbs/2-2-qyoxx1t2dsuztxatnyfjv031ef4n5y3oxlnfot5x9g.jpg",
+      "maps": "https://maps.google.com/maps?q=Wolno%C5%9Bci%2015D%20Jaworzyna%20%C5%9Al%C4%85ska"
+    },
+    {
+      "id": "bielawa",
+      "city": "Bielawa",
+      "street": "ul. Piłsudskiego 74",
+      "label": "Sklep firmowy",
+      "hours": "Pn–Pt 6:00–17:00 · Sb 6:00–13:00 · Nd zamknięte",
+      "hoursNote": "PRZYKŁADOWE — do potwierdzenia",
+      "image": "https://www.biezynski.swidnica.pl/wp-content/uploads/elementor/thumbs/1-qyoxx1t2dsuztxatnyfjv031ef4n5y3oxlnfot5x9g.jpg",
+      "maps": "https://maps.google.com/maps?q=Pi%C5%82sudskiego%2074%20Bielawa"
+    }
+  ],
+  "contact": {
+    "phone": "503 083 208",
+    "phoneHref": "tel:+48503083208",
+    "email": "piekarnia@biezynski.pl",
+    "address": "ul. Składowa 3, Świdnica",
+    "facebook": "https://www.facebook.com/piekarniabiezynski/",
+    "instagram": "https://www.instagram.com/piekarniabiezynski/",
+    "catalogPdf": "https://www.biezynski.swidnica.pl/wp-content/uploads/2026/01/Katalog-piekarnia-Bierzynski-2025-web.pdf",
+    "legal": {
+      "nota": "https://www.biezynski.swidnica.pl/wp-content/uploads/2025/01/Nota-prawna.pdf",
+      "privacy": "https://www.biezynski.swidnica.pl/wp-content/uploads/2025/01/polityka-prywatnoL_ci.pdf",
+      "cookies": "https://www.biezynski.swidnica.pl/wp-content/uploads/2025/02/Polityka-plikAlw-cookie.pdf"
+    }
+  },
+  "history": [
+    {
+      "year": "1991",
+      "title": "Początek",
+      "text": "Jacek Bieżyński zakłada firmę — najpierw handel artykułami spożywczymi."
+    },
+    {
+      "year": "2001",
+      "title": "Pierwszy piec",
+      "text": "Firma rozszerza działalność o produkcję pieczywa i wyrobów cukierniczych."
+    },
+    {
+      "year": "2010",
+      "title": "Nowe stery",
+      "text": "Prowadzenie piekarni przejmuje Wioleta Bieżyńska, rozwijając ofertę i rodzinne tradycje."
+    },
+    {
+      "year": "2015",
+      "title": "Drugie pokolenie",
+      "text": "Do zespołu dołącza syn, Damian Bieżyński — piekarz z pasją do technologii. Znacząco rozbudowuje park maszynowy."
+    },
+    {
+      "year": "dziś",
+      "title": "Cztery sklepy, 200+ odbiorców",
+      "text": "Pieczywo trafia do sklepów i marketów w promieniu 100 km od Świdnicy oraz do czterech własnych sklepów firmowych."
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "Zawsze odwiedzam tę piekarnię, gdy jestem w okolicy! Ich ciasta są nie do pobicia, a chleb na zakwasie smakuje jak domowy. Naprawdę warto!",
+      "author": "Anna M."
+    },
+    {
+      "text": "Obsługa w piekarni jest zawsze miła i profesjonalna. A co najważniejsze, wypieki są pyszne! Chleb, który kupiłem, zniknął w mgnieniu oka.",
+      "author": "Ewa L."
+    },
+    {
+      "text": "W tej piekarni zawsze można liczyć na świeże wypieki! Chleb na zakwasie jest moim ulubionym, a do tego obsługa jest zawsze uśmiechnięta i pomocna.",
+      "author": "Bartek K."
+    }
+  ],
+  "gallery": [
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/1-12.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/2-6.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/4-4.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/6-4.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/8-4.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/9-2.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/10-2.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/11-1.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/14.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/5-4.jpg",
+    "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/11/7-4.jpg"
+  ]
+}

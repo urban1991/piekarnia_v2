@@ -1,0 +1,15 @@
+.card {
+  margin: 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+.mark {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  line-height: .6;
+  color: var(--color-brand);
+  margin-bottom: var(--space-5);
+}
+.text { margin: 0 0 var(--space-5); font-size: var(--text-body); line-height: 1.55; }
+.author { font-weight: 600; color: var(--color-ink-soft); }

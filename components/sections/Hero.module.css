@@ -1,0 +1,68 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--space-14);
+  align-items: center;
+  padding-block: 150px var(--space-22);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-brand);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.eyebrow::before { content: ''; width: 28px; height: 2px; background: currentColor; }
+
+.title { font-size: var(--text-display); line-height: 1.06; letter-spacing: -.01em; margin-block: 22px var(--space-6); }
+.lead { max-width: 480px; font-size: var(--text-lead); color: var(--color-ink-soft); margin-bottom: var(--space-9); }
+.actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+.stats { display: flex; gap: 36px; flex-wrap: wrap; margin: var(--space-14) 0 0; font-size: 14px; color: var(--color-ink-soft); }
+.statValue { font-family: var(--font-serif); font-size: 28px; color: var(--color-ink); }
+.statLabel { margin: 0; }
+
+.media { position: relative; }
+.media img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 280px 280px var(--radius-xl) var(--radius-xl);
+}
+
+.badge {
+  position: absolute;
+  left: -28px;
+  bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-float);
+}
+.badgeMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 18px;
+}
+.badgeTitle { display: block; font-weight: 600; }
+.badgeText { display: block; font-size: 14px; color: var(--color-ink-soft); }
+
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 96px var(--space-10); }
+  .media img { height: 320px; border-radius: 175px 175px var(--radius-lg) var(--radius-lg); }
+  .badge { position: static; margin-top: var(--space-4); }
+  .actions > * { flex: 1; }
+}
