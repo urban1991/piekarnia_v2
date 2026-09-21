@@ -1,23 +1,13 @@
-import { Header } from '../../components/layout/Header';
-import { Section } from '../../components/layout/Section';
-import { PageHeader } from '../../components/sections/PageHeader';
-import { contact } from '../../lib/data';
+import { Header } from '../../../components/layout/Header';
+import { Section } from '../../../components/layout/Section';
+import { PageHeader } from '../../../components/sections/PageHeader';
+import { getSiteSettings } from '../../../lib/data';
 import s from './page.module.css';
 
 export const metadata = {
   title: 'Nota prawna i polityki — Piekarnia Bieżyński',
   description: 'Nota prawna, polityka prywatności i polityka cookies.',
 };
-
-const documents = [
-  { title: 'Nota prawna', text: 'Dane firmy, warunki korzystania z serwisu.', href: contact.legal.nota },
-  {
-    title: 'Polityka prywatności',
-    text: 'Jak przetwarzamy dane osobowe i jakie masz prawa.',
-    href: contact.legal.privacy,
-  },
-  { title: 'Polityka cookies', text: 'Jakich plików cookie używamy i jak je wyłączyć.', href: contact.legal.cookies },
-];
 
 const toc = [
   'Administrator danych',
@@ -30,10 +20,24 @@ const toc = [
   'Kontakt',
 ];
 
-export default function DokumentyPage() {
+export default async function DokumentyPage() {
+  const contact = await getSiteSettings();
+  const documents = [
+    { title: 'Nota prawna', text: 'Dane firmy, warunki korzystania z serwisu.', href: contact.legal.nota },
+    {
+      title: 'Polityka prywatności',
+      text: 'Jak przetwarzamy dane osobowe i jakie masz prawa.',
+      href: contact.legal.privacy,
+    },
+    {
+      title: 'Polityka cookies',
+      text: 'Jakich plików cookie używamy i jak je wyłączyć.',
+      href: contact.legal.cookies,
+    },
+  ];
   return (
     <main>
-      <Header />
+      <Header phone={contact.phone} phoneHref={contact.phoneHref} />
       <PageHeader
         eyebrow="Dokumenty"
         title="Nota prawna i polityki"

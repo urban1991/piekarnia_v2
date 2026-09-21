@@ -1,16 +1,18 @@
-import { Header } from '../components/layout/Header';
-import { Section } from '../components/layout/Section';
-import { SectionHeading } from '../components/layout/SectionHeading';
-import { Grid } from '../components/ui/Grid';
-import { Button } from '../components/ui/Button';
-import { Hero } from '../components/sections/Hero';
-import { FeatureBand } from '../components/sections/FeatureBand';
-import { MapEmbed } from '../components/sections/MapEmbed';
-import { StoreList } from '../components/sections/StoreList';
-import { InstagramGrid } from '../components/sections/InstagramGrid';
-import { CategoryCard } from '../components/cards/CategoryCard';
-import { TestimonialCard } from '../components/cards/TestimonialCard';
-import { categories, contact, testimonials } from '../lib/data';
+import Image from 'next/image';
+import { Header } from '../../components/layout/Header';
+import { Section } from '../../components/layout/Section';
+import { SectionHeading } from '../../components/layout/SectionHeading';
+import { Grid } from '../../components/ui/Grid';
+import { Button } from '../../components/ui/Button';
+import { Hero } from '../../components/sections/Hero';
+import { FeatureBand } from '../../components/sections/FeatureBand';
+import { MapEmbed } from '../../components/sections/MapEmbed';
+import { StoreList } from '../../components/sections/StoreList';
+import { InstagramGrid } from '../../components/sections/InstagramGrid';
+import { CategoryCard } from '../../components/cards/CategoryCard';
+import { TestimonialCard } from '../../components/cards/TestimonialCard';
+import { getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
+import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './page.module.css';
 
 const features = [
@@ -32,16 +34,21 @@ const features = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [settings, categories, testimonials] = await Promise.all([
+    getSiteSettings(),
+    getCategories(),
+    getTestimonials(),
+  ]);
   return (
     <main>
       <div className={s.heroWrap}>
-        <Header variant="onHero" />
+        <Header variant="onHero" phone={settings.phone} phoneHref={settings.phoneHref} />
         <Hero
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
           title="Chleb, który pachnie jak w domu."
           lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
-          image="/photos/hero-chleb.jpg"
+          image={categories[0]?.cover ?? ''}
           stats={[
             { value: '4 sklepy', label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
@@ -54,7 +61,7 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           title="Co dziś wyjęliśmy z pieca"
-          action={{ href: contact.catalogPdf, label: 'Katalog PDF →' }}
+          action={{ href: settings.catalogPdf, label: 'Katalog PDF →' }}
         />
         <Grid cols={3}>
           {categories.map((category) => (
@@ -66,8 +73,25 @@ export default function HomePage() {
       <Section tone="surface">
         <div className={s.about}>
           <div className={s.aboutImages}>
-            <img className={s.aboutOffset} src="/photos/piekarnia-1.jpg" alt="" />
-            <img src="/photos/piekarnia-2.jpg" alt="" />
+            {settings.gallery[0] ? (
+              <Image
+                className={s.aboutOffset}
+                src={settings.gallery[0]}
+                alt=""
+                width={600}
+                height={340}
+                loader={isSanityUrl(settings.gallery[0]) ? sanityImageLoader : undefined}
+              />
+            ) : null}
+            {settings.gallery[1] ? (
+              <Image
+                src={settings.gallery[1]}
+                alt=""
+                width={600}
+                height={340}
+                loader={isSanityUrl(settings.gallery[1]) ? sanityImageLoader : undefined}
+              />
+            ) : null}
           </div>
           <div>
             <SectionHeading eyebrow="O nas" title="Rodzinna piekarnia, w której liczy się czas" />
@@ -114,9 +138,9 @@ export default function HomePage() {
         <div className={s.instagram}>
           <SectionHeading
             title="Z naszego pieca na Instagramie"
-            action={{ href: contact.instagram, label: '@piekarniabiezynski →' }}
+            action={{ href: settings.instagram, label: '@piekarniabiezynski →' }}
           />
-          <InstagramGrid />
+          <InstagramGrid images={settings.gallery} />
         </div>
       </Section>
     </main>

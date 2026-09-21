@@ -138,7 +138,7 @@
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  background: #3a2620 url('/photos/piekarnia-1.jpg') center / cover;
+  background: #3a2620;
 }
 .demoDark::before { content: ''; position: absolute; inset: 0; background: rgba(20, 10, 8, .45); }
 .demoHeaderDark { position: relative; min-height: var(--header-h); }

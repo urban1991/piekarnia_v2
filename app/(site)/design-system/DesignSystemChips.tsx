@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FilterChips } from '../../components/ui/FilterChips';
+import { FilterChips } from '../../../components/ui/FilterChips';
 
 const options = ['Wszystkie', 'Na zakwasie', 'Żytnie', 'Pszenne', 'Z dodatkami'];
 

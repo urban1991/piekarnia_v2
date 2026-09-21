@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { Libre_Caslon_Text, Source_Sans_3 } from 'next/font/google';
-import { Footer } from '../components/layout/Footer';
 import '../styles/globals.css';
 
 const serif = Libre_Caslon_Text({
@@ -28,10 +27,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pl" className={serif.variable + ' ' + sans.variable}>
-      <body>
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

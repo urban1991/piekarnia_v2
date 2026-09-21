@@ -1,8 +1,8 @@
-import { Header } from '../../components/layout/Header';
-import { Section } from '../../components/layout/Section';
-import { SectionHeading } from '../../components/layout/SectionHeading';
-import { ContactForm } from '../../components/sections/ContactForm';
-import { contact } from '../../lib/data';
+import { Header } from '../../../components/layout/Header';
+import { Section } from '../../../components/layout/Section';
+import { SectionHeading } from '../../../components/layout/SectionHeading';
+import { ContactForm } from '../../../components/sections/ContactForm';
+import { getSiteSettings } from '../../../lib/data';
 import s from './page.module.css';
 
 export const metadata = {
@@ -10,10 +10,11 @@ export const metadata = {
   description: 'Telefon 503 083 208, ul. Składowa 3 w Świdnicy. Zamówienia i współpraca hurtowa.',
 };
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const contact = await getSiteSettings();
   return (
     <main>
-      <Header />
+      <Header phone={contact.phone} phoneHref={contact.phoneHref} />
       <Section>
         <div className={s.layout}>
           <div>
@@ -41,7 +42,7 @@ export default function KontaktPage() {
                 </dd>
               </div>
             </dl>
-            <p className={s.todo}>adres e-mail i NIP — do uzupełnienia</p>
+            {!contact.email ? <p className={s.todo}>adres e-mail i NIP — do uzupełnienia</p> : null}
           </div>
           <ContactForm />
         </div>

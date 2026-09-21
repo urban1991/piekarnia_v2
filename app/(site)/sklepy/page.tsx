@@ -1,11 +1,11 @@
-import { Header } from '../../components/layout/Header';
-import { Section } from '../../components/layout/Section';
-import { PageHeader } from '../../components/sections/PageHeader';
-import { MapEmbed } from '../../components/sections/MapEmbed';
-import { CtaBand } from '../../components/sections/CtaBand';
-import { Grid } from '../../components/ui/Grid';
-import { StoreCard } from '../../components/cards/StoreCard';
-import { contact, stores } from '../../lib/data';
+import { Header } from '../../../components/layout/Header';
+import { Section } from '../../../components/layout/Section';
+import { PageHeader } from '../../../components/sections/PageHeader';
+import { MapEmbed } from '../../../components/sections/MapEmbed';
+import { CtaBand } from '../../../components/sections/CtaBand';
+import { Grid } from '../../../components/ui/Grid';
+import { StoreCard } from '../../../components/cards/StoreCard';
+import { getSiteSettings, getStores } from '../../../lib/data';
 import s from './page.module.css';
 
 export const metadata = {
@@ -13,10 +13,11 @@ export const metadata = {
   description: 'Cztery sklepy firmowe: Świdnica (Składowa 3, Kazimierza Wielkiego 5), Jaworzyna Śląska, Bielawa.',
 };
 
-export default function SklepyPage() {
+export default async function SklepyPage() {
+  const [settings, stores] = await Promise.all([getSiteSettings(), getStores()]);
   return (
     <main>
-      <Header />
+      <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <PageHeader
         eyebrow="Sklepy firmowe"
         title="Gdzie nas znaleźć"
@@ -42,7 +43,7 @@ export default function SklepyPage() {
       <CtaBand
         title="Współpraca hurtowa"
         text="Dostarczamy do sklepów i punktów gastronomicznych w promieniu 100 km od Świdnicy."
-        action={{ href: contact.phoneHref, label: 'Porozmawiajmy' }}
+        action={{ href: settings.phoneHref, label: 'Porozmawiajmy' }}
       />
     </main>
   );

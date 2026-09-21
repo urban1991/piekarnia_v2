@@ -1,16 +1,22 @@
 import Image from 'next/image';
-import { Header } from '../../components/layout/Header';
-import { SectionHeading } from '../../components/layout/SectionHeading';
-import { Button } from '../../components/ui/Button';
-import { Tag } from '../../components/ui/Tag';
-import { CategoryCard } from '../../components/cards/CategoryCard';
-import { ProductCard } from '../../components/cards/ProductCard';
-import { StoreCard } from '../../components/cards/StoreCard';
-import { TestimonialCard } from '../../components/cards/TestimonialCard';
-import { ContactForm } from '../../components/sections/ContactForm';
-import { CtaBand } from '../../components/sections/CtaBand';
-import { MapEmbed } from '../../components/sections/MapEmbed';
-import { categories, contact, getSiteSettings, products, stores, testimonials } from '../../lib/data';
+import { Header } from '../../../components/layout/Header';
+import { SectionHeading } from '../../../components/layout/SectionHeading';
+import { Button } from '../../../components/ui/Button';
+import { Tag } from '../../../components/ui/Tag';
+import { CategoryCard } from '../../../components/cards/CategoryCard';
+import { ProductCard } from '../../../components/cards/ProductCard';
+import { StoreCard } from '../../../components/cards/StoreCard';
+import { TestimonialCard } from '../../../components/cards/TestimonialCard';
+import { ContactForm } from '../../../components/sections/ContactForm';
+import { CtaBand } from '../../../components/sections/CtaBand';
+import { MapEmbed } from '../../../components/sections/MapEmbed';
+import {
+  getCategories,
+  getSiteSettings,
+  getAllProducts,
+  getStores,
+  getTestimonials,
+} from '../../../lib/data';
 import { DesignSystemChips } from './DesignSystemChips';
 import s from './page.module.css';
 
@@ -67,8 +73,14 @@ function Heading({ n, title, lead }: { n: string; title: string; lead?: string }
 }
 
 export default async function DesignSystemPage() {
-  const settings = await getSiteSettings();
-  const sampleProduct = products.find((p) => p.id === 'chleb-zytni-firmowy') ?? products[0];
+  const [settings, categories, products, stores, testimonials] = await Promise.all([
+    getSiteSettings(),
+    getCategories(),
+    getAllProducts(),
+    getStores(),
+    getTestimonials(),
+  ]);
+  const sampleProduct = products.find((p) => p.id === 'product-chleb-zytni-firmowy') ?? products[0];
 
   return (
     <main>
@@ -292,7 +304,7 @@ export default async function DesignSystemPage() {
                   <a href="#">O nas</a>
                   <a href="#">Sklepy</a>
                   <a href="#">Kontakt</a>
-                  <Button href={contact.phoneHref} block>Zadzwoń: {contact.phone}</Button>
+                  <Button href={settings.phoneHref} block>Zadzwoń: {settings.phone}</Button>
                 </div>
               </div>
             </div>
@@ -312,7 +324,7 @@ export default async function DesignSystemPage() {
             </div>
             <div className={s.labeled}>
               <div className={s.meta}>ProductCard · PNG na przygaszonym zdjęciu</div>
-              <ProductCard product={sampleProduct} backdrop="/photos/piekarnia-1.jpg" />
+              <ProductCard product={sampleProduct} backdrop={categories[0]?.cover} />
             </div>
             <div className={s.labeled}>
               <div className={s.meta}>StoreCard</div>
@@ -400,7 +412,7 @@ export default async function DesignSystemPage() {
               <CtaBand
                 title="Pełna oferta w katalogu"
                 text="Wszystkie chleby, bułki i wypieki z opisami — do pobrania."
-                action={{ href: contact.catalogPdf, label: 'Pobierz katalog PDF' }}
+                action={{ href: settings.catalogPdf, label: 'Pobierz katalog PDF' }}
               />
             </div>
             <div className={s.panel}>

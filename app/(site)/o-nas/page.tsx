@@ -1,9 +1,12 @@
-import { Header } from '../../components/layout/Header';
-import { Section } from '../../components/layout/Section';
-import { SectionHeading } from '../../components/layout/SectionHeading';
-import { PageHeader } from '../../components/sections/PageHeader';
-import { Timeline } from '../../components/sections/Timeline';
-import { Button } from '../../components/ui/Button';
+import Image from 'next/image';
+import { Header } from '../../../components/layout/Header';
+import { Section } from '../../../components/layout/Section';
+import { SectionHeading } from '../../../components/layout/SectionHeading';
+import { PageHeader } from '../../../components/sections/PageHeader';
+import { Timeline } from '../../../components/sections/Timeline';
+import { Button } from '../../../components/ui/Button';
+import { getSiteSettings } from '../../../lib/data';
+import { isSanityUrl, sanityImageLoader } from '../../../sanity/image';
 import s from './page.module.css';
 
 export const metadata = {
@@ -11,10 +14,11 @@ export const metadata = {
   description: 'Rodzinna piekarnia ze Świdnicy od 1991 roku. Własny zakwas, lokalna mąka, cztery sklepy firmowe.',
 };
 
-export default function ONasPage() {
+export default async function ONasPage() {
+  const settings = await getSiteSettings();
   return (
     <main>
-      <Header />
+      <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <PageHeader
         eyebrow="O nas · od 1991"
         title="Piekarnia, która wstaje razem z miastem"
@@ -24,8 +28,24 @@ export default function ONasPage() {
 
       <Section flush>
         <div className={s.gallery}>
-          <img src="/photos/piekarnia-1.jpg" alt="" />
-          <img src="/photos/piekarnia-3.jpg" alt="" />
+          {settings.gallery[2] ? (
+            <Image
+              src={settings.gallery[2]}
+              alt=""
+              width={800}
+              height={420}
+              loader={isSanityUrl(settings.gallery[2]) ? sanityImageLoader : undefined}
+            />
+          ) : null}
+          {settings.gallery[3] ? (
+            <Image
+              src={settings.gallery[3]}
+              alt=""
+              width={800}
+              height={420}
+              loader={isSanityUrl(settings.gallery[3]) ? sanityImageLoader : undefined}
+            />
+          ) : null}
           <div className={s.placeholder}>zdjęcie rodziny — do dosłania</div>
         </div>
       </Section>
@@ -75,7 +95,15 @@ export default function ONasPage() {
 
       <Section>
         <div className={s.ingredients}>
-          <img src="/photos/piekarnia-4.jpg" alt="" />
+          {settings.gallery[4] ? (
+            <Image
+              src={settings.gallery[4]}
+              alt=""
+              width={800}
+              height={420}
+              loader={isSanityUrl(settings.gallery[4]) ? sanityImageLoader : undefined}
+            />
+          ) : null}
           <div>
             <SectionHeading title="Skąd bierzemy składniki" />
             <p className={s.paragraph}>
