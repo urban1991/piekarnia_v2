@@ -8,26 +8,40 @@ serif Libre Caslon Text w nagłówkach, Source Sans 3 w tekście.
 ## Uruchomienie
 
 ```bash
+cp .env.example .env.local
+```
+
+Uzupełnić w `.env.local`: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`,
+`NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_WRITE_TOKEN` (tylko lokalnie, do seeda),
+`SANITY_WEBHOOK_SECRET`.
+
+```bash
 npm install
 npm run dev
 ```
 
 Podgląd design systemu (tokeny + wszystkie komponenty): `http://localhost:3000/design-system`.
+Panel menadżera (Sanity Studio): `http://localhost:3000/studio` — patrz `docs/ADMIN.md`.
 
 ## Struktura
 
     styles/tokens.css        wszystkie zmienne (kolory, typografia, spacing, radius, breakpointy)
     styles/globals.css       reset + elementy bazowe, importuje tokens.css
     lib/types.ts             typy domenowe (Product, Store, Category, ...)
-    lib/data.ts              odczyt data/products.json + helpery (productsByCategory, filtersFor)
-    data/products.json       treść pobrana z biezynski.swidnica.pl (produkty, sklepy, historia, opinie)
+    lib/data.ts              async odczyt z Sanity (GROQ) + helpery (productsByCategory, filtersFor)
+    sanity/                  konfiguracja klienta, env, obrazy, GROQ queries, schematy, structure Studio
+    app/studio/              Sanity Studio pod /studio
+    app/api/revalidate/      webhook Sanity odświeżający cache (revalidateTag)
+    scripts/seed-sanity.ts   jednorazowy skrypt migracji data/products.json → Sanity
+    data/products.json       (tylko do migracji, usuwane po seedzie) treść pobrana z biezynski.swidnica.pl
+    public/photos/           (tylko do migracji, usuwane po seedzie) zdjęcia wgrywane przez seed do Sanity
     components/ui/           Button, Tag, FilterChips, Grid
     components/layout/       Header, Footer, Container, Section, SectionHeading
     components/cards/        CategoryCard, ProductCard, StoreCard, TestimonialCard
     components/sections/     Hero, PageHeader, FeatureBand, CtaBand, MapEmbed, StoreList,
                              InstagramGrid, Timeline, ContactForm, ProductGrid
-    app/                     7 stron App Routera + /design-system
-    public/                  logo + zdjęcia (photos/)
+    app/(site)/              strony App Routera (grupa z layoutem/stopką) + /design-system
+    public/                  logo + zdjęcia
 
 Stylowanie: **CSS Modules**, bez bibliotek. Fonty ładuje `next/font/google` w `app/layout.tsx`
 i wstrzykuje je do `--font-serif` / `--font-sans` w `tokens.css`.
@@ -43,16 +57,27 @@ i wstrzykuje je do `--font-serif` / `--font-sans` w `tokens.css`.
 
 ## Obrazy
 
-Zdjęcia produktów w `data/products.json` wskazują na obecną stronę WordPress
-(`next.config.ts` ma `remotePatterns` dla `www.biezynski.swidnica.pl`). Zdjęcia wnętrza
-i logo są w `public/`.
+Zdjęcia produktów, sklepów i galerii są przechowywane w Sanity i serwowane z CDN Sanity
+(`sanity/image.ts` buduje URL-e przez `@sanity/image-url`; `next.config.ts` ma `remotePatterns`
+dla `cdn.sanity.io`). Zdjęcia wnętrza i logo poza treścią zarządzaną w Studio są w `public/`.
+
+## Wdrożenie na Vercel
+
+1. Zaimportować repo w Vercel.
+2. Ustawić zmienne środowiskowe (Project Settings → Environment Variables):
+   `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`,
+   `SANITY_WEBHOOK_SECRET` — **bez** `SANITY_API_WRITE_TOKEN` (token zapisu potrzebny tylko lokalnie do seeda).
+3. Po deployu dodać domenę Vercel do listy CORS origins w Sanity: Manage → API → CORS origins,
+   z zaznaczoną opcją „Allow credentials” — bez tego Studio pod `/studio` nie zaloguje się na produkcji.
+4. Skonfigurować webhook w Sanity (Manage → API → Webhooks) wskazujący na `/api/revalidate`
+   z tym samym sekretem co `SANITY_WEBHOOK_SECRET`.
+
+Panel menadżera opisany jest w [`docs/ADMIN.md`](docs/ADMIN.md).
 
 ## Do potwierdzenia przez klienta
 
-1. **Godziny otwarcia sklepów** — obecna strona ich nie podaje; w `products.json` są wartości przykładowe.
+1. **Godziny otwarcia sklepów** — obecna strona ich nie podaje; w danych są wartości przykładowe.
 2. **Składy produktów** — strona podaje tylko wartości odżywcze na 100 g.
 3. **Adres e-mail, pełna nazwa firmy, NIP** — brak na stronie.
 4. **Zdjęcia** części pozycji z „Innych wypieków” oraz zdjęcie rodziny na „O nas”.
-5. **Mapa** — embed Google Maps z czterema punktami (`<MapEmbed src=... />`).
-6. **Treści prawne** — istnieją tylko jako PDF-y.
-7. **Instagram** — feed z API czy 6 ręcznie wybranych zdjęć.
+5. **Treści prawne** — istnieją tylko jako PDF-y.
