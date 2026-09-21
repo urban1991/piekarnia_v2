@@ -24,8 +24,8 @@ export const structure: StructureResolver = (S) =>
                   .child(
                     S.documentTypeList('product')
                       .title(CATEGORY_TITLES[slug])
-                      .filter('_type == "product" && category._ref == $categoryId')
-                      .params({ categoryId: `category-${slug}` })
+                      .filter('_type == "product" && category->slug.current == $slug')
+                      .params({ slug })
                       .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }])
                       .initialValueTemplates([
                         S.initialValueTemplateItem('product-in-category', { categoryId: `category-${slug}` }),

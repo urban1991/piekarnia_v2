@@ -77,4 +77,15 @@ describe('mapSettings', () => {
     expect(s.gallery).toHaveLength(2);
     expect(s.gallery[0]).toContain('e1-800x600.png');
   });
+
+  it('maps heroImage to a url, and to an empty string when the doc is missing', () => {
+    expect(mapSettings({ heroImage: img('h1') }).heroImage).toContain('h1-800x600.png');
+    expect(mapSettings(null).heroImage).toBe('');
+  });
+
+  it('maps homeGallery without dropping missing entries, preserving indices', () => {
+    const s = mapSettings({ homeGallery: [img('a'), {}] });
+    expect(s.homeGallery).toEqual([expect.stringContaining('a-800x600.png'), '']);
+    expect(mapSettings(null).homeGallery).toEqual([]);
+  });
 });

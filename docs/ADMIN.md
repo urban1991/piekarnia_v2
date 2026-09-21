@@ -25,7 +25,8 @@ Treść → Sklepy → edytuj godziny, adres, zdjęcie, link do Google Maps → 
 
 ## Ustawienia strony
 
-Telefon, e-mail, adres, linki social, katalog PDF, dokumenty prawne, galeria zdjęć (strona główna i „O nas").
+Telefon, e-mail, adres, linki social, katalog PDF, dokumenty prawne, zdjęcie hero (strona główna),
+zdjęcia „O nas” na stronie głównej (2), zdjęcia strony „O nas” (3), galeria Instagram (6+).
 
 ## Dobre praktyki
 

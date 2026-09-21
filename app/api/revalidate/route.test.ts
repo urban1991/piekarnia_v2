@@ -27,6 +27,13 @@ describe('POST /api/revalidate', () => {
     expect(revalidateTag).not.toHaveBeenCalled();
   });
 
+  it('returns 400 when parseBody throws and does not revalidate', async () => {
+    parseBody.mockRejectedValue(new Error('bad signature header'));
+    const res = await POST(request());
+    expect(res.status).toBe(400);
+    expect(revalidateTag).not.toHaveBeenCalled();
+  });
+
   it('returns 401 on invalid signature and does not revalidate', async () => {
     parseBody.mockResolvedValue({ isValidSignature: false, body: null });
     const res = await POST(request());

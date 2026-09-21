@@ -12,7 +12,6 @@ import { InstagramGrid } from '../../components/sections/InstagramGrid';
 import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCard } from '../../components/cards/TestimonialCard';
 import { getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
-import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './page.module.css';
 
 const features = [
@@ -48,7 +47,7 @@ export default async function HomePage() {
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
           title="Chleb, który pachnie jak w domu."
           lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
-          image={categories[0]?.cover ?? ''}
+          image={settings.heroImage}
           stats={[
             { value: '4 sklepy', label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
@@ -73,24 +72,11 @@ export default async function HomePage() {
       <Section tone="surface">
         <div className={s.about}>
           <div className={s.aboutImages}>
-            {settings.gallery[0] ? (
-              <Image
-                className={s.aboutOffset}
-                src={settings.gallery[0]}
-                alt=""
-                width={600}
-                height={340}
-                loader={isSanityUrl(settings.gallery[0]) ? sanityImageLoader : undefined}
-              />
+            {settings.homeGallery[0] ? (
+              <Image className={s.aboutOffset} src={settings.homeGallery[0]} alt="" width={600} height={340} />
             ) : null}
-            {settings.gallery[1] ? (
-              <Image
-                src={settings.gallery[1]}
-                alt=""
-                width={600}
-                height={340}
-                loader={isSanityUrl(settings.gallery[1]) ? sanityImageLoader : undefined}
-              />
+            {settings.homeGallery[1] ? (
+              <Image src={settings.homeGallery[1]} alt="" width={600} height={340} />
             ) : null}
           </div>
           <div>

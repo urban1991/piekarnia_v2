@@ -26,5 +26,5 @@ export const testimonialsQuery = defineQuery(`*[_type == "testimonial"] | order(
 export const historyQuery = defineQuery(`*[_type == "historyEntry"] | order(sortOrder asc) { year, title, text }`);
 
 export const siteSettingsQuery = defineQuery(
-  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, legal, gallery }`,
+  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, legal, heroImage, homeGallery, aboutGallery, gallery }`,
 );

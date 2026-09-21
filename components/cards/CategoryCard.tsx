@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Category } from '../../lib/types';
-import { isSanityUrl, sanityImageLoader } from '../../sanity/image';
 import s from './CategoryCard.module.css';
 
 export function CategoryCard({ category, lead }: { category: Category; lead?: string }) {
@@ -13,7 +12,6 @@ export function CategoryCard({ category, lead }: { category: Category; lead?: st
           alt=""
           width={640}
           height={480}
-          loader={isSanityUrl(category.cover) ? sanityImageLoader : undefined}
         />
       </div>
       <div className={s.body}>

@@ -6,7 +6,6 @@ import { PageHeader } from '../../../components/sections/PageHeader';
 import { Timeline } from '../../../components/sections/Timeline';
 import { Button } from '../../../components/ui/Button';
 import { getSiteSettings } from '../../../lib/data';
-import { isSanityUrl, sanityImageLoader } from '../../../sanity/image';
 import s from './page.module.css';
 
 export const metadata = {
@@ -28,23 +27,11 @@ export default async function ONasPage() {
 
       <Section flush>
         <div className={s.gallery}>
-          {settings.gallery[2] ? (
-            <Image
-              src={settings.gallery[2]}
-              alt=""
-              width={800}
-              height={420}
-              loader={isSanityUrl(settings.gallery[2]) ? sanityImageLoader : undefined}
-            />
+          {settings.aboutGallery[0] ? (
+            <Image src={settings.aboutGallery[0]} alt="" width={800} height={420} />
           ) : null}
-          {settings.gallery[3] ? (
-            <Image
-              src={settings.gallery[3]}
-              alt=""
-              width={800}
-              height={420}
-              loader={isSanityUrl(settings.gallery[3]) ? sanityImageLoader : undefined}
-            />
+          {settings.aboutGallery[1] ? (
+            <Image src={settings.aboutGallery[1]} alt="" width={800} height={420} />
           ) : null}
           <div className={s.placeholder}>zdjęcie rodziny — do dosłania</div>
         </div>
@@ -95,14 +82,8 @@ export default async function ONasPage() {
 
       <Section>
         <div className={s.ingredients}>
-          {settings.gallery[4] ? (
-            <Image
-              src={settings.gallery[4]}
-              alt=""
-              width={800}
-              height={420}
-              loader={isSanityUrl(settings.gallery[4]) ? sanityImageLoader : undefined}
-            />
+          {settings.aboutGallery[2] ? (
+            <Image src={settings.aboutGallery[2]} alt="" width={800} height={420} />
           ) : null}
           <div>
             <SectionHeading title="Skąd bierzemy składniki" />

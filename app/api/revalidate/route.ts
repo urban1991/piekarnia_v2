@@ -8,10 +8,16 @@ export const runtime = 'nodejs';
 export async function POST(req: NextRequest): Promise<Response> {
   const secret = process.env.SANITY_WEBHOOK_SECRET;
   if (!secret) {
-    return Response.json({ message: 'Brak SANITY_WEBHOOK_SECRET' }, { status: 500 });
+    console.error('SANITY_WEBHOOK_SECRET is not set');
+    return Response.json({ message: 'Server misconfigured' }, { status: 500 });
   }
 
-  const { isValidSignature } = await parseBody<{ _type?: string }>(req, secret, true);
+  let isValidSignature: boolean | null;
+  try {
+    ({ isValidSignature } = await parseBody<{ _type?: string }>(req, secret, true));
+  } catch {
+    return Response.json({ message: 'Bad request' }, { status: 400 });
+  }
   if (!isValidSignature) {
     return Response.json({ message: 'Nieprawidłowy podpis' }, { status: 401 });
   }

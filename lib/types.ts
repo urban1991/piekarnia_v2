@@ -55,6 +55,12 @@ export type SiteSettings = {
   instagram: string;
   catalogPdf: string;
   legal: { nota: string; privacy: string; cookies: string };
+  /** hero image URL (cdn.sanity.io); '' when unset */
+  heroImage: string;
+  /** "O nas" images shown on the homepage; fixed length 2, missing entries are '' */
+  homeGallery: string[];
+  /** images shown on the "O nas" page; fixed length 3, missing entries are '' */
+  aboutGallery: string[];
   /** image URLs (cdn.sanity.io) */
   gallery: string[];
 };

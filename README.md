@@ -46,6 +46,13 @@ Panel menadżera (Sanity Studio): `http://localhost:3000/studio` — patrz `docs
 Stylowanie: **CSS Modules**, bez bibliotek. Fonty ładuje `next/font/google` w `app/layout.tsx`
 i wstrzykuje je do `--font-serif` / `--font-sans` w `tokens.css`.
 
+### Kategorie
+
+Dokumenty `category` mają stałe id: `category-chleby`, `category-bulki-i-rogale`,
+`category-inne-wypieki` — nadaje je seed. Studio filtruje listy produktów per kategoria po
+`category->slug.current`, a szablon nowego produktu w danej kategorii nadal używa tych stałych id
+jako wartości początkowej. Nie twórz kategorii ręcznie w Studio — id musi się zgadzać.
+
 ## Komponenty — jak używać
 
     <Section tone="cream|surface|brand" flush>       sekcja + kontener, padding z --section-y
