@@ -36,9 +36,34 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('product').title('Wszystkie produkty'),
             ]),
         ),
-      S.documentTypeListItem('store').title('Sklepy'),
-      S.documentTypeListItem('testimonial').title('Opinie'),
-      S.documentTypeListItem('historyEntry').title('Historia'),
+      S.documentTypeListItem('category')
+        .title('Kategorie')
+        .child(
+          S.documentTypeList('category')
+            .title('Kategorie')
+            .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
+        ),
+      S.listItem()
+        .title('Sklepy')
+        .child(
+          S.documentTypeList('store')
+            .title('Sklepy')
+            .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
+        ),
+      S.listItem()
+        .title('Opinie')
+        .child(
+          S.documentTypeList('testimonial')
+            .title('Opinie')
+            .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
+        ),
+      S.listItem()
+        .title('Historia')
+        .child(
+          S.documentTypeList('historyEntry')
+            .title('Historia')
+            .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
+        ),
       S.divider(),
       S.listItem()
         .title('Ustawienia strony')
