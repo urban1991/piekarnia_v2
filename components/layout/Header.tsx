@@ -107,7 +107,7 @@ export function Header({
           <div className={s.menuTop}>
             <Image src="/logo.png" alt="" width={44} height={44} />
             <button
-              className={s.burger}
+              className={s.burger + ' ' + s.close}
               type="button"
               aria-label="Zamknij"
               onClick={() => setOpen(false)}
