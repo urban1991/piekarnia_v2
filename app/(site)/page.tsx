@@ -57,7 +57,7 @@ export default async function HomePage() {
           lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
           image={settings.heroImage}
           stats={[
-            { value: '4 sklepy', label: 'Świdnica, Jaworzyna, Bielawa' },
+            { value: '4 sklepy firmowe', label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
             { value: 'od 1991', label: 'Trzy dekady w rodzinie' },
           ]}
