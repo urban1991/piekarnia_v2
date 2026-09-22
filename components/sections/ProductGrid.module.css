@@ -1,4 +1,10 @@
-.wrap { display: grid; gap: var(--space-8); }
+.wrap {
+  display: grid;
+  /* minmax(0, 1fr): without it the auto column grows to the chips row's
+     max-content width and every card below inherits that overflow */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+}
 
 .toolbar {
   display: flex;
@@ -6,6 +12,7 @@
   justify-content: space-between;
   gap: var(--space-4) var(--space-6);
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .count { font-size: var(--text-caption); color: var(--color-ink-muted); margin-top: calc(-1 * var(--space-4)); }
@@ -32,5 +39,7 @@
 .emptyReset:hover { color: var(--color-brand-dark); text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 900px) {
-  .toolbar { flex-direction: column-reverse; align-items: stretch; }
+  /* column-reverse must not wrap: a wrapped column line takes the width of its
+     widest item (the chips row), which would push the whole grid past the screen */
+  .toolbar { flex-direction: column-reverse; align-items: stretch; flex-wrap: nowrap; }
 }
