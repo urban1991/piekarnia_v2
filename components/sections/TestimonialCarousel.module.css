@@ -14,6 +14,7 @@
 .track::-webkit-scrollbar { display: none; }
 .slide { scroll-snap-align: start; display: grid; }
 .slide > * { height: 100%; }
+.slide:last-child { scroll-snap-align: end; }
 
 .controls { display: flex; align-items: center; justify-content: center; gap: var(--space-5); }
 .arrow {
@@ -27,8 +28,8 @@
   cursor: pointer;
   transition: border-color var(--ease), color var(--ease), opacity var(--ease);
 }
-.arrow:hover:not(:disabled) { border-color: var(--color-ink); }
-.arrow:disabled { opacity: .35; cursor: default; }
+.arrow:hover:not([aria-disabled='true']) { border-color: var(--color-ink); }
+.arrow[aria-disabled='true'] { opacity: .35; cursor: default; }
 
 .dots { display: flex; gap: var(--space-2); }
 .dot {

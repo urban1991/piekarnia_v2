@@ -12,6 +12,7 @@ import { InstagramGrid } from '../../components/sections/InstagramGrid';
 import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
 import { getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
+import { showDevNotes } from '../../lib/devNotes';
 import s from './page.module.css';
 
 const features = [
@@ -102,7 +103,7 @@ export default async function HomePage() {
           <div>
             <SectionHeading eyebrow="Nasze sklepy" title="Blisko Ciebie, od świtu" />
             <div className={s.storeListSpacing}>
-              <StoreList disclaimer="godziny przykładowe — do potwierdzenia" />
+              <StoreList disclaimer={showDevNotes ? 'godziny przykładowe — do potwierdzenia' : undefined} />
             </div>
           </div>
           <MapEmbed />

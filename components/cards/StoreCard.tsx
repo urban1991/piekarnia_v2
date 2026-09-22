@@ -7,17 +7,25 @@ export function StoreCard({ store }: { store: Store }) {
   return (
     <article className={s.card}>
       <div className={s.media}>
-        {store.image ? <Image src={store.image} alt="" width={520} height={340} /> : null}
-        <span className={s.cityBadge}>{store.city}</span>
+        {store.image ? (
+          <>
+            <Image src={store.image} alt="" width={520} height={340} />
+            <span className={s.cityBadge} aria-hidden="true">
+              {store.city}
+            </span>
+          </>
+        ) : null}
       </div>
       <div className={s.body}>
         <h3 className={s.city}>{store.city}</h3>
         <div className={s.street}>{store.street}</div>
         <div className={s.label}>{store.label}</div>
         <p className={s.hours}>{store.hours}</p>
-        <a className={s.link} href={store.maps} target="_blank" rel="noreferrer">
-          Nawiguj →
-        </a>
+        {store.maps ? (
+          <a className={s.link} href={store.maps} target="_blank" rel="noreferrer">
+            Nawiguj →
+          </a>
+        ) : null}
       </div>
     </article>
   );

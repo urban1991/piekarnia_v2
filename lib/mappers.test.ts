@@ -55,6 +55,12 @@ describe('mapStore / mapCategory', () => {
     expect(s.id).toBe('store-1');
     expect(s.image).toContain('ccc-800x600.png');
     expect(s.maps).toBe('https://maps.google.com/?q=x');
+    expect(s.featured).toBe(false);
+  });
+
+  it('maps store.featured to true when set', () => {
+    const s = mapStore({ _id: 'store-2', city: 'Świdnica', street: 'ul. Składowa 3', label: 'Sklep', hours: 'Pn–Pt 6–18', featured: true });
+    expect(s.featured).toBe(true);
   });
 
   it('maps category with slug and cover', () => {

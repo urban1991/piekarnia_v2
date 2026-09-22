@@ -11,49 +11,68 @@ import s from './TestimonialCarousel.module.css';
  */
 export function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  /** cardWidth + gap in px, cached on resize so the scroll handler never touches layout. */
+  const stepRef = useRef(0);
   const [active, setActive] = useState(0);
-  const [perView, setPerView] = useState(1);
+  const [perView, setPerView] = useState<number | null>(null);
 
-  const pages = Math.max(1, testimonials.length - perView + 1);
+  const pages = Math.max(1, testimonials.length - (perView ?? 1) + 1);
 
-  const measure = useCallback(() => {
+  const remeasure = useCallback(() => {
     const track = trackRef.current;
     if (!track || !track.firstElementChild) return;
     const cardWidth = (track.firstElementChild as HTMLElement).offsetWidth;
     const gap = parseFloat(getComputedStyle(track).columnGap || '0');
-    setPerView(Math.max(1, Math.round((track.clientWidth + gap) / (cardWidth + gap))));
-    setActive(Math.round(track.scrollLeft / (cardWidth + gap)));
+    const step = cardWidth + gap;
+    stepRef.current = step;
+    setPerView(Math.max(1, Math.round((track.clientWidth + gap) / step)));
+    setActive(step ? Math.round(track.scrollLeft / step) : 0);
+  }, []);
+
+  const onScroll = useCallback(() => {
+    const track = trackRef.current;
+    const step = stepRef.current;
+    if (!track || !step) return;
+    setActive(Math.round(track.scrollLeft / step));
   }, []);
 
   useEffect(() => {
-    measure();
+    remeasure();
     const track = trackRef.current;
     if (!track) return;
-    const onScroll = () => measure();
     track.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', measure);
+    window.addEventListener('resize', remeasure);
     return () => {
       track.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', measure);
+      window.removeEventListener('resize', remeasure);
     };
-  }, [measure]);
+  }, [remeasure, onScroll]);
 
   const scrollTo = (index: number) => {
     const track = trackRef.current;
-    if (!track || !track.firstElementChild) return;
-    const cardWidth = (track.firstElementChild as HTMLElement).offsetWidth;
-    const gap = parseFloat(getComputedStyle(track).columnGap || '0');
+    const step = stepRef.current;
+    if (!track || !step) return;
     const clamped = Math.max(0, Math.min(pages - 1, index));
     setActive(clamped);
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    track.scrollTo({ left: clamped * (cardWidth + gap), behavior: reduceMotion ? 'auto' : 'smooth' });
+    track.scrollTo({ left: clamped * step, behavior: reduceMotion ? 'auto' : 'smooth' });
+  };
+
+  const goPrev = () => {
+    if (active <= 0) return;
+    scrollTo(active - 1);
+  };
+
+  const goNext = () => {
+    if (active >= pages - 1) return;
+    scrollTo(active + 1);
   };
 
   if (!testimonials.length) return null;
 
   return (
-    <div className={s.wrap}>
-      <div ref={trackRef} className={s.track} aria-live="polite">
+    <div className={s.wrap} aria-roledescription="karuzela" aria-label="Opinie klientów">
+      <div ref={trackRef} className={s.track}>
         {testimonials.map((testimonial, index) => (
           <div key={testimonial.author + index} className={s.slide}>
             <TestimonialCard testimonial={testimonial} />
@@ -61,25 +80,24 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
         ))}
       </div>
 
-      {pages > 1 ? (
+      {perView !== null && pages > 1 ? (
         <div className={s.controls}>
           <button
             type="button"
             className={s.arrow}
             aria-label="Poprzednia opinia"
-            onClick={() => scrollTo(active - 1)}
-            disabled={active <= 0}
+            aria-disabled={active <= 0}
+            onClick={goPrev}
           >
             ←
           </button>
-          <div className={s.dots} role="tablist" aria-label="Opinie">
+          <div className={s.dots} aria-label="Opinie">
             {Array.from({ length: pages }).map((_, index) => (
               <button
                 key={index}
                 type="button"
-                role="tab"
-                aria-selected={index === active}
                 aria-label={`Opinia ${index + 1}`}
+                aria-current={index === active ? 'true' : undefined}
                 className={s.dot + (index === active ? ' ' + s.dotActive : '')}
                 onClick={() => scrollTo(index)}
               />
@@ -89,8 +107,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
             type="button"
             className={s.arrow}
             aria-label="Następna opinia"
-            onClick={() => scrollTo(active + 1)}
-            disabled={active >= pages - 1}
+            aria-disabled={active >= pages - 1}
+            onClick={goNext}
           >
             →
           </button>

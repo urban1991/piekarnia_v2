@@ -2,17 +2,15 @@ import { getStores } from '../../lib/data';
 import { Tag } from '../ui/Tag';
 import s from './StoreList.module.css';
 
-const MAIN_STORE_ID = 'store-swidnica-skladowa';
-
 export async function StoreList({ disclaimer }: { disclaimer?: string }) {
   const stores = await getStores();
-  const ordered = [...stores].sort((a, b) => (a.id === MAIN_STORE_ID ? -1 : b.id === MAIN_STORE_ID ? 1 : 0));
+  const ordered = [...stores].sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
 
   return (
     <div>
       <div className={s.list}>
         {ordered.map((store) => {
-          const main = store.id === MAIN_STORE_ID;
+          const main = store.featured;
           return (
             <div key={store.id} className={s.row + (main ? ' ' + s.main : '')}>
               <div>

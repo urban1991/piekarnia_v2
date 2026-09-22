@@ -15,6 +15,9 @@ Uzupełnić w `.env.local`: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY
 `NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_WRITE_TOKEN` (tylko lokalnie, do seeda),
 `SANITY_WEBHOOK_SECRET`.
 
+Flaga `NEXT_PUBLIC_SHOW_DEV_NOTES=true` pokazuje na stronie robocze notatki (np. „godziny
+przykładowe — do potwierdzenia”) — ustaw na `false` albo usuń przed startem produkcyjnym.
+
 ```bash
 npm install
 npm run dev

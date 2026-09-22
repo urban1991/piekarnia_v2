@@ -25,6 +25,7 @@ export type StoreDoc = {
   hours: string;
   image?: SanityImageRef;
   mapsUrl?: string | null;
+  featured?: boolean | null;
 };
 
 export type CategoryDoc = {
@@ -83,6 +84,7 @@ export function mapStore(doc: StoreDoc): Store {
     hours: doc.hours,
     image: imageUrl(doc.image),
     maps: str(doc.mapsUrl),
+    featured: !!doc.featured,
   };
 }
 

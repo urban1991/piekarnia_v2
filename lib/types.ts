@@ -40,6 +40,7 @@ export type Store = {
   hours: string;
   image: string;
   maps: string;
+  featured: boolean;
 };
 
 export type Testimonial = {
@@ -64,9 +65,9 @@ export type SiteSettings = {
   legal: { nota: string; privacy: string; cookies: string };
   /** hero image URL (cdn.sanity.io); '' when unset */
   heroImage: string;
-  /** "O nas" images shown on the homepage; fixed length 2, missing entries are '' */
+  /** "O nas" images shown on the homepage; missing trailing entries are simply absent (array may be shorter) */
   homeGallery: string[];
-  /** images shown on the "O nas" page; fixed length 3, missing entries are '' */
+  /** images shown on the "O nas" page; missing trailing entries are simply absent (array may be shorter) */
   aboutGallery: string[];
   /** image URLs (cdn.sanity.io) */
   gallery: string[];

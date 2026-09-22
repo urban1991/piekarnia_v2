@@ -8,6 +8,7 @@ import { CtaBand } from '../../../components/sections/CtaBand';
 import { Grid } from '../../../components/ui/Grid';
 import { StoreCard } from '../../../components/cards/StoreCard';
 import { getSiteSettings, getStores } from '../../../lib/data';
+import { showDevNotes } from '../../../lib/devNotes';
 import s from './page.module.css';
 
 export const metadata = {
@@ -15,11 +16,9 @@ export const metadata = {
   description: 'Cztery sklepy firmowe: Świdnica (Składowa 3, Kazimierza Wielkiego 5), Jaworzyna Śląska, Bielawa.',
 };
 
-const MAIN_STORE_ID = 'store-swidnica-skladowa';
-
 export default async function SklepyPage() {
   const [settings, stores] = await Promise.all([getSiteSettings(), getStores()]);
-  const main = stores.find((store) => store.id === MAIN_STORE_ID) ?? stores[0];
+  const main = stores.find((store) => store.featured) ?? stores[0];
   const others = stores.filter((store) => store.id !== main?.id);
 
   return (
@@ -35,9 +34,9 @@ export default async function SklepyPage() {
         {main ? (
           <FeaturedStore
             store={main}
-          phone={settings.phone}
-          phoneHref={settings.phoneHref}
-            disclaimer="godziny przykładowe — do potwierdzenia"
+            phone={settings.phone}
+            phoneHref={settings.phoneHref}
+            disclaimer={showDevNotes ? 'godziny przykładowe — do potwierdzenia' : undefined}
           />
         ) : null}
       </Section>

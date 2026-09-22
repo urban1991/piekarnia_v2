@@ -90,6 +90,7 @@
   font-size: 30px;
   color: var(--color-ink);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .menuTop { display: flex; justify-content: space-between; align-items: center; height: var(--header-h); margin-bottom: var(--space-4); }
 .menu a { color: inherit; padding-block: 4px; border-bottom: 1px solid var(--color-sand); }

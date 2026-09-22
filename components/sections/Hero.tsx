@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { Container } from '../layout/Container';
 import s from './Hero.module.css';
@@ -21,10 +21,10 @@ export function Hero({
   stats?: HeroStat[];
   badge?: { mark: string; title: string; text: string };
 }) {
-  const style = image ? ({ ['--hero-photo' as string]: `url(${image})` } as CSSProperties) : undefined;
-
   return (
-    <section className={s.hero} style={style}>
+    <section className={s.hero}>
+      {image ? <Image src={image} alt="" fill priority sizes="100vw" className={s.photo} /> : null}
+      <div className={s.overlay} />
       <Container>
         <div className={s.inner}>
           <div className={s.copy}>

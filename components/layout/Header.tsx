@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "./Container";
 import s from "./Header.module.css";
 
@@ -31,6 +31,25 @@ export function Header({
 }) {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      burgerRef.current?.focus();
+    };
+  }, [open]);
+
   const className = [
     s.header,
     variant !== "solid" ? s.transparent : "",
@@ -87,9 +106,11 @@ export function Header({
                 tel
               </a>
               <button
+                ref={burgerRef}
                 className={s.burger}
                 type="button"
                 aria-expanded={open}
+                aria-controls="mobile-menu"
                 aria-label="Menu"
                 onClick={() => setOpen(true)}
               >
@@ -103,10 +124,11 @@ export function Header({
       </header>
 
       {open ? (
-        <div className={s.menu} role="dialog" aria-modal="true">
+        <div id="mobile-menu" className={s.menu} role="dialog" aria-modal="true" aria-label="Menu">
           <div className={s.menuTop}>
             <Image src="/logo.png" alt="" width={44} height={44} />
             <button
+              ref={closeRef}
               className={s.burger + ' ' + s.close}
               type="button"
               aria-label="Zamknij"

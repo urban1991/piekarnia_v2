@@ -5,7 +5,8 @@ import { SectionHeading } from '../../../components/layout/SectionHeading';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { Timeline } from '../../../components/sections/Timeline';
 import { Button } from '../../../components/ui/Button';
-import { getSiteSettings } from '../../../lib/data';
+import { getSiteSettings, getStores } from '../../../lib/data';
+import { showDevNotes } from '../../../lib/devNotes';
 import s from './page.module.css';
 
 export const metadata = {
@@ -26,7 +27,7 @@ const principles = [
 ];
 
 export default async function ONasPage() {
-  const settings = await getSiteSettings();
+  const [settings, stores] = await Promise.all([getSiteSettings(), getStores()]);
   const [photoMain, photoSmall, photoPrinciples] = settings.aboutGallery;
   return (
     <main>
@@ -49,12 +50,27 @@ export default async function ONasPage() {
           </div>
           <div className={s.introMedia}>
             {photoMain ? (
-              <Image className={s.introPhotoMain} src={photoMain} alt="" width={900} height={1100} priority />
+              <Image
+                className={s.introPhotoMain}
+                src={photoMain}
+                alt=""
+                width={900}
+                height={1100}
+                priority
+                sizes="(max-width: 1100px) 100vw, 50vw"
+              />
             ) : (
               <div className={s.introPhotoMain + ' ' + s.placeholder} />
             )}
             {photoSmall ? (
-              <Image className={s.introPhotoSmall} src={photoSmall} alt="" width={600} height={600} />
+              <Image
+                className={s.introPhotoSmall}
+                src={photoSmall}
+                alt=""
+                width={600}
+                height={600}
+                sizes="(max-width: 1100px) 100vw, 50vw"
+              />
             ) : null}
           </div>
         </div>
@@ -67,7 +83,7 @@ export default async function ONasPage() {
             <div className={s.statLabel}>rok założenia</div>
           </div>
           <div className={s.stat}>
-            <div className={s.statValue}>4</div>
+            <div className={s.statValue}>{stores.length}</div>
             <div className={s.statLabel}>sklepy firmowe</div>
           </div>
           <div className={s.stat}>
@@ -108,13 +124,23 @@ export default async function ONasPage() {
             </div>
           ))}
         </div>
-        <p className={s.todo}>zdjęcia rodziny — do dosłania przez piekarnię</p>
+        {showDevNotes ? <p className={s.todo}>zdjęcia rodziny — do dosłania przez piekarnię</p> : null}
       </Section>
 
       <Section>
         <div className={s.principles}>
           <div className={s.principlesMedia}>
-            {photoPrinciples ? <Image src={photoPrinciples} alt="" width={900} height={700} /> : <div className={s.placeholder} />}
+            {photoPrinciples ? (
+              <Image
+                src={photoPrinciples}
+                alt=""
+                width={900}
+                height={700}
+                sizes="(max-width: 1100px) 100vw, 50vw"
+              />
+            ) : (
+              <div className={s.placeholder} />
+            )}
           </div>
           <div>
             <SectionHeading eyebrow="Jak pracujemy" title="Trzy rzeczy, których nie zmieniamy" />

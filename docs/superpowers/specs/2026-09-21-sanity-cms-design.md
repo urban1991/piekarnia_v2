@@ -79,11 +79,14 @@ jest zalecane (ostrzeżenie, nie blokada).
 - `image` image z hotspotem
 - `mapsUrl` url
 - `sortOrder` number
+- `featured` boolean, domyślnie `false` — zaznaczony sklep jest kartą główną na stronie Sklepy i pierwszy na liście
 
 ### `testimonial` (Opinia)
 
 - `text` text [w]
 - `author` string [w]
+- `rating` number 1–5, domyślnie `5` — ocena w gwiazdkach
+- `source` string, domyślnie `Google` — np. „Google”, „Facebook”
 
 ### `historyEntry` (Wpis w historii)
 
@@ -100,7 +103,10 @@ jest zalecane (ostrzeżenie, nie blokada).
 - `facebook` url, `instagram` url
 - `catalogPdf` file lub url
 - `legal` object: `nota`, `privacy`, `cookies` — file lub url
-- `gallery` array of image — zdjęcia do siatki Instagram i sekcji „O nas"
+- `heroImage` image z hotspotem — zdjęcie hero na stronie głównej
+- `homeGallery` array of image (max 2) — zdjęcia „O nas” na stronie głównej
+- `aboutGallery` array of image (max 3) — zdjęcia na stronie „O nas”
+- `gallery` array of image — zdjęcia do siatki Instagram
 
 ## Studio
 
