@@ -60,6 +60,7 @@
   --container: 1280px;
   --gutter: 64px;
   --header-h: 88px;
+  --announcement-h: 56px;
   --section-y: 96px;
 
   --ease: 300ms cubic-bezier(.2, .7, .3, 1);
@@ -79,6 +80,7 @@
     --text-body: 16px;
     --gutter: 20px;
     --header-h: 64px;
+    --announcement-h: 48px;
     --section-y: 56px;
   }
 }

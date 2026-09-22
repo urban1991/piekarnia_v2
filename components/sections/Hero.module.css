@@ -2,7 +2,8 @@
   position: relative;
   color: #fff;
   background-color: #3a2620;
-  min-height: min(92svh, 860px);
+  /* hero + announcement bar together fill the first screen exactly */
+  min-height: calc(100svh - var(--announcement-h));
   display: flex;
   align-items: stretch;
   overflow: hidden;
@@ -26,7 +27,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-16);
-  min-height: min(92svh, 860px);
+  min-height: calc(100svh - var(--announcement-h));
   padding-block: calc(var(--header-h) + var(--space-16)) var(--space-14);
 }
 
