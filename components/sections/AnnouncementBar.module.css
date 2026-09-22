@@ -2,7 +2,7 @@
   width: 100%;
   height: var(--announcement-h);
   padding-inline: var(--gutter);
-  background: var(--color-ink);
+  background: var(--color-brand);
   color: #fff;
   overflow: hidden;
   display: flex;
@@ -64,7 +64,7 @@ a.item:hover .text {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: rgba(255, 255, 255, .65);
   flex-shrink: 0;
 }
 
