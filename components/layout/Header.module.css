@@ -34,7 +34,6 @@
 
 .brand { display: flex; align-items: center; gap: var(--space-3); color: inherit; }
 .logo { width: 56px; height: 56px; object-fit: contain; }
-.onDark .logo { background: #fff; border-radius: 50%; padding: 4px; }
 .wordmark { font-family: var(--font-serif); font-size: 22px; }
 
 .nav { display: flex; gap: var(--space-8); font-size: 18px; font-weight: 600; letter-spacing: .01em; }
