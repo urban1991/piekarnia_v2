@@ -54,6 +54,8 @@ export type Testimonial = {
 
 export type HistoryEntry = { year: string; title: string; text: string };
 
+export type Announcement = { id: string; text: string; link?: string };
+
 export type SiteSettings = {
   phone: string;
   phoneHref: string;

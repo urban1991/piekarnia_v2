@@ -1,5 +1,5 @@
 import { urlFor } from '../sanity/image';
-import type { Category, CategorySlug, Nutrition, Product, SiteSettings, Store } from './types';
+import type { Announcement, Category, CategorySlug, Nutrition, Product, SiteSettings, Store } from './types';
 
 export type SanityImageRef = { asset?: { _ref: string }; hotspot?: unknown; crop?: unknown } | null | undefined;
 
@@ -34,6 +34,12 @@ export type CategoryDoc = {
   slug: string;
   lead?: string | null;
   cover?: SanityImageRef;
+};
+
+export type AnnouncementDoc = {
+  _id: string;
+  text: string;
+  link?: string | null;
 };
 
 export type SettingsDoc = {
@@ -90,6 +96,10 @@ export function mapStore(doc: StoreDoc): Store {
 
 export function mapCategory(doc: CategoryDoc): Category {
   return { slug: doc.slug as CategorySlug, name: doc.name, lead: str(doc.lead), cover: imageUrl(doc.cover) };
+}
+
+export function mapAnnouncement(doc: AnnouncementDoc): Announcement {
+  return { id: doc._id, text: doc.text, link: doc.link || undefined };
 }
 
 export function mapSettings(doc: SettingsDoc | null): SiteSettings {

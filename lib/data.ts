@@ -2,6 +2,7 @@ import { cache } from 'react';
 import { client, SANITY_TAG } from '../sanity/client';
 import {
   allProductsQuery,
+  announcementsQuery,
   categoriesQuery,
   historyQuery,
   productsByCategoryQuery,
@@ -9,9 +10,9 @@ import {
   storesQuery,
   testimonialsQuery,
 } from '../sanity/queries';
-import { mapCategory, mapProduct, mapSettings, mapStore } from './mappers';
-import type { CategoryDoc, ProductDoc, SettingsDoc, StoreDoc } from './mappers';
-import type { Category, CategorySlug, HistoryEntry, Product, SiteSettings, Store, Testimonial } from './types';
+import { mapAnnouncement, mapCategory, mapProduct, mapSettings, mapStore } from './mappers';
+import type { AnnouncementDoc, CategoryDoc, ProductDoc, SettingsDoc, StoreDoc } from './mappers';
+import type { Announcement, Category, CategorySlug, HistoryEntry, Product, SiteSettings, Store, Testimonial } from './types';
 
 const fetchOptions = { next: { tags: [SANITY_TAG] }, cacheMode: 'noStale' as const };
 
@@ -56,4 +57,9 @@ export async function getHistory(): Promise<HistoryEntry[]> {
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   const doc = await client.fetch<SettingsDoc | null>(siteSettingsQuery, {}, fetchOptions);
   return mapSettings(doc);
+});
+
+export const getAnnouncements = cache(async (): Promise<Announcement[]> => {
+  const docs = await client.fetch<AnnouncementDoc[]>(announcementsQuery, {}, fetchOptions);
+  return docs.map(mapAnnouncement);
 });

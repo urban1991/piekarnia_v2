@@ -9,11 +9,17 @@ import { FeatureBand } from '../../components/sections/FeatureBand';
 import { MapEmbed } from '../../components/sections/MapEmbed';
 import { StoreList } from '../../components/sections/StoreList';
 import { InstagramGrid } from '../../components/sections/InstagramGrid';
+import { AnnouncementBar } from '../../components/sections/AnnouncementBar';
 import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
-import { getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
+import { getAnnouncements, getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
 import { showDevNotes } from '../../lib/devNotes';
 import s from './page.module.css';
+
+// Announcement dates are filtered server-side in the Sanity query, so the page itself must
+// revalidate periodically for an announcement to appear/disappear without a Studio publish
+// (which still clears the cache immediately via the webhook, in parallel).
+export const revalidate = 3600;
 
 const features = [
   {
@@ -35,10 +41,11 @@ const features = [
 ];
 
 export default async function HomePage() {
-  const [settings, categories, testimonials] = await Promise.all([
+  const [settings, categories, testimonials, announcements] = await Promise.all([
     getSiteSettings(),
     getCategories(),
     getTestimonials(),
+    getAnnouncements(),
   ]);
   return (
     <main>
@@ -57,6 +64,7 @@ export default async function HomePage() {
           badge={{ mark: 'Śr', title: 'Tylko w środy', text: 'Chleb kukurydziany' }}
         />
       </div>
+      <AnnouncementBar announcements={announcements} />
 
       <Section>
         <SectionHeading

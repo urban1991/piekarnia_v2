@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('../sanity/env', () => ({ env: { projectId: 'abc123', dataset: 'production', apiVersion: '2026-09-01' } }));
 
-import { mapCategory, mapProduct, mapSettings, mapStore } from './mappers';
+import { mapAnnouncement, mapCategory, mapProduct, mapSettings, mapStore } from './mappers';
 
 const img = (id: string) => ({ _type: 'image', asset: { _ref: `image-${id}-800x600-png` } });
 
@@ -67,6 +67,18 @@ describe('mapStore / mapCategory', () => {
     const c = mapCategory({ _id: 'category-chleby', name: 'Chleby', slug: 'chleby', lead: 'Lead', cover: img('ddd') });
     expect(c).toMatchObject({ slug: 'chleby', name: 'Chleby', lead: 'Lead' });
     expect(c.cover).toContain('ddd-800x600.png');
+  });
+});
+
+describe('mapAnnouncement', () => {
+  it('maps an announcement with a link', () => {
+    const a = mapAnnouncement({ _id: 'announcement-1', text: 'Od poniedziałku wracają jagodzianki', link: '/chleby' });
+    expect(a).toEqual({ id: 'announcement-1', text: 'Od poniedziałku wracają jagodzianki', link: '/chleby' });
+  });
+
+  it('maps an announcement without a link to undefined, for both empty string and null', () => {
+    expect(mapAnnouncement({ _id: 'announcement-2', text: 'Zmiana godzin', link: '' }).link).toBeUndefined();
+    expect(mapAnnouncement({ _id: 'announcement-3', text: 'Zmiana godzin', link: null }).link).toBeUndefined();
   });
 });
 

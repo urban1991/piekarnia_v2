@@ -95,6 +95,15 @@ jest zalecane (ostrzeżenie, nie blokada).
 - `text` text [w]
 - `sortOrder` number
 
+### `announcement` (Ogłoszenie)
+
+- `text` string [w], max 120 znaków — treść pokazywana w pasku pod hero
+- `link` string — adres strony (względny albo pełny), opcjonalny
+- `startDate` datetime — puste = od zaraz
+- `endDate` datetime — puste = bez końca; musi być późniejsze niż `startDate`, gdy oba ustawione
+- `active` boolean, domyślnie `true`
+- `sortOrder` number, domyślnie `100`
+
 ### `siteSettings` (Ustawienia strony) — dokument pojedynczy
 
 - `phone` string, `phoneHref` string
@@ -113,10 +122,11 @@ jest zalecane (ostrzeżenie, nie blokada).
 - `sanity.config.ts` w katalogu głównym, `app/studio/[[...tool]]/page.tsx` renderuje `NextStudio`.
 - Struktura panelu (Structure Tool):
   1. Produkty → podlisty per kategoria, sortowanie ręczne (`orderable-document-list` lub `sortOrder`)
-  2. Sklepy
-  3. Opinie
-  4. Historia
-  5. Ustawienia strony (singleton, bez tworzenia/usuwania)
+  2. Ogłoszenia
+  3. Sklepy
+  4. Opinie
+  5. Historia
+  6. Ustawienia strony (singleton, bez tworzenia/usuwania)
 - Kategorie ukryte w menu głównym; dostępne tylko przez referencję w produkcie i przez `/studio/desk/category` dla administratora.
 - Język interfejsu: polski (`@sanity/locale-pl-pl`).
 - Podgląd karty produktu w liście: nazwa, kategoria, waga, miniatura, znacznik „ukryty".

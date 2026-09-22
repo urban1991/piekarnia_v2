@@ -23,6 +23,20 @@ Pole „Kolejność" (mniejsza liczba = wyżej). Lista w panelu jest sortowana t
 
 Treść → Sklepy → edytuj godziny, adres, zdjęcie, link do Google Maps → Publikuj.
 
+## Pasek ogłoszeń
+
+Treść → Ogłoszenia → „+". Uzupełnij:
+
+- **Treść** — krótki tekst (do 120 znaków), bo pasek przewija się w pętli pod zdjęciem hero na stronie głównej.
+- **Link (opcjonalnie)** — jeśli wpiszesz adres (np. `/chleby` albo pełny `https://…`), całe ogłoszenie na stronie stanie się klikalne.
+- **Pokazuj od / Pokazuj do** — zakres dat, w którym ogłoszenie ma być widoczne. Puste „od" znaczy „od zaraz", puste „do" znaczy „bez końca". Można ustawić tylko jedno z nich.
+- **Włączone** — wyłącz, żeby ukryć ogłoszenie bez kasowania (np. na potem).
+- **Kolejność** — mniejsza liczba = wyżej / wcześniej w pasku.
+
+Kliknij **Publikuj**. Zmiana pojawia się na stronie od razu (webhook czyści cache po publikacji), ale nawet bez
+żadnej publikacji strona sama sprawdza daty co godzinę — więc ogłoszenie zaplanowane wcześniej pojawi się
+i zniknie o wyznaczonym czasie automatycznie, z opóźnieniem do godziny.
+
 ## Ustawienia strony
 
 Telefon, e-mail, adres, linki social, katalog PDF, dokumenty prawne, zdjęcie hero (strona główna),

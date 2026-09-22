@@ -5,5 +5,14 @@ import { store } from './store';
 import { testimonial } from './testimonial';
 import { historyEntry } from './historyEntry';
 import { siteSettings } from './siteSettings';
+import { announcement } from './announcement';
 
-export const schemaTypes: SchemaTypeDefinition[] = [category, product, store, testimonial, historyEntry, siteSettings];
+export const schemaTypes: SchemaTypeDefinition[] = [
+  category,
+  product,
+  store,
+  testimonial,
+  historyEntry,
+  siteSettings,
+  announcement,
+];

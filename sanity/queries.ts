@@ -25,6 +25,13 @@ export const testimonialsQuery = defineQuery(`*[_type == "testimonial"] | order(
 
 export const historyQuery = defineQuery(`*[_type == "historyEntry"] | order(sortOrder asc) { year, title, text }`);
 
+export const announcementsQuery = defineQuery(
+  `*[_type == "announcement" && active == true
+     && (!defined(startDate) || dateTime(startDate) <= dateTime(now()))
+     && (!defined(endDate) || dateTime(endDate) >= dateTime(now()))
+   ] | order(sortOrder asc) { _id, text, link }`,
+);
+
 export const siteSettingsQuery = defineQuery(
   `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, legal, heroImage, homeGallery, aboutGallery, gallery }`,
 );

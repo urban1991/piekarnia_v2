@@ -44,6 +44,13 @@ export const structure: StructureResolver = (S) =>
             .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
         ),
       S.listItem()
+        .title('Ogłoszenia')
+        .child(
+          S.documentTypeList('announcement')
+            .title('Ogłoszenia')
+            .defaultOrdering([{ field: 'sortOrder', direction: 'asc' }]),
+        ),
+      S.listItem()
         .title('Sklepy')
         .child(
           S.documentTypeList('store')
