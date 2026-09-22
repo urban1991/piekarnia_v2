@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Libre_Caslon_Text, Source_Sans_3 } from 'next/font/google';
 import '../styles/globals.css';
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
   title: 'Piekarnia Bieżyński — rodzinna piekarnia ze Świdnicy',
   description:
     'Chleb na zakwasie, bułki i ciasta wypiekane codziennie od świtu. Cztery sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie.',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#A6192E',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
