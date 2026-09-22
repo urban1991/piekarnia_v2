@@ -61,7 +61,6 @@ export default async function HomePage() {
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
             { value: 'od 1991', label: 'Trzy dekady w rodzinie' },
           ]}
-          badge={{ mark: 'Śr', title: 'Tylko w środy', text: 'Chleb kukurydziany' }}
         />
       </div>
       <AnnouncementBar announcements={announcements} />
