@@ -42,7 +42,14 @@ export type Store = {
   maps: string;
 };
 
-export type Testimonial = { text: string; author: string };
+export type Testimonial = {
+  text: string;
+  author: string;
+  /** 1–5, optional (shown as stars) */
+  rating?: number | null;
+  /** e.g. "Google" */
+  source?: string | null;
+};
 
 export type HistoryEntry = { year: string; title: string; text: string };
 

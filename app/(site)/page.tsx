@@ -10,7 +10,7 @@ import { MapEmbed } from '../../components/sections/MapEmbed';
 import { StoreList } from '../../components/sections/StoreList';
 import { InstagramGrid } from '../../components/sections/InstagramGrid';
 import { CategoryCard } from '../../components/cards/CategoryCard';
-import { TestimonialCard } from '../../components/cards/TestimonialCard';
+import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
 import { getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
 import s from './page.module.css';
 
@@ -113,11 +113,7 @@ export default async function HomePage() {
 
       <Section>
         <h2 className={s.centeredTitle}>Co mówią nasi klienci</h2>
-        <Grid cols={3}>
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.author} testimonial={testimonial} />
-          ))}
-        </Grid>
+        <TestimonialCarousel testimonials={testimonials} />
       </Section>
 
       <Section flush>

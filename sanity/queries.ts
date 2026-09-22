@@ -21,7 +21,7 @@ export const storesQuery = defineQuery(
   `*[_type == "store"] | order(sortOrder asc) { _id, city, street, label, hours, image, mapsUrl }`,
 );
 
-export const testimonialsQuery = defineQuery(`*[_type == "testimonial"] | order(sortOrder asc) { text, author }`);
+export const testimonialsQuery = defineQuery(`*[_type == "testimonial"] | order(sortOrder asc) { text, author, rating, source }`);
 
 export const historyQuery = defineQuery(`*[_type == "historyEntry"] | order(sortOrder asc) { year, title, text }`);
 
