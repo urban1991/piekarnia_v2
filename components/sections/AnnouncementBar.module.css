@@ -72,6 +72,16 @@ a.item:hover .text {
   .bar {
     height: 40px;
   }
+
+  /* tighter rhythm so more than one announcement is on screen at once */
+  .track,
+  .list {
+    gap: var(--space-10);
+  }
+
+  .item {
+    font-size: 14px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
