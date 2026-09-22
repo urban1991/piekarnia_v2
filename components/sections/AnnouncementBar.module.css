@@ -12,7 +12,9 @@
 .track {
   display: flex;
   align-items: center;
-  gap: var(--space-16);
+  /* no gap here: the repeat unit must be exactly one .list wide, otherwise
+     translateX(-50%) lands half a gap off and the loop visibly jumps */
+  gap: 0;
   white-space: nowrap;
   animation: marquee 30s linear infinite;
   will-change: transform;
@@ -39,6 +41,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  padding-inline-end: var(--space-16);
+  flex-shrink: 0;
+}
+
+.half {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
 }
 
@@ -71,9 +80,9 @@ a.item:hover .text {
 @media (max-width: 900px) {
 
   /* tighter rhythm so more than one announcement is on screen at once */
-  .track,
   .list {
     gap: var(--space-10);
+    padding-inline-end: var(--space-10);
   }
 
   .item {
