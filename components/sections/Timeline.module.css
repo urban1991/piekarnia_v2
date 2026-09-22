@@ -1,20 +1,54 @@
-.grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--color-line); }
-.item { padding: var(--space-6) var(--space-6) 0 0; border-right: 1px solid var(--color-line); }
-.item:last-child { border-right: 0; padding-right: 0; padding-left: var(--space-6); }
-.year { font-family: var(--font-serif); font-size: 32px; color: var(--color-brand); }
-.title { font-weight: 600; margin-block: var(--space-3) var(--space-2); }
-.text { color: var(--color-ink-soft); font-size: var(--text-small); }
+/* Vertical timeline: year on the left rail, a dot on the line, title + text on the right. */
+.grid {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+  padding-left: 0;
+}
+.grid::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 128px;
+  width: 2px;
+  background: var(--color-line);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+.item::before {
+  content: '';
+  position: absolute;
+  left: 121px;
+  top: 14px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  box-shadow: 0 0 0 5px var(--color-bg);
+}
+.year {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--color-brand);
+  text-align: right;
+}
+.title { font-family: var(--font-serif); font-size: 24px; line-height: 1.2; margin-block: 6px var(--space-2); }
+.text { color: var(--color-ink-soft); font-size: var(--text-body); max-width: 560px; }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: minmax(0, 1fr); }
-  .item, .item:last-child {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: var(--space-4);
-    padding: var(--space-4) 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--color-line);
-  }
-  .year { font-size: 24px; }
-  .title { margin-top: 0; }
+  .grid { gap: var(--space-6); }
+  .grid::before { left: 7px; }
+  .item { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); padding-left: var(--space-8); }
+  .item::before { left: 0; top: 6px; width: 16px; height: 16px; }
+  .year { text-align: left; font-size: 26px; line-height: 1.1; }
+  .title { font-size: 21px; margin-top: 2px; }
+  .text { font-size: var(--text-small); }
 }

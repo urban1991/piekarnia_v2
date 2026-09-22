@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Header } from '../../../components/layout/Header';
 import { Section } from '../../../components/layout/Section';
 import { SectionHeading } from '../../../components/layout/SectionHeading';
-import { PageHeader } from '../../../components/sections/PageHeader';
+import { CtaBand } from '../../../components/sections/CtaBand';
 import { Timeline } from '../../../components/sections/Timeline';
 import { Button } from '../../../components/ui/Button';
 import { getSiteSettings } from '../../../lib/data';
@@ -13,91 +13,131 @@ export const metadata = {
   description: 'Rodzinna piekarnia ze Świdnicy od 1991 roku. Własny zakwas, lokalna mąka, cztery sklepy firmowe.',
 };
 
+const people = [
+  { initials: 'JB', name: 'Jacek Bieżyński', role: 'Założyciel', text: 'Zaczął w 1991 roku od handlu, dziesięć lat później postawił pierwszy piec.' },
+  { initials: 'WB', name: 'Wioleta Bieżyńska', role: 'Prowadzi piekarnię od 2010', text: 'Rozwija ofertę i pilnuje, żeby rodzinne receptury zostały takie, jakie były.' },
+  { initials: 'DB', name: 'Damian Bieżyński', role: 'Piekarz, drugie pokolenie', text: 'Od 2015 przy piecach. Łączy rzemiosło z nowoczesnym parkiem maszynowym.' },
+];
+
+const principles = [
+  { title: 'Własny zakwas', text: 'Prowadzimy go w piekarni od lat. To on decyduje o smaku chlebów żytnich i mieszanych.' },
+  { title: 'Mąka z Dolnego Śląska', text: 'Z młynów z okolicy. Krótka droga to świeżość i pewność, kto stoi za tym, co wkładamy do pieca.' },
+  { title: 'Czas', text: 'Ciasto dostaje tyle godzin, ile potrzebuje. Nie przyspieszamy tego, czego przyspieszyć się nie da.' },
+];
+
 export default async function ONasPage() {
   const settings = await getSiteSettings();
+  const [photoMain, photoSmall, photoPrinciples] = settings.aboutGallery;
   return (
     <main>
       <Header phone={settings.phone} phoneHref={settings.phoneHref} />
-      <PageHeader
-        eyebrow="O nas · od 1991"
-        title="Piekarnia, która wstaje razem z miastem"
-        lead="Kiedy Świdnica jeszcze śpi, u nas grzeje się piec. Tak jest od pierwszego dnia i tak ma zostać."
-        centered
-      />
 
-      <Section flush>
-        <div className={s.gallery}>
-          {settings.aboutGallery[0] ? (
-            <Image src={settings.aboutGallery[0]} alt="" width={800} height={420} />
-          ) : null}
-          {settings.aboutGallery[1] ? (
-            <Image src={settings.aboutGallery[1]} alt="" width={800} height={420} />
-          ) : null}
-          <div className={s.placeholder}>zdjęcie rodziny — do dosłania</div>
+      <section className={s.intro}>
+        <div className={s.introInner}>
+          <div className={s.introCopy}>
+            <div className={s.eyebrow}>O nas · od 1991</div>
+            <h1 className={s.introTitle}>Piekarnia, która wstaje razem z miastem</h1>
+            <p className={s.introLead}>
+              Kiedy Świdnica jeszcze śpi, u nas grzeje się piec. Tak jest od pierwszego dnia i tak ma zostać.
+            </p>
+            <div className={s.introActions}>
+              <Button href="/chleby">Zobacz wypieki</Button>
+              <Button href="/sklepy" variant="secondary">
+                Nasze sklepy
+              </Button>
+            </div>
+          </div>
+          <div className={s.introMedia}>
+            {photoMain ? (
+              <Image className={s.introPhotoMain} src={photoMain} alt="" width={900} height={1100} priority />
+            ) : (
+              <div className={s.introPhotoMain + ' ' + s.placeholder} />
+            )}
+            {photoSmall ? (
+              <Image className={s.introPhotoSmall} src={photoSmall} alt="" width={600} height={600} />
+            ) : null}
+          </div>
         </div>
-      </Section>
+      </section>
+
+      <section className={s.stats}>
+        <div className={s.statsInner}>
+          <div className={s.stat}>
+            <div className={s.statValue}>1991</div>
+            <div className={s.statLabel}>rok założenia</div>
+          </div>
+          <div className={s.stat}>
+            <div className={s.statValue}>4</div>
+            <div className={s.statLabel}>sklepy firmowe</div>
+          </div>
+          <div className={s.stat}>
+            <div className={s.statValue}>200+</div>
+            <div className={s.statLabel}>stałych odbiorców</div>
+          </div>
+          <div className={s.stat}>
+            <div className={s.statValue}>100 km</div>
+            <div className={s.statLabel}>promień dostaw</div>
+          </div>
+        </div>
+      </section>
 
       <Section>
         <div className={s.story}>
-          <h2>Nasza historia</h2>
-          <div className={s.storyText}>
-            <p>
-              Firmę założył Jacek Bieżyński w 1991 roku — najpierw był handel artykułami spożywczymi.
-              Dziesięć lat później doszła produkcja pieczywa i wyrobów cukierniczych, a z nią pierwszy piec.
-            </p>
-            <p>
-              Od 2010 roku piekarnię prowadzi Wioleta Bieżyńska. W 2015 dołączył syn, Damian — piekarz z
-              zamiłowaniem do technologii, który znacząco rozbudował park maszynowy.
-            </p>
-            <p>
-              Sposób pracy się nie zmienił. Zakwas prowadzimy sami, mąkę bierzemy od młynarzy z okolicy, a
-              ciasto dostaje tyle godzin, ile potrzebuje.
+          <div className={s.storyHead}>
+            <SectionHeading eyebrow="Nasza historia" title="Trzy dekady, jeden piec" />
+            <p className={s.storyLead}>
+              Firmę założył Jacek Bieżyński w 1991 roku. Dziś prowadzi ją Wioleta Bieżyńska, a przy piecach stoi
+              syn Damian. Zmieniały się maszyny i sklepy. Sposób pracy został ten sam.
             </p>
           </div>
-        </div>
-        <div className={s.timelineSpacing}>
           <Timeline />
         </div>
       </Section>
 
       <Section tone="surface">
-        <div className={s.stats}>
-          <div>
-            <div className={s.statValue}>100 km</div>
-            <div className={s.statLabel}>promień dostaw</div>
-            <p className={s.statText}>Nasze pieczywo trafia do sklepów i marketów w całej okolicy Świdnicy.</p>
+        <SectionHeading eyebrow="Ludzie" title="Kto za tym stoi" />
+        <div className={s.people}>
+          {people.map((person) => (
+            <div key={person.name} className={s.person}>
+              <div className={s.avatar} aria-hidden="true">
+                {person.initials}
+              </div>
+              <div className={s.personName}>{person.name}</div>
+              <div className={s.personRole}>{person.role}</div>
+              <p className={s.personText}>{person.text}</p>
+            </div>
+          ))}
+        </div>
+        <p className={s.todo}>zdjęcia rodziny — do dosłania przez piekarnię</p>
+      </Section>
+
+      <Section>
+        <div className={s.principles}>
+          <div className={s.principlesMedia}>
+            {photoPrinciples ? <Image src={photoPrinciples} alt="" width={900} height={700} /> : <div className={s.placeholder} />}
           </div>
           <div>
-            <div className={s.statValue}>200+</div>
-            <div className={s.statLabel}>stałych odbiorców</div>
-            <p className={s.statText}>Sklepy, markety i punkty gastronomiczne, które zamawiają u nas codziennie.</p>
-          </div>
-          <div>
-            <div className={s.statValue}>4</div>
-            <div className={s.statLabel}>sklepy firmowe</div>
-            <p className={s.statText}>Świdnica, Jaworzyna Śląska i Bielawa. Wszędzie pieczywo z jednego pieca.</p>
+            <SectionHeading eyebrow="Jak pracujemy" title="Trzy rzeczy, których nie zmieniamy" />
+            <ol className={s.principleList}>
+              {principles.map((item, index) => (
+                <li key={item.title} className={s.principle}>
+                  <span className={s.principleNum}>0{index + 1}</span>
+                  <div>
+                    <div className={s.principleTitle}>{item.title}</div>
+                    <p className={s.principleText}>{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </Section>
 
-      <Section>
-        <div className={s.ingredients}>
-          {settings.aboutGallery[2] ? (
-            <Image src={settings.aboutGallery[2]} alt="" width={800} height={420} />
-          ) : null}
-          <div>
-            <SectionHeading title="Skąd bierzemy składniki" />
-            <p className={s.paragraph}>
-              Mąka pochodzi z młynów z Dolnego Śląska. Krótka droga to świeżość, ale też pewność, kto stoi za
-              tym, co wkładamy do pieca.
-            </p>
-            <p className={s.paragraph}>
-              Zakwas prowadzimy w piekarni od lat — to on decyduje o smaku chlebów żytnich i mieszanych.
-            </p>
-            <Button href="/sklepy">Odwiedź nasz sklep</Button>
-          </div>
-        </div>
-      </Section>
+      <CtaBand
+        title="Wpadnij do nas rano"
+        text="Cztery sklepy w Świdnicy, Jaworzynie Śląskiej i Bielawie. Świeże pieczywo od 6:00."
+        action={{ href: '/sklepy', label: 'Zobacz sklepy' }}
+      />
     </main>
   );
 }
