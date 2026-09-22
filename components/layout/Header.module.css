@@ -35,9 +35,9 @@
 .brand { display: flex; align-items: center; gap: var(--space-3); color: inherit; }
 .logo { width: 56px; height: 56px; object-fit: contain; }
 .onDark .logo { background: #fff; border-radius: 50%; padding: 4px; }
-.wordmark { font-family: var(--font-serif); font-size: 23px; }
+.wordmark { font-family: var(--font-serif); font-size: 22px; }
 
-.nav { display: flex; gap: var(--space-9); font-size: 20px; font-weight: 600; letter-spacing: .01em; }
+.nav { display: flex; gap: var(--space-8); font-size: 18px; font-weight: 600; letter-spacing: .01em; }
 .nav a { color: inherit; padding-block: 6px; border-bottom: 2px solid transparent; transition: color var(--ease), border-color var(--ease); }
 .nav a:hover { color: var(--color-brand); }
 .onDark .nav a:hover { color: #fff; border-color: rgba(255, 255, 255, .7); }
@@ -112,6 +112,6 @@
 }
 
 @media (max-width: 1320px) and (min-width: 1101px) {
-  .nav { font-size: 18px; gap: var(--space-7); }
+  .nav { font-size: 17px; gap: var(--space-6); }
   .wordmark { font-size: 21px; }
 }
