@@ -2,22 +2,18 @@ import Image from 'next/image';
 import type { Store } from '../../lib/types';
 import s from './StoreCard.module.css';
 
+/** City is the headline: the bakery has shops in three towns, so the town must never be missed. */
 export function StoreCard({ store }: { store: Store }) {
   return (
     <article className={s.card}>
-      {store.image ? (
-        <Image
-          src={store.image}
-          alt=""
-          width={520}
-          height={340}
-        />
-      ) : null}
+      <div className={s.media}>
+        {store.image ? <Image src={store.image} alt="" width={520} height={340} /> : null}
+        <span className={s.cityBadge}>{store.city}</span>
+      </div>
       <div className={s.body}>
-        <div className={s.kicker}>
-          {store.city} · {store.label}
-        </div>
+        <h3 className={s.city}>{store.city}</h3>
         <div className={s.street}>{store.street}</div>
+        <div className={s.label}>{store.label}</div>
         <p className={s.hours}>{store.hours}</p>
         <a className={s.link} href={store.maps} target="_blank" rel="noreferrer">
           Nawiguj →

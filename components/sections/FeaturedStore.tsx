@@ -28,9 +28,8 @@ export function FeaturedStore({
           <Tag tone="solid">Sklep główny</Tag>
           <Tag tone="neutral">{store.label}</Tag>
         </div>
-        <h2 className={s.title}>
-          {store.city}, {store.street}
-        </h2>
+        <div className={s.city}>{store.city}</div>
+        <h2 className={s.title}>{store.street}</h2>
         <p className={s.lead}>
           Tu pieczemy i tu jest największy wybór. Pieczywo trafia na półkę prosto z pieca, a rano
           znajdziesz wszystko, co wypiekamy tego dnia.

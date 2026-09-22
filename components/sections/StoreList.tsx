@@ -17,7 +17,8 @@ export async function StoreList({ disclaimer }: { disclaimer?: string }) {
             <div key={store.id} className={s.row + (main ? ' ' + s.main : '')}>
               <div>
                 <div className={s.street}>
-                  {store.city}, {store.street}
+                  <span className={s.city}>{store.city}</span>
+                  <span>{store.street}</span>
                   {main ? <Tag tone="solid">Sklep główny</Tag> : null}
                 </div>
                 <div className={s.label}>{store.label}</div>

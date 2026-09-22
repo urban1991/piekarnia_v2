@@ -15,6 +15,7 @@
 }
 .main .street { font-family: var(--font-serif); font-size: 24px; font-weight: 400; }
 .street { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; font-weight: 600; font-size: 18px; }
+.city { color: var(--color-brand); font-weight: 600; }
 .label { color: var(--color-ink-soft); font-size: var(--text-small); }
 .hours { text-align: right; font-size: 14px; color: var(--color-ink-soft); }
 .main .hours { font-size: 15px; color: var(--color-ink); }
