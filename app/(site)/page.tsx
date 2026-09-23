@@ -56,6 +56,7 @@ export default async function HomePage() {
           title="Chleb, który pachnie jak w domu."
           lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
           image={settings.heroImage}
+          imagePosition={settings.heroImagePosition}
           stats={[
             { value: '4 sklepy firmowe', label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },

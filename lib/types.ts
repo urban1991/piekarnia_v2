@@ -67,6 +67,8 @@ export type SiteSettings = {
   legal: { nota: string; privacy: string; cookies: string };
   /** hero image URL (cdn.sanity.io); '' when unset */
   heroImage: string;
+  /** CSS object-position from the Studio hotspot, e.g. '62% 30%'; '50% 50%' when unset */
+  heroImagePosition: string;
   /** "O nas" images shown on the homepage; missing trailing entries are simply absent (array may be shorter) */
   homeGallery: string[];
   /** images shown on the "O nas" page; missing trailing entries are simply absent (array may be shorter) */

@@ -11,6 +11,7 @@ export function Hero({
   title,
   lead,
   image,
+  imagePosition,
   stats = [],
   badge,
 }: {
@@ -18,12 +19,24 @@ export function Hero({
   title: string;
   lead: string;
   image: string;
+  /** CSS object-position keeping the photo's focal point in frame, e.g. '62% 30%' */
+  imagePosition?: string;
   stats?: HeroStat[];
   badge?: { mark: string; title: string; text: string };
 }) {
   return (
     <section className={s.hero}>
-      {image ? <Image src={image} alt="" fill priority sizes="100vw" className={s.photo} /> : null}
+      {image ? (
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={s.photo}
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
+        />
+      ) : null}
       <div className={s.overlay} />
       <Container>
         <div className={s.inner}>

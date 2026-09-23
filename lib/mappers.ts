@@ -59,6 +59,24 @@ export type SettingsDoc = {
 
 const imageUrl = (ref: SanityImageRef): string => (ref?.asset?._ref ? urlFor(ref).url() : '');
 
+type Hotspot = { x?: number; y?: number } | null | undefined;
+type Crop = { left?: number; right?: number; top?: number; bottom?: number } | null | undefined;
+
+/**
+ * Studio hotspot → CSS `object-position`, so an `object-fit: cover` image keeps the chosen spot in frame
+ * (the url itself carries no hotspot: that only applies when the url asks for a fixed width and height).
+ * The hotspot is stored relative to the full image while the url is already cropped, hence the rescale.
+ */
+const objectPosition = (ref: SanityImageRef): string => {
+  const hotspot = ref?.hotspot as Hotspot;
+  const crop = ref?.crop as Crop;
+  const axis = (value: number | undefined, start = 0, end = 0) => {
+    const within = typeof value === 'number' ? (value - start) / (1 - start - end) : 0.5;
+    return `${Math.round(Math.min(1, Math.max(0, within)) * 1000) / 10}%`;
+  };
+  return `${axis(hotspot?.x, crop?.left, crop?.right)} ${axis(hotspot?.y, crop?.top, crop?.bottom)}`;
+};
+
 const str = (v: string | null | undefined) => v ?? '';
 
 export function mapProduct(doc: ProductDoc): Product {
@@ -113,6 +131,7 @@ export function mapSettings(doc: SettingsDoc | null): SiteSettings {
     catalogPdf: str(doc?.catalogPdf),
     legal: { nota: str(doc?.legal?.nota), privacy: str(doc?.legal?.privacy), cookies: str(doc?.legal?.cookies) },
     heroImage: imageUrl(doc?.heroImage),
+    heroImagePosition: objectPosition(doc?.heroImage),
     homeGallery: (doc?.homeGallery ?? []).map(imageUrl),
     aboutGallery: (doc?.aboutGallery ?? []).map(imageUrl),
     gallery: (doc?.gallery ?? []).map(imageUrl).filter(Boolean),

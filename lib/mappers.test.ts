@@ -101,6 +101,19 @@ describe('mapSettings', () => {
     expect(mapSettings(null).heroImage).toBe('');
   });
 
+  it('turns the hero hotspot into a CSS object-position, centred when unset', () => {
+    const hotspot = { x: 0.62, y: 0.3, width: 0.4, height: 0.4 };
+    expect(mapSettings({ heroImage: { ...img('h1'), hotspot } }).heroImagePosition).toBe('62% 30%');
+    expect(mapSettings({ heroImage: img('h1') }).heroImagePosition).toBe('50% 50%');
+    expect(mapSettings(null).heroImagePosition).toBe('50% 50%');
+  });
+
+  it('measures the hero hotspot within the cropped area, since the url is already cropped', () => {
+    const crop = { left: 0.2, right: 0, top: 0, bottom: 0.5 };
+    const hotspot = { x: 0.6, y: 0.25, width: 0.2, height: 0.2 };
+    expect(mapSettings({ heroImage: { ...img('h1'), crop, hotspot } }).heroImagePosition).toBe('50% 50%');
+  });
+
   it('maps homeGallery without dropping missing entries, preserving indices', () => {
     const s = mapSettings({ homeGallery: [img('a'), {}] });
     expect(s.homeGallery).toEqual([expect.stringContaining('a-800x600.png'), '']);
