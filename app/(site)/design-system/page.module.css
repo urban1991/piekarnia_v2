@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: var(--space-16) var(--space-10) 120px;
   display: grid;
+  /* minmax(0, 1fr) here and on .section: an auto grid column grows to its widest unbreakable
+     child, which pushed the whole page past a phone screen */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-24);
 }
 
@@ -16,7 +19,7 @@
 .toc { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-weight: 600; font-size: 15px; }
 .toc a { color: var(--color-brand); }
 
-.section { display: grid; gap: var(--space-7); scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+.section { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
 .num {
   color: var(--color-brand);
   font-weight: 600;
@@ -207,11 +210,15 @@
   .h2 { font-size: 30px; }
   .page { padding: var(--space-10) var(--gutter) var(--space-16); gap: var(--space-16); }
   .twoCol, .twoColGrid, .threeCol, .mobileRow, .chipRows { grid-template-columns: minmax(0, 1fr); }
-  .radii { grid-template-columns: repeat(2, 1fr); }
-  .inputs { grid-template-columns: repeat(2, 1fr); }
+  .radii { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .buttonGrid { grid-template-columns: 1fr; }
   .buttonGrid > .meta:not(:first-child) { display: none; }
   .typeRow { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
   .tDisplay, .tH1 { font-size: 40px; }
   .tH2 { font-size: 30px; }
+}
+
+@media (max-width: 700px) {
+  .inputs { grid-template-columns: minmax(0, 1fr); padding: var(--space-5); }
 }
