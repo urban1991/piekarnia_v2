@@ -10,6 +10,7 @@ import { showDevNotes } from '../../../lib/devNotes';
 import s from './page.module.css';
 
 export const metadata = {
+  alternates: { canonical: '/o-nas' },
   title: 'O nas — Piekarnia Bieżyński',
   description: 'Rodzinna piekarnia ze Świdnicy od 1991 roku. Własny zakwas, lokalna mąka, cztery sklepy firmowe.',
 };

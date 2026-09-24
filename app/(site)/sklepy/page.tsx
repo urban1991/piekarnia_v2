@@ -12,6 +12,7 @@ import { showDevNotes } from '../../../lib/devNotes';
 import s from './page.module.css';
 
 export const metadata = {
+  alternates: { canonical: '/sklepy' },
   title: 'Sklepy firmowe — Piekarnia Bieżyński',
   description: 'Cztery sklepy firmowe: Świdnica (Składowa 3, Kazimierza Wielkiego 5), Jaworzyna Śląska, Bielawa.',
 };

@@ -69,6 +69,8 @@ export type SiteSettings = {
   heroImage: string;
   /** CSS object-position from the Studio hotspot, e.g. '62% 30%'; '50% 50%' when unset */
   heroImagePosition: string;
+  /** 1200×630 JPEG link preview cut from the hero around its hotspot; '' when there is no hero */
+  ogImage: string;
   /** "O nas" images shown on the homepage; missing trailing entries are simply absent (array may be shorter) */
   homeGallery: string[];
   /** images shown on the "O nas" page; missing trailing entries are simply absent (array may be shorter) */

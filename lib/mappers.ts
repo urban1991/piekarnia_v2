@@ -1,4 +1,4 @@
-import { urlFor } from '../sanity/image';
+import { ogImageUrl, urlFor } from '../sanity/image';
 import type { Announcement, Category, CategorySlug, Nutrition, Product, SiteSettings, Store } from './types';
 
 export type SanityImageRef = { asset?: { _ref: string }; hotspot?: unknown; crop?: unknown } | null | undefined;
@@ -132,6 +132,7 @@ export function mapSettings(doc: SettingsDoc | null): SiteSettings {
     legal: { nota: str(doc?.legal?.nota), privacy: str(doc?.legal?.privacy), cookies: str(doc?.legal?.cookies) },
     heroImage: imageUrl(doc?.heroImage),
     heroImagePosition: objectPosition(doc?.heroImage),
+    ogImage: doc?.heroImage?.asset?._ref ? ogImageUrl(doc.heroImage) : '',
     homeGallery: (doc?.homeGallery ?? []).map(imageUrl),
     aboutGallery: (doc?.aboutGallery ?? []).map(imageUrl),
     gallery: (doc?.gallery ?? []).map(imageUrl).filter(Boolean),

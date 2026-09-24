@@ -5,6 +5,7 @@ import { getSiteSettings } from '../../../lib/data';
 import s from './page.module.css';
 
 export const metadata = {
+  alternates: { canonical: '/dokumenty' },
   title: 'Nota prawna i polityki — Piekarnia Bieżyński',
   description: 'Nota prawna, polityka prywatności i polityka cookies.',
 };

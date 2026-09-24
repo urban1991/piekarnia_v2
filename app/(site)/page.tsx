@@ -21,6 +21,10 @@ import s from './page.module.css';
 // (which still clears the cache immediately via the webhook, in parallel).
 export const revalidate = 3600;
 
+export const metadata = {
+  alternates: { canonical: '/' },
+};
+
 const features = [
   {
     title: 'Codziennie świeże',

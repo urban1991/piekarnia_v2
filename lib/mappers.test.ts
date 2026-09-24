@@ -108,6 +108,18 @@ describe('mapSettings', () => {
     expect(mapSettings(null).heroImagePosition).toBe('50% 50%');
   });
 
+  it('derives a 1200×630 JPEG link-preview image from the hero, cropped around its hotspot', () => {
+    const hotspot = { x: 0.9, y: 0.5, width: 0.1, height: 0.1 };
+    const url = new URL(mapSettings({ heroImage: { ...img('h1'), hotspot } }).ogImage);
+    expect(url.pathname).toContain('h1-800x600.png');
+    expect(url.searchParams.get('w')).toBe('1200');
+    expect(url.searchParams.get('h')).toBe('630');
+    expect(url.searchParams.get('fm')).toBe('jpg');
+    // 800×600 → 1200:630 keeps full width and cuts the height; the hotspot decides which band survives
+    expect(url.searchParams.get('rect')).toMatch(/^0,\d+,800,\d+$/);
+    expect(mapSettings(null).ogImage).toBe('');
+  });
+
   it('measures the hero hotspot within the cropped area, since the url is already cropped', () => {
     const crop = { left: 0.2, right: 0, top: 0, bottom: 0.5 };
     const hotspot = { x: 0.6, y: 0.25, width: 0.2, height: 0.2 };

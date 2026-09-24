@@ -6,6 +6,7 @@ import { getSiteSettings } from '../../../lib/data';
 import s from './page.module.css';
 
 export const metadata = {
+  alternates: { canonical: '/kontakt' },
   title: 'Kontakt — Piekarnia Bieżyński',
   description: 'Telefon 503 083 208, ul. Składowa 3 w Świdnicy. Zamówienia i współpraca hurtowa.',
 };

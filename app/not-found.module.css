@@ -1,0 +1,11 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0 var(--gutter) var(--space-18);
+}
+
+@media (max-width: 900px) {
+  .actions { flex-direction: column; align-items: stretch; padding-bottom: var(--space-12); }
+}

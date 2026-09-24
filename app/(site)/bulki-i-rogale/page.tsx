@@ -6,6 +6,7 @@ import { CtaBand } from '../../../components/sections/CtaBand';
 import { getCategoryBySlug, getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
 export const metadata = {
+  alternates: { canonical: '/bulki-i-rogale' },
   title: 'Bułki i rogale — Piekarnia Bieżyński',
   description: 'Kajzerki, grahamki, rogale z makiem i bułka alpejska. Świeże od 6:00.',
 };

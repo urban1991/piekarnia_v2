@@ -6,6 +6,7 @@ import { CtaBand } from '../../../components/sections/CtaBand';
 import { getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
 export const metadata = {
+  alternates: { canonical: '/inne-wypieki' },
   title: 'Inne wypieki — Piekarnia Bieżyński',
   description: 'Chałki, pączki, drożdżówki, makowce i babki. Część wypiekamy sezonowo.',
 };

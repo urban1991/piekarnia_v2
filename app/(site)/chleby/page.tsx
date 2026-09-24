@@ -6,6 +6,7 @@ import { CtaBand } from '../../../components/sections/CtaBand';
 import { getCategoryBySlug, getFiltersFor, getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
 export const metadata = {
+  alternates: { canonical: '/chleby' },
   title: 'Chleby — Piekarnia Bieżyński',
   description: 'Chleby na zakwasie, żytnie, pszenne i z dodatkami. 26 rodzajów wypiekanych codziennie.',
 };
