@@ -6,7 +6,7 @@ const productProjection = `{
 }`;
 
 export const categoriesQuery = defineQuery(
-  `*[_type == "category"] | order(sortOrder asc) { _id, name, "slug": slug.current, lead, cover }`,
+  `*[_type == "category"] | order(sortOrder asc) { _id, name, "slug": slug.current, lead, intro, cover }`,
 );
 
 export const productsByCategoryQuery = defineQuery(
@@ -33,5 +33,5 @@ export const announcementsQuery = defineQuery(
 );
 
 export const siteSettingsQuery = defineQuery(
-  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, heroImage, homeGallery, aboutGallery, gallery }`,
+  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, email, address, facebook, instagram, catalogPdf, heroImage, homeGallery, aboutGallery, gallery }`,
 );

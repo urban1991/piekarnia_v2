@@ -6,6 +6,7 @@ vi.mock('next-sanity', () => ({ defineQuery: (query: string) => query }));
 
 import {
   allProductsQuery,
+  categoriesQuery,
   announcementsQuery,
   productsByCategoryQuery,
   siteSettingsQuery,
@@ -114,6 +115,15 @@ describe('product queries', () => {
     const tied = [category('chleby'), product('b', 'chleby', { sortOrder: 1 }), product('a', 'chleby', { sortOrder: 1 })];
     const docs = await run<{ _id: string }[]>(allProductsQuery, tied);
     expect(docs.map((d) => d._id)).toEqual(['a', 'b']);
+  });
+});
+
+describe('categoriesQuery', () => {
+  it('returns the page intro next to the card lead', async () => {
+    const [category] = await run<Record<string, unknown>[]>(categoriesQuery, [
+      { _id: 'category-chleby', _type: 'category', name: 'Chleby', slug: { current: 'chleby' }, lead: 'Karta', intro: 'Strona' },
+    ]);
+    expect(category).toMatchObject({ slug: 'chleby', lead: 'Karta', intro: 'Strona' });
   });
 });
 

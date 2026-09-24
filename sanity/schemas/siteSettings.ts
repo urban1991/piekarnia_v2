@@ -7,8 +7,13 @@ export const siteSettings = defineType({
   title: 'Ustawienia strony',
   type: 'document',
   fields: [
-    defineField({ name: 'phone', title: 'Telefon (wyświetlany)', type: 'string', validation: (r) => r.required() }),
-    defineField({ name: 'phoneHref', title: 'Telefon (link tel:)', type: 'string', validation: (r) => r.required() }),
+    defineField({
+      name: 'phone',
+      title: 'Telefon',
+      type: 'string',
+      validation: (r) => r.required(),
+      description: 'Np. 503 083 208 — przyciski „Zadzwoń” na stronie wybierają ten numer automatycznie.',
+    }),
     defineField({ name: 'email', title: 'E-mail', type: 'string' }),
     defineField({ name: 'address', title: 'Adres', type: 'string' }),
     defineField({ name: 'facebook', title: 'Facebook', type: 'url' }),

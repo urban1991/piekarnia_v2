@@ -11,11 +11,16 @@ export const testimonial = defineType({
       name: 'rating',
       title: 'Ocena (gwiazdki)',
       type: 'number',
-      initialValue: 5,
+      description: 'Tylko prawdziwa ocena wystawiona przez autora opinii. Puste = bez gwiazdek.',
       validation: (r) => r.min(1).max(5).integer(),
       options: { list: [1, 2, 3, 4, 5] },
     }),
-    defineField({ name: 'source', title: 'Źródło', type: 'string', description: 'np. „Google”, „Facebook”', initialValue: 'Google' }),
+    defineField({
+      name: 'source',
+      title: 'Źródło',
+      type: 'string',
+      description: 'Tylko jeśli opinia naprawdę stamtąd pochodzi, np. „Google” albo „Facebook”. Puste = bez podpisu źródła.',
+    }),
     defineField({ name: 'sortOrder', title: 'Kolejność', type: 'number', initialValue: 100 }),
   ],
   preview: {

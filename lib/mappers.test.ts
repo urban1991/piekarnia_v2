@@ -102,6 +102,13 @@ describe('mapStore / mapCategory', () => {
     expect(url.searchParams.get('destination')).toBe('ul. Wolności 15D, Jaworzyna Śląska');
   });
 
+  it('maps the category page intro, falling back to the card lead when it is empty', () => {
+    const base = { _id: 'category-chleby', name: 'Chleby', slug: 'chleby', lead: 'Krótko na kartę.' };
+    expect(mapCategory({ ...base, intro: 'Dłuższy opis na stronę.' }).intro).toBe('Dłuższy opis na stronę.');
+    expect(mapCategory({ ...base, intro: '  ' }).intro).toBe('Krótko na kartę.');
+    expect(mapCategory(base).intro).toBe('Krótko na kartę.');
+  });
+
   it('maps category with slug and cover', () => {
     const c = mapCategory({ _id: 'category-chleby', name: 'Chleby', slug: 'chleby', lead: 'Lead', cover: img('ddd') });
     expect(c).toMatchObject({ slug: 'chleby', name: 'Chleby', lead: 'Lead' });
@@ -128,8 +135,13 @@ describe('mapSettings', () => {
     expect(s.gallery).toEqual([]);
   });
 
+  it('derives the tel: link from the phone number, so the two cannot drift apart', () => {
+    expect(mapSettings({ phone: '503 083 208' }).phoneHref).toBe('tel:+48503083208');
+    expect(mapSettings(null).phoneHref).toBe('');
+  });
+
   it('maps gallery images to urls', () => {
-    const s = mapSettings({ phone: '503 083 208', phoneHref: 'tel:+48503083208', gallery: [img('e1'), img('e2')] });
+    const s = mapSettings({ phone: '503 083 208', gallery: [img('e1'), img('e2')] });
     expect(s.gallery).toHaveLength(2);
     expect(s.gallery[0]).toContain('e1-800x600.png');
   });

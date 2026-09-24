@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Header } from '../../../components/layout/Header';
 import { Section } from '../../../components/layout/Section';
 import { PageHeader } from '../../../components/sections/PageHeader';
@@ -5,11 +6,14 @@ import { ProductGrid } from '../../../components/sections/ProductGrid';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { getCategoryBySlug, getFiltersFor, getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
-export const metadata = {
-  alternates: { canonical: '/chleby' },
-  title: 'Chleby — Piekarnia Bieżyński',
-  description: 'Chleby na zakwasie, żytnie, pszenne i z dodatkami. 26 rodzajów wypiekanych codziennie.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const category = await getCategoryBySlug('chleby');
+  return {
+    alternates: { canonical: '/chleby' },
+    title: `${category?.name ?? 'Chleby'} — Piekarnia Bieżyński`,
+    description: category?.intro || 'Chleby na zakwasie, żytnie, pszenne i z dodatkami, wypiekane codziennie.',
+  };
+}
 
 export default async function ChlebyPage() {
   const [settings, products, filters, category] = await Promise.all([
@@ -23,8 +27,8 @@ export default async function ChlebyPage() {
       <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <PageHeader
         eyebrow={`Wypieki · ${products.length} rodzajów`}
-        title="Chleby"
-        lead="Większość naszych chlebów rośnie na własnym zakwasie żytnim. Dlatego długo zostają świeże i dobrze się kroją także trzeciego dnia."
+        title={category?.name ?? 'Chleby'}
+        lead={category?.intro}
       />
       <Section flush>
         <ProductGrid products={products} filters={filters} backdrop={category?.cover} />

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Header } from '../../../components/layout/Header';
 import { Section } from '../../../components/layout/Section';
 import { PageHeader } from '../../../components/sections/PageHeader';
@@ -5,11 +6,14 @@ import { ProductGrid } from '../../../components/sections/ProductGrid';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { getCategoryBySlug, getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
-export const metadata = {
-  alternates: { canonical: '/bulki-i-rogale' },
-  title: 'Bułki i rogale — Piekarnia Bieżyński',
-  description: 'Kajzerki, grahamki, rogale z makiem i bułka alpejska. Świeże od 6:00.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const category = await getCategoryBySlug('bulki-i-rogale');
+  return {
+    alternates: { canonical: '/bulki-i-rogale' },
+    title: `${category?.name ?? 'Bułki i rogale'} — Piekarnia Bieżyński`,
+    description: category?.intro || 'Kajzerki, grahamki, rogale z makiem i bułka alpejska. Świeże od 6:00.',
+  };
+}
 
 export default async function BulkiPage() {
   const [settings, products, category] = await Promise.all([
@@ -22,8 +26,8 @@ export default async function BulkiPage() {
       <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <PageHeader
         eyebrow="Wypieki"
-        title="Bułki i rogale"
-        lead="Wyjeżdżają z pieca przed szóstą. Najlepsze, kiedy są jeszcze ciepłe — dlatego warto wpaść wcześnie."
+        title={category?.name ?? 'Bułki i rogale'}
+        lead={category?.intro}
       />
       <Section flush>
         <ProductGrid

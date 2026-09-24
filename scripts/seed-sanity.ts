@@ -64,7 +64,6 @@ type Raw = {
   stores: RawStore[];
   contact: {
     phone: string;
-    phoneHref: string;
     email: string;
     address: string;
     facebook: string;
@@ -268,7 +267,6 @@ async function run() {
     _id: 'siteSettings',
     _type: 'siteSettings',
     phone: raw.contact.phone,
-    phoneHref: raw.contact.phoneHref,
     email: raw.contact.email,
     address: raw.contact.address,
     facebook: raw.contact.facebook,

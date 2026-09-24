@@ -27,7 +27,10 @@ export type Product = {
 export type Category = {
   slug: CategorySlug;
   name: string;
+  /** short text on the homepage card */
   lead: string;
+  /** text under the title on the category page; the lead when no intro is set */
+  intro: string;
   cover: string;
 };
 
@@ -65,6 +68,7 @@ export type Announcement = { id: string; text: string; link?: string };
 
 export type SiteSettings = {
   phone: string;
+  /** tel: link derived from `phone` */
   phoneHref: string;
   email: string;
   address: string;

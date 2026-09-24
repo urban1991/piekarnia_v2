@@ -1,4 +1,5 @@
 import { ogImageUrl, urlFor } from '../sanity/image';
+import { telHref } from './phone';
 import type { Announcement, Category, CategorySlug, Nutrition, Product, SiteSettings, Store } from './types';
 
 export type SanityImageRef = { asset?: { _ref: string }; hotspot?: unknown; crop?: unknown } | null | undefined;
@@ -36,6 +37,7 @@ export type CategoryDoc = {
   name: string;
   slug: string;
   lead?: string | null;
+  intro?: string | null;
   cover?: SanityImageRef;
 };
 
@@ -47,7 +49,6 @@ export type AnnouncementDoc = {
 
 export type SettingsDoc = {
   phone?: string | null;
-  phoneHref?: string | null;
   email?: string | null;
   address?: string | null;
   facebook?: string | null;
@@ -127,7 +128,13 @@ export function mapStore(doc: StoreDoc): Store {
 }
 
 export function mapCategory(doc: CategoryDoc): Category {
-  return { slug: doc.slug as CategorySlug, name: doc.name, lead: str(doc.lead), cover: imageUrl(doc.cover) };
+  return {
+    slug: doc.slug as CategorySlug,
+    name: doc.name,
+    lead: str(doc.lead),
+    intro: doc.intro?.trim() || str(doc.lead),
+    cover: imageUrl(doc.cover),
+  };
 }
 
 export function mapAnnouncement(doc: AnnouncementDoc): Announcement {
@@ -137,7 +144,7 @@ export function mapAnnouncement(doc: AnnouncementDoc): Announcement {
 export function mapSettings(doc: SettingsDoc | null): SiteSettings {
   return {
     phone: str(doc?.phone),
-    phoneHref: str(doc?.phoneHref),
+    phoneHref: telHref(str(doc?.phone)),
     email: str(doc?.email),
     address: str(doc?.address),
     facebook: str(doc?.facebook),
