@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { marqueeCopies } from '../../lib/layoutMath';
+import type { CSSProperties } from 'react';
+import { marqueeCopies, marqueeDuration } from '../../lib/layoutMath';
 import type { Announcement } from '../../lib/types';
 import s from './AnnouncementBar.module.css';
 
@@ -46,26 +47,33 @@ function List({ announcements, hidden }: { announcements: Announcement[]; hidden
  * The track holds two identical halves and the CSS animation translates it by exactly -50%,
  * so the loop repeats seamlessly. A half must be at least as wide as the bar, otherwise the
  * track runs out of content on the right before it wraps; `repeats` is measured after mount
- * and raises the number of list copies per half until that holds.
+ * and raises the number of list copies per half until that holds. A ResizeObserver re-measures
+ * when the web font swaps in or the bar is resized, and the loop duration follows the half's
+ * width so the text always moves at the same speed.
  */
 export function AnnouncementBar({ announcements }: { announcements: Announcement[] }) {
   const barRef = useRef<HTMLElement>(null);
   const halfRef = useRef<HTMLDivElement>(null);
   const [repeats, setRepeats] = useState(1);
+  const [duration, setDuration] = useState<number | null>(null);
 
   useEffect(() => {
+    const bar = barRef.current;
+    const half = halfRef.current;
+    if (!bar || !half) return;
     const measure = () => {
-      const bar = barRef.current;
-      const half = halfRef.current;
-      if (!bar || !half) return;
-      const listWidth = half.getBoundingClientRect().width / repeats;
+      const halfWidth = half.getBoundingClientRect().width;
+      const listWidth = halfWidth / repeats;
       if (listWidth <= 0) return;
       const needed = marqueeCopies(bar.getBoundingClientRect().width, listWidth);
       setRepeats((current) => (current === needed ? current : needed));
+      setDuration(marqueeDuration(halfWidth));
     };
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(bar);
+    observer.observe(half);
+    return () => observer.disconnect();
   }, [repeats, announcements]);
 
   if (announcements.length === 0) return null;
@@ -74,7 +82,10 @@ export function AnnouncementBar({ announcements }: { announcements: Announcement
 
   return (
     <aside className={s.bar} aria-label="Aktualności" ref={barRef}>
-      <div className={s.track}>
+      <div
+        className={s.track}
+        style={duration ? ({ '--marquee-duration': `${duration}s` } as CSSProperties) : undefined}
+      >
         <div className={s.half} ref={halfRef}>
           {copies.map((_, index) => (
             <List key={index} announcements={announcements} hidden={index > 0} />

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cardsPerView, carouselPages, marqueeCopies } from './layoutMath';
+import { MARQUEE_SPEED, cardsPerView, carouselPages, marqueeCopies, marqueeDuration } from './layoutMath';
 
 describe('marqueeCopies', () => {
   it('needs a single copy when the list is already wider than the bar', () => {
@@ -49,5 +49,17 @@ describe('carouselPages', () => {
     expect(carouselPages(3, 3)).toBe(1);
     expect(carouselPages(2, 3)).toBe(1);
     expect(carouselPages(0, 1)).toBe(1);
+  });
+});
+
+describe('marqueeDuration', () => {
+  it('keeps the text moving at the same speed whatever its length', () => {
+    expect(marqueeDuration(MARQUEE_SPEED * 40)).toBe(40);
+    expect(marqueeDuration(MARQUEE_SPEED * 80)).toBe(80);
+  });
+
+  it('never races a short announcement across the bar', () => {
+    expect(marqueeDuration(100)).toBe(12);
+    expect(marqueeDuration(0)).toBe(12);
   });
 });
