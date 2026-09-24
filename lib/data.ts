@@ -10,6 +10,7 @@ import {
   storesQuery,
   testimonialsQuery,
 } from '../sanity/queries';
+import { ALL_TAGS } from './productSearch';
 import { mapAnnouncement, mapCategory, mapProduct, mapSettings, mapStore } from './mappers';
 import type { AnnouncementDoc, CategoryDoc, ProductDoc, SettingsDoc, StoreDoc } from './mappers';
 import type { Announcement, Category, CategorySlug, HistoryEntry, Product, SiteSettings, Store, Testimonial } from './types';
@@ -38,7 +39,7 @@ export async function getAllProducts(): Promise<Product[]> {
 export async function getFiltersFor(slug: CategorySlug): Promise<string[]> {
   const tags = new Set<string>();
   (await getProductsByCategory(slug)).forEach((p) => p.tags.forEach((t) => tags.add(t)));
-  return ['Wszystkie', ...Array.from(tags)];
+  return [ALL_TAGS, ...Array.from(tags)];
 }
 
 export const getStores = cache(async (): Promise<Store[]> => {

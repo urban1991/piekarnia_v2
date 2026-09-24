@@ -5,15 +5,9 @@ import { FilterChips } from '../ui/FilterChips';
 import { SearchInput } from '../ui/SearchInput';
 import { Grid } from '../ui/Grid';
 import { ProductCard } from '../cards/ProductCard';
+import { ALL_TAGS, filterProducts } from '../../lib/productSearch';
 import type { Product } from '../../lib/types';
 import s from './ProductGrid.module.css';
-
-const normalize = (text: string) =>
-  text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/ł/g, 'l');
 
 export function ProductGrid({
   products,
@@ -30,17 +24,10 @@ export function ProductGrid({
   backdrop?: string;
   searchable?: boolean;
 }) {
-  const [active, setActive] = useState('Wszystkie');
+  const [active, setActive] = useState(ALL_TAGS);
   const [query, setQuery] = useState('');
 
-  const visible = useMemo(() => {
-    const byTag = active === 'Wszystkie' ? products : products.filter((p) => p.tags.includes(active));
-    const q = normalize(query.trim());
-    if (!q) return byTag;
-    return byTag.filter((p) =>
-      normalize([p.name, p.description, ...p.tags].join(' ')).includes(q),
-    );
-  }, [active, query, products]);
+  const visible = useMemo(() => filterProducts(products, active, query), [active, query, products]);
 
   const hasFilters = !!filters && filters.length > 1;
 
@@ -73,7 +60,7 @@ export function ProductGrid({
             className={s.emptyReset}
             onClick={() => {
               setQuery('');
-              setActive('Wszystkie');
+              setActive(ALL_TAGS);
             }}
           >
             Pokaż wszystkie

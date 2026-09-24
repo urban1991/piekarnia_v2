@@ -1,5 +1,13 @@
 import { defineField, defineType } from 'sanity';
 
+/** Document-level rule: an announcement's window must not end before (or when) it starts. */
+export function endsAfterStart(startDate?: string, endDate?: string): true | string {
+  if (!startDate || !endDate) return true;
+  return new Date(endDate).getTime() > new Date(startDate).getTime()
+    ? true
+    : 'Data „Pokazuj do” musi być późniejsza niż „Pokazuj od”.';
+}
+
 export const announcement = defineType({
   name: 'announcement',
   title: 'Ogłoszenie',
@@ -34,14 +42,7 @@ export const announcement = defineType({
     defineField({ name: 'sortOrder', title: 'Kolejność', type: 'number', initialValue: 100 }),
   ],
   validation: (r) =>
-    r.custom((doc) => {
-      const start = doc?.startDate as string | undefined;
-      const end = doc?.endDate as string | undefined;
-      if (!start || !end) return true;
-      return new Date(end).getTime() > new Date(start).getTime()
-        ? true
-        : 'Data „Pokazuj do” musi być późniejsza niż „Pokazuj od”.';
-    }),
+    r.custom((doc) => endsAfterStart(doc?.startDate as string | undefined, doc?.endDate as string | undefined)),
   preview: {
     select: { title: 'text', startDate: 'startDate', endDate: 'endDate', active: 'active' },
     prepare({ title, startDate, endDate, active }: { title?: string; startDate?: string; endDate?: string; active?: boolean }) {

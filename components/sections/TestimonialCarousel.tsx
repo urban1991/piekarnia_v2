@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TestimonialCard } from '../cards/TestimonialCard';
+import { cardsPerView, carouselPages } from '../../lib/layoutMath';
 import type { Testimonial } from '../../lib/types';
 import s from './TestimonialCarousel.module.css';
 
@@ -16,7 +17,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
   const [active, setActive] = useState(0);
   const [perView, setPerView] = useState<number | null>(null);
 
-  const pages = Math.max(1, testimonials.length - (perView ?? 1) + 1);
+  const pages = carouselPages(testimonials.length, perView ?? 1);
 
   const remeasure = useCallback(() => {
     const track = trackRef.current;
@@ -25,7 +26,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
     const gap = parseFloat(getComputedStyle(track).columnGap || '0');
     const step = cardWidth + gap;
     stepRef.current = step;
-    setPerView(Math.max(1, Math.round((track.clientWidth + gap) / step)));
+    setPerView(cardsPerView(track.clientWidth, cardWidth, gap));
     setActive(step ? Math.round(track.scrollLeft / step) : 0);
   }, []);
 

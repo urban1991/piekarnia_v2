@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { marqueeCopies } from '../../lib/layoutMath';
 import type { Announcement } from '../../lib/types';
 import s from './AnnouncementBar.module.css';
 
@@ -59,7 +60,7 @@ export function AnnouncementBar({ announcements }: { announcements: Announcement
       if (!bar || !half) return;
       const listWidth = half.getBoundingClientRect().width / repeats;
       if (listWidth <= 0) return;
-      const needed = Math.max(1, Math.ceil(bar.getBoundingClientRect().width / listWidth));
+      const needed = marqueeCopies(bar.getBoundingClientRect().width, listWidth);
       setRepeats((current) => (current === needed ? current : needed));
     };
     measure();
