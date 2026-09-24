@@ -6,13 +6,13 @@ import { Grid } from '../../components/ui/Grid';
 import { Button } from '../../components/ui/Button';
 import { Hero } from '../../components/sections/Hero';
 import { FeatureBand } from '../../components/sections/FeatureBand';
-import { MapEmbed } from '../../components/sections/MapEmbed';
+import { StoreMap } from '../../components/sections/StoreMap';
 import { StoreList } from '../../components/sections/StoreList';
 import { InstagramGrid } from '../../components/sections/InstagramGrid';
 import { AnnouncementBar } from '../../components/sections/AnnouncementBar';
 import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
-import { getAnnouncements, getCategories, getSiteSettings, getTestimonials } from '../../lib/data';
+import { getAnnouncements, getCategories, getSiteSettings, getStores, getTestimonials } from '../../lib/data';
 import { showDevNotes } from '../../lib/devNotes';
 import s from './page.module.css';
 
@@ -45,11 +45,12 @@ const features = [
 ];
 
 export default async function HomePage() {
-  const [settings, categories, testimonials, announcements] = await Promise.all([
+  const [settings, categories, testimonials, announcements, stores] = await Promise.all([
     getSiteSettings(),
     getCategories(),
     getTestimonials(),
     getAnnouncements(),
+    getStores(),
   ]);
   return (
     <main>
@@ -118,7 +119,7 @@ export default async function HomePage() {
               <StoreList disclaimer={showDevNotes ? 'godziny przykładowe — do potwierdzenia' : undefined} />
             </div>
           </div>
-          <MapEmbed />
+          <StoreMap stores={stores} />
         </div>
       </Section>
 

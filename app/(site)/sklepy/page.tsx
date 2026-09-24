@@ -3,7 +3,7 @@ import { Section } from '../../../components/layout/Section';
 import { SectionHeading } from '../../../components/layout/SectionHeading';
 import { PageHeader } from '../../../components/sections/PageHeader';
 import { FeaturedStore } from '../../../components/sections/FeaturedStore';
-import { MapEmbed } from '../../../components/sections/MapEmbed';
+import { StoreMap } from '../../../components/sections/StoreMap';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { Grid } from '../../../components/ui/Grid';
 import { StoreCard } from '../../../components/cards/StoreCard';
@@ -52,7 +52,7 @@ export default async function SklepyPage() {
           </Grid>
         </div>
         <div className={s.map}>
-          <MapEmbed />
+          <StoreMap stores={stores} />
         </div>
       </Section>
 

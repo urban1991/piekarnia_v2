@@ -1,0 +1,41 @@
+.map {
+  position: relative;
+  /* own stacking context: Leaflet's panes use z-index up to 1000 and would otherwise
+     paint over the sticky header and the mobile menu */
+  isolation: isolate;
+  z-index: 0;
+  min-height: 460px;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* shown while tiles load */
+  background: repeating-linear-gradient(135deg, #E9DFD0 0 12px, #F1E9DC 12px 24px);
+  font: inherit;
+}
+
+/* soften OpenStreetMap's colours so the brand pins carry the map */
+.map :global(.leaflet-tile-pane) { filter: grayscale(.45) sepia(.12) brightness(1.02); }
+/* Leaflet puts .leaflet-container on this very element and sets Helvetica 12px on it */
+.map:global(.leaflet-container) { font: inherit; }
+.map :global(.leaflet-control-attribution) { font-size: 11px; }
+.map :global(.leaflet-popup-content-wrapper) { border-radius: var(--radius-sm); box-shadow: 0 8px 24px rgba(40, 24, 18, .18); }
+.map :global(.leaflet-popup-content) { margin: var(--space-4) var(--space-5); }
+
+.marker {
+  border-radius: 50%;
+  background: var(--color-brand);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 5px rgba(166, 25, 46, .22), 0 2px 6px rgba(0, 0, 0, .3);
+}
+.featured { box-shadow: 0 0 0 7px rgba(166, 25, 46, .25), 0 2px 8px rgba(0, 0, 0, .35); }
+.marker:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 4px; }
+
+.popup { display: grid; gap: 2px; font-family: var(--font-sans); color: var(--color-ink); }
+.popupCity { font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
+.popupStreet { font-size: 14px; }
+.popupLabel { font-size: 13px; color: var(--color-ink-muted); }
+/* .map prefix: Leaflet's `.leaflet-container a` would otherwise turn the link blue */
+.map .popupLink { margin-top: var(--space-2); font-size: 14px; font-weight: 600; color: var(--color-brand); }
+.map .popupLink:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 900px) { .map { min-height: 320px; } }

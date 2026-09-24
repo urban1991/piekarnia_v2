@@ -9,7 +9,7 @@ import { StoreCard } from '../../../components/cards/StoreCard';
 import { TestimonialCard } from '../../../components/cards/TestimonialCard';
 import { ContactForm } from '../../../components/sections/ContactForm';
 import { CtaBand } from '../../../components/sections/CtaBand';
-import { MapEmbed } from '../../../components/sections/MapEmbed';
+import { StoreMap } from '../../../components/sections/StoreMap';
 import {
   getCategories,
   getSiteSettings,
@@ -416,9 +416,9 @@ export default async function DesignSystemPage() {
               />
             </div>
             <div className={s.panel}>
-              <div className={s.meta + ' ' + s.demoNote}>MapEmbed · placeholder (docelowo iframe Google Maps, radius 20)</div>
+              <div className={s.meta + ' ' + s.demoNote}>StoreMap · OpenStreetMap (Leaflet), pinezki z lokalizacji sklepów w Studio</div>
               <div className={s.mapDemo}>
-                <MapEmbed />
+                <StoreMap stores={stores} />
               </div>
             </div>
           </div>

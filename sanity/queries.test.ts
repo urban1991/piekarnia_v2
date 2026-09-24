@@ -124,6 +124,14 @@ describe('storesQuery', () => {
     ]);
     expect(store.featured).toBe(true);
   });
+
+  it('returns the map location of each shop', async () => {
+    const location = { _type: 'geopoint', lat: 50.833898, lng: 16.506576 };
+    const [store] = await run<Record<string, unknown>[]>(storesQuery, [
+      { _id: 'store-1', _type: 'store', city: 'Świdnica', street: 'ul. Składowa 3', hours: '', location },
+    ]);
+    expect(store.location).toEqual(location);
+  });
 });
 
 describe('siteSettingsQuery', () => {

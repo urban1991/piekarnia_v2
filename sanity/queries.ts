@@ -18,7 +18,7 @@ export const allProductsQuery = defineQuery(
 );
 
 export const storesQuery = defineQuery(
-  `*[_type == "store"] | order(sortOrder asc) { _id, city, street, label, hours, image, mapsUrl, featured }`,
+  `*[_type == "store"] | order(sortOrder asc) { _id, city, street, label, hours, image, mapsUrl, featured, location }`,
 );
 
 export const testimonialsQuery = defineQuery(`*[_type == "testimonial"] | order(sortOrder asc) { text, author, rating, source }`);

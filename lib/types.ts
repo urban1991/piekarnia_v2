@@ -39,8 +39,11 @@ export type Store = {
   /** PLACEHOLDER hours until confirmed by the bakery */
   hours: string;
   image: string;
+  /** directions link: the Studio maps link, else Google Maps directions to the location or address */
   maps: string;
   featured: boolean;
+  /** pin on the store map; null when not set in Studio */
+  location: { lat: number; lng: number } | null;
 };
 
 export type Testimonial = {

@@ -26,6 +26,7 @@ export type StoreDoc = {
   image?: SanityImageRef;
   mapsUrl?: string | null;
   featured?: boolean | null;
+  location?: { _type?: string; lat?: number; lng?: number; alt?: number } | null;
 };
 
 export type CategoryDoc = {
@@ -79,6 +80,13 @@ const objectPosition = (ref: SanityImageRef): string => {
 
 const str = (v: string | null | undefined) => v ?? '';
 
+/** Google Maps directions to the shop (a plain link: no API key, nothing loaded until tapped). */
+const directionsUrl = (doc: StoreDoc): string => {
+  const { lat, lng } = doc.location ?? {};
+  const destination = typeof lat === 'number' && typeof lng === 'number' ? `${lat},${lng}` : `${doc.street}, ${doc.city}`;
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`;
+};
+
 export function mapProduct(doc: ProductDoc): Product {
   const n = doc.nutrition;
   const nutrition: Nutrition | null =
@@ -107,8 +115,11 @@ export function mapStore(doc: StoreDoc): Store {
     label: str(doc.label),
     hours: doc.hours,
     image: imageUrl(doc.image),
-    maps: str(doc.mapsUrl),
+    maps: doc.mapsUrl || directionsUrl(doc),
     featured: !!doc.featured,
+    location: typeof doc.location?.lat === 'number' && typeof doc.location?.lng === 'number'
+      ? { lat: doc.location.lat, lng: doc.location.lng }
+      : null,
   };
 }
 

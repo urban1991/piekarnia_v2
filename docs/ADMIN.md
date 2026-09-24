@@ -23,6 +23,8 @@ Pole „Kolejność" (mniejsza liczba = wyżej). Lista w panelu jest sortowana t
 
 Treść → Sklepy → edytuj godziny, adres, zdjęcie, link do Google Maps → Publikuj.
 
+**Pinezka na mapie** (pole „Lokalizacja na mapie”): w Google Maps kliknij prawym przyciskiem dokładnie na sklep, potem kliknij współrzędne na górze menu — skopiują się, np. `50.8339, 16.5066`. Pierwszą liczbę wpisz w **Latitude**, drugą w **Longitude**, Altitude zostaw puste. Jeśli liczby się zamienią, panel pokaże błąd i nie pozwoli opublikować. Sklep bez lokalizacji nie pojawi się na mapie, ale zostaje na liście.
+
 ## Pasek ogłoszeń
 
 Treść → Ogłoszenia → „+". Uzupełnij:

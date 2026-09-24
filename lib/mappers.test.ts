@@ -63,6 +63,28 @@ describe('mapStore / mapCategory', () => {
     expect(s.featured).toBe(true);
   });
 
+  it('keeps the map location, dropping the Sanity type and altitude', () => {
+    const s = mapStore({
+      _id: 'store-3',
+      city: 'Bielawa',
+      street: 'ul. Piłsudskiego 74',
+      hours: '',
+      location: { _type: 'geopoint', lat: 50.682972, lng: 16.62175, alt: 0 },
+    });
+    expect(s.location).toEqual({ lat: 50.682972, lng: 16.62175 });
+    expect(mapStore({ _id: 'store-4', city: 'Bielawa', street: 'x', hours: '' }).location).toBeNull();
+  });
+
+  it('falls back to Google Maps directions when no maps link was entered', () => {
+    const byPoint = mapStore({ _id: 's', city: 'Bielawa', street: 'ul. Piłsudskiego 74', hours: '', location: { lat: 50.682972, lng: 16.62175 } });
+    expect(byPoint.maps).toBe('https://www.google.com/maps/dir/?api=1&destination=50.682972%2C16.62175');
+
+    const byAddress = mapStore({ _id: 's', city: 'Jaworzyna Śląska', street: 'ul. Wolności 15D', hours: '' });
+    const url = new URL(byAddress.maps);
+    expect(url.origin + url.pathname).toBe('https://www.google.com/maps/dir/');
+    expect(url.searchParams.get('destination')).toBe('ul. Wolności 15D, Jaworzyna Śląska');
+  });
+
   it('maps category with slug and cover', () => {
     const c = mapCategory({ _id: 'category-chleby', name: 'Chleby', slug: 'chleby', lead: 'Lead', cover: img('ddd') });
     expect(c).toMatchObject({ slug: 'chleby', name: 'Chleby', lead: 'Lead' });
