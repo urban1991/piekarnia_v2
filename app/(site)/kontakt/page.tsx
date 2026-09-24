@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '../../../components/layout/Header';
 import { Section } from '../../../components/layout/Section';
@@ -8,11 +9,14 @@ import { getSiteSettings, getStores } from '../../../lib/data';
 import { isOpen, todayInWarsaw } from '../../../lib/opening';
 import s from './page.module.css';
 
-export const metadata = {
-  alternates: { canonical: '/kontakt' },
-  title: 'Kontakt — Piekarnia Bieżyński',
-  description: 'Telefon 503 083 208, ul. Składowa 3 w Świdnicy. Zamówienia na uroczystości, pytania o skład i współpraca hurtowa.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const contact = await getSiteSettings();
+  return {
+    alternates: { canonical: '/kontakt' },
+    title: 'Kontakt — Piekarnia Bieżyński',
+    description: `Telefon ${contact.phone}, ${contact.address}. Zamówienia na uroczystości, pytania o skład i współpraca hurtowa.`,
+  };
+}
 
 // a shop appears in the list below from its opening day
 export const revalidate = 3600;

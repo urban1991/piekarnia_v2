@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { telHref } from '../../lib/phone';
 
 export const SITE_SETTINGS_ID = 'siteSettings';
 
@@ -11,7 +12,8 @@ export const siteSettings = defineType({
       name: 'phone',
       title: 'Telefon',
       type: 'string',
-      validation: (r) => r.required(),
+      validation: (r) =>
+        r.required().custom((value) => (telHref(value ?? '') ? true : 'Wpisz numer, który da się wybrać, np. 503 083 208 albo +48 503 083 208.')),
       description: 'Np. 503 083 208 — przyciski „Zadzwoń” na stronie wybierają ten numer automatycznie.',
     }),
     defineField({ name: 'email', title: 'E-mail', type: 'string' }),

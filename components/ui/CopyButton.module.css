@@ -16,3 +16,17 @@
 .button:hover { border-color: var(--color-ink); }
 .button:focus-visible { outline: 3px solid var(--color-brand-tint); outline-offset: 2px; border-color: var(--color-brand); }
 .copied { background: var(--color-brand-tint); border-color: var(--color-brand); color: var(--color-brand-dark); }
+
+.wrap { display: inline-flex; align-items: center; }
+/* visually hidden, still read by screen readers */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

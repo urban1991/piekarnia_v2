@@ -6,12 +6,15 @@ import { ProductGrid } from '../../../components/sections/ProductGrid';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { getCategoryBySlug, getProductsByCategory, getSiteSettings } from '../../../lib/data';
 
+/** Used when the category document is missing in Studio (it cannot be deleted there, but the dataset could be empty). */
+const FALLBACK = { name: 'Inne wypieki', intro: 'Chałki, pączki, drożdżówki, makowce i babki. Część wypiekamy sezonowo.' };
+
 export async function generateMetadata(): Promise<Metadata> {
   const category = await getCategoryBySlug('inne-wypieki');
   return {
     alternates: { canonical: '/inne-wypieki' },
-    title: `${category?.name ?? 'Inne wypieki'} — Piekarnia Bieżyński`,
-    description: category?.intro || 'Chałki, pączki, drożdżówki, makowce i babki. Część wypiekamy sezonowo.',
+    title: `${category?.name ?? FALLBACK.name} — Piekarnia Bieżyński`,
+    description: category?.intro || FALLBACK.intro,
   };
 }
 
@@ -26,8 +29,8 @@ export default async function InneWypiekiPage() {
       <Header phone={settings.phone} phoneHref={settings.phoneHref} />
       <PageHeader
         eyebrow="Wypieki"
-        title={category?.name ?? 'Inne wypieki'}
-        lead={category?.intro}
+        title={category?.name ?? FALLBACK.name}
+        lead={category?.intro || FALLBACK.intro}
       />
       <Section flush>
         <ProductGrid products={products} />

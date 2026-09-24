@@ -59,7 +59,7 @@ type RawStore = {
 };
 
 type Raw = {
-  categories: { slug: string; name: string; lead: string; cover: string }[];
+  categories: { slug: string; name: string; lead: string; intro: string; cover: string }[];
   products: RawProduct[];
   stores: RawStore[];
   contact: {
@@ -182,6 +182,7 @@ async function run() {
       name: c.name,
       slug: { _type: 'slug', current: c.slug },
       lead: c.lead,
+      intro: c.intro,
       cover: await uploadImage(c.cover),
       sortOrder: i,
     });
@@ -235,8 +236,9 @@ async function run() {
       _type: 'testimonial',
       text: t.text,
       author: t.author,
-      rating: t.rating ?? 5,
-      source: t.source ?? 'Google',
+      // only what the source really says: a made-up rating or source would be a fake review
+      ...(t.rating ? { rating: t.rating } : {}),
+      ...(t.source ? { source: t.source } : {}),
       sortOrder: (i + 1) * 10,
     });
     bump('testimonial');

@@ -5,19 +5,22 @@
       "slug": "chleby",
       "name": "Chleby",
       "lead": "Każdy bochenek rośnie powoli, na naszym własnym zakwasie. Dlatego długo zostaje świeży i dobrze się kroi także trzeciego dnia.",
-      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/1.jpg"
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/1.jpg",
+      "intro": "Większość naszych chlebów rośnie na własnym zakwasie żytnim. Dlatego długo zostają świeże i dobrze się kroją także trzeciego dnia."
     },
     {
       "slug": "bulki-i-rogale",
       "name": "Bułki i rogale",
       "lead": "Kajzerki, grahamki, rogale z makiem. Najlepsze, kiedy są jeszcze ciepłe — czyli od 6:00 rano.",
-      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/2-1.jpg"
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/10/2-1.jpg",
+      "intro": "Wyjeżdżają z pieca przed szóstą. Najlepsze, kiedy są jeszcze ciepłe — dlatego warto wpaść wcześnie."
     },
     {
       "slug": "inne-wypieki",
       "name": "Inne wypieki",
       "lead": "Chałki, pączki, drożdżówki i ciasta na niedzielę. Słodkie zakończenie każdych zakupów.",
-      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/13.jpg"
+      "cover": "https://www.biezynski.swidnica.pl/wp-content/uploads/2024/12/13.jpg",
+      "intro": "Chałki, pączki, drożdżówki, makowce i babki. Część wypiekamy tylko w wybrane dni albo sezonowo — najlepiej zapytać w sklepie."
     }
   ],
   "filters": {
@@ -832,7 +835,6 @@
   ],
   "contact": {
     "phone": "503 083 208",
-    "phoneHref": "tel:+48503083208",
     "email": "piekarnia@biezynski.pl",
     "address": "ul. Składowa 3, Świdnica",
     "facebook": "https://www.facebook.com/piekarniabiezynski/",

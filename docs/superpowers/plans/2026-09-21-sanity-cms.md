@@ -1,3 +1,5 @@
+> **Dokument historyczny.** Opisuje stan z 21 września 2026; od tego czasu m.in. pole `phoneHref` zastąpiono linkiem wyliczanym z numeru (`lib/phone.ts`), linki do PDF-ów — podstronami `/polityka-prywatnosci` i `/nota-prawna`, a kategorie dostały pole `intro`. Aktualny opis: `README.md` i `docs/ADMIN.md`.
+
 # Panel menadżera na Sanity — plan implementacji
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

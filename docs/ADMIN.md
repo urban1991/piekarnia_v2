@@ -19,6 +19,14 @@ Otwórz produkt → wyłącz „Widoczny na stronie" → Publikuj. Produkt zosta
 
 Pole „Kolejność" (mniejsza liczba = wyżej). Lista w panelu jest sortowana tak samo.
 
+## Kategorie
+
+Każda kategoria ma dwa opisy: **„Zajawka”** (krótki tekst na karcie na stronie głównej) i **„Opis na stronie kategorii”** (tekst pod tytułem na stronie np. /chleby, używany też jako opis strony w Google). Nazwa kategorii jest tytułem tej strony. Kategorii nie da się dodać ani usunąć — strona ma ich dokładnie trzy.
+
+## Opinie
+
+Treść i autor są obowiązkowe. **„Ocena”** i **„Źródło”** zostaw puste, chyba że opinia naprawdę ma taką ocenę i pochodzi z tego serwisu (np. z Google). Pokazywanie zmyślonych ocen albo podpisu „Google” przy opinii spoza Google to nieuczciwa praktyka.
+
 ## Sklepy
 
 Treść → Sklepy → edytuj godziny, adres, zdjęcie, link do Google Maps → Publikuj.
@@ -52,7 +60,7 @@ zobaczy jeszcze poprzednią wersję; jej wejście odświeża stronę i kolejni w
 
 ## Ustawienia strony
 
-Telefon, e-mail, adres, linki social, katalog PDF, zdjęcie hero (strona główna),
+Telefon (wpisz raz — przyciski „Zadzwoń” wybierają go same; panel odrzuci numer, którego nie da się wybrać), e-mail, adres, linki social, katalog PDF, zdjęcie hero (strona główna),
 zdjęcia „O nas” na stronie głównej (2), zdjęcia strony „O nas” (3), galeria Instagram (6+).
 
 ## Dobre praktyki
