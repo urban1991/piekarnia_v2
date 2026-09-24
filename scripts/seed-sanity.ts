@@ -1,6 +1,11 @@
 /**
- * One-off migration: data/products.json + remote images → Sanity dataset.
- * Idempotent (createOrReplace, deterministic ids). Run: npm run seed:sanity
+ * One-off migration: data/products.json + remote images → Sanity dataset. Already run on
+ * production; kept for reference and for seeding a fresh, empty dataset.
+ *
+ * NOT safe to re-run on a live dataset: createOrReplace replaces whole documents, which would
+ * wipe everything edited in Studio since (store locations, opening dates, hero crop, product
+ * edits…). The script therefore refuses to touch a dataset that already has content unless
+ * called with --force. Run: npx tsx --env-file=.env.local scripts/seed-sanity.ts [--force]
  *
  * Order matters so references resolve: categories → products → stores →
  * testimonials → history → siteSettings.
@@ -150,12 +155,27 @@ async function toImageArray(urls: string[]): Promise<ImageArrayItem[]> {
   const items: ImageArrayItem[] = [];
   for (const url of urls) {
     const img = await uploadImage(url);
-    if (img) items.push({ ...img, _key: img.asset._ref.slice(-12) });
+    // unique per item: the ref's tail is only "-WxH-ext", identical for same-sized photos
+    if (img) items.push({ ...img, _key: `${items.length}-${img.asset._ref.split('-')[1].slice(0, 8)}` });
   }
   return items;
 }
 
+/** Stops a second run from overwriting Studio edits; see the header. */
+async function refuseIfDatasetHasContent() {
+  if (process.argv.includes('--force')) return;
+  const existing = await client.fetch<number>('count(*[_type in ["category", "product", "store", "siteSettings"]])');
+  if (existing > 0) {
+    console.error(
+      `Zbiór danych ma już ${existing} dokumentów. Ten skrypt nadpisałby zmiany zrobione w Studio.\n` +
+        'Jeśli naprawdę chcesz zastąpić całą treść danymi z data/products.json, uruchom go z --force.',
+    );
+    process.exit(1);
+  }
+}
+
 async function run() {
+  await refuseIfDatasetHasContent();
   console.log('Kategorie');
   for (const [i, c] of raw.categories.entries()) {
     await client.createOrReplace({
