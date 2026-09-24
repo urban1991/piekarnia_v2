@@ -3,17 +3,13 @@ import { Button } from '../ui/Button';
 import { Container } from '../layout/Container';
 import s from './Hero.module.css';
 
-export type HeroStat = { value: string; label: string };
-
-/** Full-bleed hero: photo behind a dark gradient, white copy, stats and an optional floating badge. */
+/** Full-bleed hero: photo behind a dark gradient, eyebrow, headline, one line of copy and two actions. */
 export function Hero({
   eyebrow,
   title,
   lead,
   image,
   imagePosition,
-  stats = [],
-  badge,
 }: {
   eyebrow: string;
   title: string;
@@ -21,8 +17,6 @@ export function Hero({
   image: string;
   /** CSS object-position keeping the photo's focal point in frame, e.g. '62% 30%' */
   imagePosition?: string;
-  stats?: HeroStat[];
-  badge?: { mark: string; title: string; text: string };
 }) {
   return (
     <section className={s.hero}>
@@ -50,31 +44,6 @@ export function Hero({
                 Nasze sklepy
               </Button>
             </div>
-          </div>
-
-          <div className={s.bottom}>
-            {stats.length ? (
-              <dl className={s.stats}>
-                {stats.map((stat) => (
-                  <div key={stat.label}>
-                    <dt className={s.statValue}>{stat.value}</dt>
-                    <dd className={s.statLabel}>{stat.label}</dd>
-                  </div>
-                ))}
-              </dl>
-            ) : null}
-
-            {badge ? (
-              <div className={s.badge}>
-                <span className={s.badgeMark} aria-hidden="true">
-                  {badge.mark}
-                </span>
-                <span>
-                  <span className={s.badgeTitle}>{badge.title}</span>
-                  <span className={s.badgeText}>{badge.text}</span>
-                </span>
-              </div>
-            ) : null}
           </div>
         </div>
       </Container>

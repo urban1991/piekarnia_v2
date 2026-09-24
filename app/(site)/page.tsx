@@ -16,7 +16,7 @@ import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
 import { getAnnouncements, getCategories, getSiteSettings, getStores, getTestimonials } from '../../lib/data';
 import { showDevNotes } from '../../lib/devNotes';
-import { isOpen, promotedStore, storesNoun, todayInWarsaw } from '../../lib/opening';
+import { promotedStore, todayInWarsaw } from '../../lib/opening';
 import s from './page.module.css';
 
 // Announcement dates and shop opening dates are evaluated at render time, so the page must
@@ -57,7 +57,6 @@ export default async function HomePage() {
   ]);
   const today = todayInWarsaw();
   const promotion = promotedStore(stores, today);
-  const openStores = stores.filter((store) => isOpen(store, today)).length;
   return (
     <main>
       <div
@@ -69,14 +68,9 @@ export default async function HomePage() {
         <Hero
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
           title="Chleb, który pachnie jak w domu."
-          lead="Pieczemy każdej nocy, żeby rano na Waszym stole leżał świeży bochenek. Na własnym zakwasie, z mąki od okolicznych młynarzy, bez pośpiechu."
+          lead="Pieczemy każdej nocy na własnym zakwasie — rano bochenek czeka już na półce."
           image={settings.heroImage}
           imagePosition={settings.heroImagePosition}
-          stats={[
-            { value: `${openStores} ${storesNoun(openStores)}`, label: 'Świdnica, Jaworzyna, Bielawa' },
-            { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
-            { value: 'od 1991', label: 'Trzy dekady w rodzinie' },
-          ]}
         />
       </div>
       <AnnouncementBar announcements={announcements} />
