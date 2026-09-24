@@ -44,6 +44,10 @@ export type Store = {
   featured: boolean;
   /** pin on the store map; null when not set in Studio */
   location: { lat: number; lng: number } | null;
+  /** YYYY-MM-DD, set only for a shop that is about to open; drives the new-shop banner */
+  openingDate: string | null;
+  /** opening-day offer shown in the banner; '' when none */
+  openingOffer: string;
 };
 
 export type Testimonial = {

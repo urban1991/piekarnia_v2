@@ -75,6 +75,23 @@ describe('mapStore / mapCategory', () => {
     expect(mapStore({ _id: 'store-4', city: 'Bielawa', street: 'x', hours: '' }).location).toBeNull();
   });
 
+  it('passes the opening date and offer through, empty for an established shop', () => {
+    const fresh = mapStore({
+      _id: 'store-glowackiego',
+      city: 'Świdnica',
+      street: 'ul. Głowackiego',
+      hours: '',
+      openingDate: '2026-10-15',
+      openingOffer: '  Drożdżówka gratis  ',
+    });
+    expect(fresh.openingDate).toBe('2026-10-15');
+    expect(fresh.openingOffer).toBe('Drożdżówka gratis');
+
+    const old = mapStore({ _id: 'store-1', city: 'Bielawa', street: 'x', hours: '' });
+    expect(old.openingDate).toBeNull();
+    expect(old.openingOffer).toBe('');
+  });
+
   it('falls back to Google Maps directions when no maps link was entered', () => {
     const byPoint = mapStore({ _id: 's', city: 'Bielawa', street: 'ul. Piłsudskiego 74', hours: '', location: { lat: 50.682972, lng: 16.62175 } });
     expect(byPoint.maps).toBe('https://www.google.com/maps/dir/?api=1&destination=50.682972%2C16.62175');

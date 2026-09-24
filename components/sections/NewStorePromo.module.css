@@ -1,0 +1,72 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  background: var(--color-surface);
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.media { position: relative; min-height: 380px; background: var(--color-sand); }
+.media img { object-fit: cover; }
+
+.sticker {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  background: var(--color-brand);
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, .85), 0 10px 24px rgba(40, 24, 18, .25);
+  transform: rotate(-8deg);
+  line-height: 1;
+}
+.stickerSmall { font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.stickerNumber { font-family: var(--font-serif); font-size: 52px; margin-block: 2px; }
+.stickerWord { font-family: var(--font-serif); font-size: 21px; line-height: 1.1; padding-inline: var(--space-3); }
+
+.body { padding: var(--space-10) var(--space-12); display: grid; align-content: center; gap: var(--space-4); }
+.tags { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.city { font-family: var(--font-serif); font-size: 44px; line-height: 1; color: var(--color-brand); }
+.title { font-size: 28px; line-height: 1.15; margin-top: calc(-1 * var(--space-2)); }
+.lead { color: var(--color-ink-soft); font-size: var(--text-body); max-width: 520px; }
+
+.offer {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  background: var(--color-brand-tint);
+  color: var(--color-brand-dark);
+  font-weight: 600;
+  max-width: 520px;
+}
+.offerLabel { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+
+.hours {
+  font-size: 15px;
+  color: var(--color-ink-soft);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+}
+
+.actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
+
+@media (max-width: 1100px) {
+  .card { grid-template-columns: minmax(0, 1fr); }
+  .media { min-height: 240px; }
+  .body { padding: var(--space-6) var(--space-5) var(--space-7); }
+  .city { font-size: 34px; }
+  .title { font-size: 24px; }
+  /* side by side when both labels fit on one line, otherwise one full-width button per row */
+  .actions > * { flex: 1 1 auto; white-space: nowrap; }
+  .sticker { width: 104px; height: 104px; top: var(--space-4); left: var(--space-4); }
+  .stickerNumber { font-size: 42px; }
+  .stickerWord { font-size: 18px; }
+}

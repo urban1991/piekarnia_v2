@@ -10,6 +10,8 @@ import { TestimonialCard } from '../../../components/cards/TestimonialCard';
 import { ContactForm } from '../../../components/sections/ContactForm';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { StoreMap } from '../../../components/sections/StoreMap';
+import { NewStorePromo } from '../../../components/sections/NewStorePromo';
+import type { Promotion } from '../../../lib/opening';
 import {
   getCategories,
   getSiteSettings,
@@ -421,6 +423,34 @@ export default async function DesignSystemPage() {
                 <StoreMap stores={stores} />
               </div>
             </div>
+            {stores[0]
+              ? (
+                  [
+                    ['przed otwarciem, z ofertą', { phase: 'upcoming', days: 12 }],
+                    ['dzień otwarcia', { phase: 'justOpened', days: 0 }],
+                    ['tydzień po otwarciu (oferta już się nie pokazuje)', { phase: 'justOpened', days: 7 }],
+                  ] as const
+                ).map(([note, state]) => {
+                  const promotion: Promotion = {
+                    ...state,
+                    store: {
+                      ...stores[0],
+                      street: 'ul. Głowackiego (przykład)',
+                      label: 'Sklep firmowy',
+                      featured: false,
+                      image: '',
+                      openingDate: '2026-10-15',
+                      openingOffer: 'W dniu otwarcia każdy klient dostaje drożdżówkę gratis.',
+                    },
+                  };
+                  return (
+                    <div key={note} className={s.labeled}>
+                      <div className={s.meta}>NewStorePromo · {note}</div>
+                      <NewStorePromo promotion={promotion} fallbackImage={settings.heroImage} showAllStores />
+                    </div>
+                  );
+                })
+              : null}
           </div>
         </section>
 

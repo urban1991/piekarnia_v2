@@ -7,13 +7,17 @@ import { Timeline } from '../../../components/sections/Timeline';
 import { Button } from '../../../components/ui/Button';
 import { getSiteSettings, getStores } from '../../../lib/data';
 import { showDevNotes } from '../../../lib/devNotes';
+import { isOpen, storesNoun, todayInWarsaw } from '../../../lib/opening';
 import s from './page.module.css';
 
 export const metadata = {
   alternates: { canonical: '/o-nas' },
   title: 'O nas — Piekarnia Bieżyński',
-  description: 'Rodzinna piekarnia ze Świdnicy od 1991 roku. Własny zakwas, lokalna mąka, cztery sklepy firmowe.',
+  description: 'Rodzinna piekarnia ze Świdnicy od 1991 roku. Własny zakwas, lokalna mąka, własne sklepy firmowe.',
 };
+
+// the shop count only includes shops past their opening date
+export const revalidate = 3600;
 
 const people = [
   { initials: 'JB', name: 'Jacek Bieżyński', role: 'Założyciel', text: 'Zaczął w 1991 roku od handlu, dziesięć lat później postawił pierwszy piec.' },
@@ -30,6 +34,8 @@ const principles = [
 export default async function ONasPage() {
   const [settings, stores] = await Promise.all([getSiteSettings(), getStores()]);
   const [photoMain, photoSmall, photoPrinciples] = settings.aboutGallery;
+  const today = todayInWarsaw();
+  const openStores = stores.filter((store) => isOpen(store, today)).length;
   return (
     <main>
       <Header phone={settings.phone} phoneHref={settings.phoneHref} />
@@ -84,8 +90,8 @@ export default async function ONasPage() {
             <div className={s.statLabel}>rok założenia</div>
           </div>
           <div className={s.stat}>
-            <div className={s.statValue}>{stores.length}</div>
-            <div className={s.statLabel}>sklepy firmowe</div>
+            <div className={s.statValue}>{openStores}</div>
+            <div className={s.statLabel}>{storesNoun(openStores)}</div>
           </div>
           <div className={s.stat}>
             <div className={s.statValue}>200+</div>
@@ -162,7 +168,7 @@ export default async function ONasPage() {
 
       <CtaBand
         title="Wpadnij do nas rano"
-        text="Cztery sklepy w Świdnicy, Jaworzynie Śląskiej i Bielawie. Świeże pieczywo od 6:00."
+        text="Sklepy w Świdnicy, Jaworzynie Śląskiej i Bielawie. Świeże pieczywo od 6:00."
         action={{ href: '/sklepy', label: 'Zobacz sklepy' }}
       />
     </main>

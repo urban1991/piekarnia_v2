@@ -27,6 +27,8 @@ export type StoreDoc = {
   mapsUrl?: string | null;
   featured?: boolean | null;
   location?: { _type?: string; lat?: number; lng?: number; alt?: number } | null;
+  openingDate?: string | null;
+  openingOffer?: string | null;
 };
 
 export type CategoryDoc = {
@@ -120,6 +122,8 @@ export function mapStore(doc: StoreDoc): Store {
     location: typeof doc.location?.lat === 'number' && typeof doc.location?.lng === 'number'
       ? { lat: doc.location.lat, lng: doc.location.lng }
       : null,
+    openingDate: doc.openingDate || null,
+    openingOffer: (doc.openingOffer ?? '').trim(),
   };
 }
 

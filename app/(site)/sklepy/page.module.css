@@ -1,7 +1,9 @@
 .cards { margin-top: var(--space-8); }
 .map { margin-top: var(--space-12); }
+.promo { margin-bottom: var(--space-12); }
 
 @media (max-width: 900px) {
   .cards { margin-top: var(--space-6); }
   .map { margin-top: var(--space-8); }
+  .promo { margin-bottom: var(--space-8); }
 }

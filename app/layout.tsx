@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteUrl()),
     title: 'Piekarnia Bieżyński — rodzinna piekarnia ze Świdnicy',
     description:
-      'Chleb na zakwasie, bułki i ciasta wypiekane codziennie od świtu. Cztery sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie.',
+      'Chleb na zakwasie, bułki i ciasta wypiekane codziennie od świtu. Sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie.',
     // og:title and og:description come from each page's own title and description
     openGraph: {
       type: 'website',

@@ -3,13 +3,14 @@
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import type { Map as LeafletMap } from 'leaflet';
+import { openingBadge, openingPhase, todayInWarsaw } from '../../lib/opening';
 import type { Store } from '../../lib/types';
 import s from './StoreMap.module.css';
 
 type Pinned = Store & { location: NonNullable<Store['location']> };
 
 /** Popup built from DOM nodes rather than an HTML string, so Studio text can never inject markup. */
-function popupContent(store: Pinned): HTMLElement {
+function popupContent(store: Pinned, badge: string): HTMLElement {
   const root = document.createElement('div');
   root.className = s.popup;
   const add = (tag: string, className: string, text: string) => {
@@ -19,6 +20,7 @@ function popupContent(store: Pinned): HTMLElement {
     root.appendChild(el);
     return el;
   };
+  if (badge) add('span', s.popupBadge, badge);
   add('strong', s.popupCity, store.city);
   add('span', s.popupStreet, store.street);
   if (store.label) add('span', s.popupLabel, store.label);
@@ -38,7 +40,7 @@ export function StoreMap({ stores, title = 'Mapa sklepów' }: { stores: Store[];
   const containerRef = useRef<HTMLDivElement>(null);
   const pinned = stores.filter((store): store is Pinned => store.location !== null);
   // rebuild the map only when the pins themselves change, not on every parent render
-  const pinsKey = pinned.map((p) => `${p.id}:${p.location.lat},${p.location.lng}:${p.featured}`).join('|');
+  const pinsKey = pinned.map((p) => `${p.id}:${p.location.lat},${p.location.lng}:${p.featured}:${p.openingDate}`).join('|');
 
   useEffect(() => {
     const container = containerRef.current;
@@ -61,18 +63,21 @@ export function StoreMap({ stores, title = 'Mapa sklepów' }: { stores: Store[];
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
+      const today = todayInWarsaw();
       for (const store of pinned) {
-        const label = `${store.city}, ${store.street}${store.featured ? ' — sklep główny' : ''}`;
+        const badge = openingBadge(store, today);
+        const upcoming = openingPhase(store.openingDate, today).phase === 'upcoming';
+        const label = `${store.city}, ${store.street}${store.featured ? ' — sklep główny' : ''}${badge ? ` — ${badge.toLowerCase()}` : ''}`;
         const marker = L.marker([store.location.lat, store.location.lng], {
           icon: L.divIcon({
-            className: s.marker + (store.featured ? ' ' + s.featured : ''),
+            className: s.marker + (store.featured ? ' ' + s.featured : '') + (upcoming ? ' ' + s.upcoming : ''),
             iconSize: store.featured ? [22, 22] : [16, 16],
           }),
           title: label,
           riseOnHover: true,
           zIndexOffset: store.featured ? 1000 : 0,
         })
-          .bindPopup(popupContent(store))
+          .bindPopup(popupContent(store, badge))
           .addTo(map);
         marker.getElement()?.setAttribute('aria-label', label);
       }

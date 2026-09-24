@@ -25,6 +25,16 @@ Treść → Sklepy → edytuj godziny, adres, zdjęcie, link do Google Maps → 
 
 **Pinezka na mapie** (pole „Lokalizacja na mapie”): w Google Maps kliknij prawym przyciskiem dokładnie na sklep, potem kliknij współrzędne na górze menu — skopiują się, np. `50.8339, 16.5066`. Pierwszą liczbę wpisz w **Latitude**, drugą w **Longitude**, Altitude zostaw puste. Jeśli liczby się zamienią, panel pokaże błąd i nie pozwoli opublikować. Sklep bez lokalizacji nie pojawi się na mapie, ale zostaje na liście.
 
+### Nowy sklep (reklama „Otwieramy…”)
+
+Dodaj sklep jak każdy inny (Treść → Sklepy → +) i wypełnij **„Data otwarcia (nowy sklep)”**. Strona zrobi resztę sama:
+
+- **do dnia otwarcia** — na stronie głównej (pod paskiem ogłoszeń) i na stronie Sklepy pojawia się reklama z odliczaniem („za 12 dni”), a sklep ma plakietkę „Otwarcie 15 października” na liście i pustą w środku pinezkę na mapie;
+- **od dnia otwarcia przez 14 dni** — reklama mówi „Już otwarte!”, sklep ma plakietkę „Nowy sklep”;
+- **potem** reklama znika, a sklep zostaje zwykłym sklepem. Liczba sklepów na stronie („5 sklepów firmowych”) zwiększa się sama w dniu otwarcia.
+
+Opcjonalnie: **„Oferta na otwarcie”** (pokazuje się w reklamie do dnia otwarcia włącznie) i **„Zdjęcie”** lokalu — dopóki go nie ma, reklama pokazuje zdjęcie pieczywa. Zmiany pojawiają się od razu po publikacji; odliczanie przestawia się samo co dobę (najpóźniej godzinę po północy).
+
 ## Pasek ogłoszeń
 
 Treść → Ogłoszenia → „+". Uzupełnij:

@@ -38,6 +38,22 @@ export const store = defineType({
       validation: (r) => r.required(),
       description: 'Oddzielaj wiersze kropką „·”, średnikiem albo nową linią, np. „Pn–Pt 6:00–18:00 · Sb 6:00–14:00 · Nd zamknięte”',
     }),
+    defineField({
+      name: 'openingDate',
+      title: 'Data otwarcia (nowy sklep)',
+      type: 'date',
+      options: { dateFormat: 'D MMMM YYYY' },
+      description:
+        'Wypełnij tylko dla sklepu, który dopiero się otwiera. Do tego dnia strona pokazuje reklamę „Nowy sklep” z odliczaniem, a sklep ma plakietkę „Wkrótce”; przez 14 dni po otwarciu reklama mówi „Już otwarte!”, potem znika. Dla działających sklepów zostaw puste.',
+    }),
+    defineField({
+      name: 'openingOffer',
+      title: 'Oferta na otwarcie',
+      type: 'string',
+      validation: (r) => r.max(140),
+      hidden: ({ document }) => !document?.openingDate,
+      description: 'Opcjonalnie, np. „W dniu otwarcia każdy klient dostaje drożdżówkę gratis”. Pokazuje się w reklamie do dnia otwarcia włącznie.',
+    }),
     defineField({ name: 'image', title: 'Zdjęcie', type: 'image', options: { hotspot: true } }),
     defineField({
       name: 'location',

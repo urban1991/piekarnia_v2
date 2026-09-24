@@ -132,6 +132,13 @@ describe('storesQuery', () => {
     ]);
     expect(store.location).toEqual(location);
   });
+
+  it('returns the opening date and offer the new-shop banner needs', async () => {
+    const [store] = await run<Record<string, unknown>[]>(storesQuery, [
+      { _id: 'store-2', _type: 'store', city: 'Świdnica', street: 'ul. Głowackiego', hours: '', openingDate: '2026-10-15', openingOffer: 'Gratis' },
+    ]);
+    expect(store).toMatchObject({ openingDate: '2026-10-15', openingOffer: 'Gratis' });
+  });
 });
 
 describe('siteSettingsQuery', () => {

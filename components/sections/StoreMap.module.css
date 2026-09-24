@@ -28,9 +28,12 @@
   box-shadow: 0 0 0 5px rgba(166, 25, 46, .22), 0 2px 6px rgba(0, 0, 0, .3);
 }
 .featured { box-shadow: 0 0 0 7px rgba(166, 25, 46, .25), 0 2px 8px rgba(0, 0, 0, .35); }
+/* not open yet: hollow pin */
+.upcoming { background: #fff; border-color: var(--color-brand); border-width: 4px; }
 .marker:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 4px; }
 
 .popup { display: grid; gap: 2px; font-family: var(--font-sans); color: var(--color-ink); }
+.popupBadge { justify-self: start; margin-bottom: var(--space-1); padding: 2px 8px; border-radius: var(--radius-pill); background: var(--color-brand); color: #fff; font-size: 12px; font-weight: 600; }
 .popupCity { font-family: var(--font-serif); font-size: 18px; font-weight: 400; }
 .popupStreet { font-size: 14px; }
 .popupLabel { font-size: 13px; color: var(--color-ink-muted); }

@@ -7,20 +7,26 @@ import { StoreMap } from '../../../components/sections/StoreMap';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { Grid } from '../../../components/ui/Grid';
 import { StoreCard } from '../../../components/cards/StoreCard';
+import { NewStorePromo } from '../../../components/sections/NewStorePromo';
 import { getSiteSettings, getStores } from '../../../lib/data';
 import { showDevNotes } from '../../../lib/devNotes';
+import { promotedStore, todayInWarsaw } from '../../../lib/opening';
 import s from './page.module.css';
 
 export const metadata = {
   alternates: { canonical: '/sklepy' },
   title: 'Sklepy firmowe — Piekarnia Bieżyński',
-  description: 'Cztery sklepy firmowe: Świdnica (Składowa 3, Kazimierza Wielkiego 5), Jaworzyna Śląska, Bielawa.',
+  description: 'Sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie: adresy, godziny otwarcia i mapa.',
 };
+
+// the new-shop banner and the "Wkrótce" badges depend on today's date, not only on content
+export const revalidate = 3600;
 
 export default async function SklepyPage() {
   const [settings, stores] = await Promise.all([getSiteSettings(), getStores()]);
   const main = stores.find((store) => store.featured) ?? stores[0];
   const others = stores.filter((store) => store.id !== main?.id);
+  const promotion = promotedStore(stores, todayInWarsaw());
 
   return (
     <main>
@@ -28,8 +34,16 @@ export default async function SklepyPage() {
       <PageHeader
         eyebrow="Sklepy firmowe"
         title="Gdzie nas znaleźć"
-        lead="Cztery sklepy w Świdnicy, Jaworzynie Śląskiej i Bielawie. Wszędzie to samo pieczywo — z jednego pieca na Składowej."
+        lead="Sklepy w Świdnicy, Jaworzynie Śląskiej i Bielawie. Wszędzie to samo pieczywo — z jednego pieca na Składowej."
       />
+
+      {promotion ? (
+        <Section flush>
+          <div className={s.promo}>
+            <NewStorePromo promotion={promotion} fallbackImage={settings.heroImage} />
+          </div>
+        </Section>
+      ) : null}
 
       <Section flush>
         {main ? (

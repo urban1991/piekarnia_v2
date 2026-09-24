@@ -10,15 +10,17 @@ import { StoreMap } from '../../components/sections/StoreMap';
 import { StoreList } from '../../components/sections/StoreList';
 import { InstagramGrid } from '../../components/sections/InstagramGrid';
 import { AnnouncementBar } from '../../components/sections/AnnouncementBar';
+import { NewStorePromo } from '../../components/sections/NewStorePromo';
 import { CategoryCard } from '../../components/cards/CategoryCard';
 import { TestimonialCarousel } from '../../components/sections/TestimonialCarousel';
 import { getAnnouncements, getCategories, getSiteSettings, getStores, getTestimonials } from '../../lib/data';
 import { showDevNotes } from '../../lib/devNotes';
+import { isOpen, promotedStore, storesNoun, todayInWarsaw } from '../../lib/opening';
 import s from './page.module.css';
 
-// Announcement dates are filtered server-side in the Sanity query, so the page itself must
-// revalidate periodically for an announcement to appear/disappear without a Studio publish
-// (which still clears the cache immediately via the webhook, in parallel).
+// Announcement dates and shop opening dates are evaluated at render time, so the page must
+// revalidate periodically for them to change without a Studio publish (a publish still clears
+// the cache immediately via the webhook, in parallel).
 export const revalidate = 3600;
 
 export const metadata = {
@@ -40,7 +42,7 @@ const features = [
   },
   {
     title: 'Blisko Ciebie',
-    text: 'Cztery sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie. Zawsze po drodze.',
+    text: 'Sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie. Zawsze po drodze.',
   },
 ];
 
@@ -52,6 +54,9 @@ export default async function HomePage() {
     getAnnouncements(),
     getStores(),
   ]);
+  const today = todayInWarsaw();
+  const promotion = promotedStore(stores, today);
+  const openStores = stores.filter((store) => isOpen(store, today)).length;
   return (
     <main>
       <div className={s.heroWrap}>
@@ -63,13 +68,18 @@ export default async function HomePage() {
           image={settings.heroImage}
           imagePosition={settings.heroImagePosition}
           stats={[
-            { value: '4 sklepy firmowe', label: 'Świdnica, Jaworzyna, Bielawa' },
+            { value: `${openStores} ${storesNoun(openStores)}`, label: 'Świdnica, Jaworzyna, Bielawa' },
             { value: 'od 6:00', label: 'Świeże pieczywo codziennie' },
             { value: 'od 1991', label: 'Trzy dekady w rodzinie' },
           ]}
         />
       </div>
       <AnnouncementBar announcements={announcements} />
+      {promotion ? (
+        <Section>
+          <NewStorePromo promotion={promotion} fallbackImage={settings.heroImage} showAllStores />
+        </Section>
+      ) : null}
 
       <Section>
         <SectionHeading
@@ -101,7 +111,7 @@ export default async function HomePage() {
               młynarzy, ciasto, które dostaje tyle godzin, ile potrzebuje.
             </p>
             <p className={s.paragraph}>
-              Nasze pieczywo trafia do ponad 200 odbiorców w promieniu 100 km — i do Was, w czterech
+              Nasze pieczywo trafia do ponad 200 odbiorców w promieniu 100 km — i do Was, w naszych
               sklepach firmowych.
             </p>
             <Button href="/o-nas" variant="secondary">
