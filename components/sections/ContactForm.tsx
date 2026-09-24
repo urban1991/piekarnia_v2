@@ -3,25 +3,24 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Button } from '../ui/Button';
+import { validateContact } from '../../lib/contactForm';
+import type { ContactErrors } from '../../lib/contactForm';
 import s from './ContactForm.module.css';
-
-type Errors = { name?: string; contact?: string; message?: string };
 
 /** Wire onSubmit to a route handler (app/api/kontakt/route.ts) or a form service. */
 export function ContactForm({ onSubmit }: { onSubmit?: (data: FormData) => Promise<void> }) {
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<ContactErrors>({});
   const [sent, setSent] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    const next: Errors = {};
-
-    if (!String(data.get('name') ?? '').trim()) next.name = 'Podaj imię.';
-    const contactValue = String(data.get('contact') ?? '').trim();
-    if (contactValue.length < 9) next.contact = 'Podaj pełny numer lub adres e-mail.';
-    if (!String(data.get('message') ?? '').trim()) next.message = 'Napisz wiadomość.';
+    const next = validateContact({
+      name: String(data.get('name') ?? ''),
+      contact: String(data.get('contact') ?? ''),
+      message: String(data.get('message') ?? ''),
+    });
 
     setErrors(next);
     if (Object.keys(next).length) return;
