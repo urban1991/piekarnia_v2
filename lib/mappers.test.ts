@@ -122,6 +122,13 @@ describe('mapAnnouncement', () => {
     expect(a).toEqual({ id: 'announcement-1', text: 'Od poniedziałku wracają jagodzianki', link: '/chleby' });
   });
 
+  it('drops a link that would lead off-site or nowhere, keeping the text', () => {
+    for (const link of ['//evil.example', '/\\evil.example', 'javascript:alert(1)', 'www.facebook.com']) {
+      const a = mapAnnouncement({ _id: 'a', text: 'Promocja', link });
+      expect(a).toEqual({ id: 'a', text: 'Promocja', link: undefined });
+    }
+  });
+
   it('maps an announcement without a link to undefined, for both empty string and null', () => {
     expect(mapAnnouncement({ _id: 'announcement-2', text: 'Zmiana godzin', link: '' }).link).toBeUndefined();
     expect(mapAnnouncement({ _id: 'announcement-3', text: 'Zmiana godzin', link: null }).link).toBeUndefined();

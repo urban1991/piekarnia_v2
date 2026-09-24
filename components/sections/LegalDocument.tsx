@@ -35,8 +35,8 @@ export function LegalDocument({
 
           <article className={s.article}>
             {sections.map((section, index) => (
-              <section key={section.id} id={section.id} aria-labelledby={`${section.id}-title`}>
-                <h2 id={`${section.id}-title`}>
+              <section key={section.id} id={section.id}>
+                <h2>
                   {index + 1}. {section.title}
                 </h2>
                 {section.content}

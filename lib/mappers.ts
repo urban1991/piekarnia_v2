@@ -1,4 +1,5 @@
 import { ogImageUrl, urlFor } from '../sanity/image';
+import { isSafeLink } from './links';
 import { telHref } from './phone';
 import type { Announcement, Category, CategorySlug, Nutrition, Product, SiteSettings, Store } from './types';
 
@@ -138,7 +139,8 @@ export function mapCategory(doc: CategoryDoc): Category {
 }
 
 export function mapAnnouncement(doc: AnnouncementDoc): Announcement {
-  return { id: doc._id, text: doc.text, link: doc.link || undefined };
+  // Studio validates links too, but documents written through the API skip that
+  return { id: doc._id, text: doc.text, link: doc.link && isSafeLink(doc.link) ? doc.link : undefined };
 }
 
 export function mapSettings(doc: SettingsDoc | null): SiteSettings {

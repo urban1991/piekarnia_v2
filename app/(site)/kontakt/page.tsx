@@ -44,6 +44,7 @@ export default async function KontaktPage() {
         <div className={s.layout}>
           <div className={s.primary}>
             <SectionHeading
+              as="h1"
               eyebrow="Kontakt"
               title="Zadzwoń albo napisz"
               lead="Najszybciej załatwisz sprawę telefonicznie — odbieramy od 6:00."
@@ -61,25 +62,33 @@ export default async function KontaktPage() {
                     <a className={s.email} href={`mailto:${contact.email}`}>
                       {contact.email}
                     </a>
-                    <CopyButton value={contact.email} />
+                    <CopyButton value={contact.email} what="adres e-mail" />
                   </dd>
                 </div>
               ) : null}
-              <div>
-                <dt className={s.label}>Piekarnia i sklep główny</dt>
-                <dd>Piekarnia Bieżyński, {contact.address}</dd>
-              </div>
-              <div>
-                <dt className={s.label}>Media społecznościowe</dt>
-                <dd className={s.social}>
-                  <a href={contact.facebook} target="_blank" rel="noreferrer">
-                    Facebook
-                  </a>
-                  <a href={contact.instagram} target="_blank" rel="noreferrer">
-                    Instagram
-                  </a>
-                </dd>
-              </div>
+              {contact.address ? (
+                <div>
+                  <dt className={s.label}>Piekarnia i sklep główny</dt>
+                  <dd>Piekarnia Bieżyński, {contact.address}</dd>
+                </div>
+              ) : null}
+              {contact.facebook || contact.instagram ? (
+                <div>
+                  <dt className={s.label}>Media społecznościowe</dt>
+                  <dd className={s.social}>
+                    {contact.facebook ? (
+                      <a href={contact.facebook} target="_blank" rel="noreferrer">
+                        Facebook
+                      </a>
+                    ) : null}
+                    {contact.instagram ? (
+                      <a href={contact.instagram} target="_blank" rel="noreferrer">
+                        Instagram
+                      </a>
+                    ) : null}
+                  </dd>
+                </div>
+              ) : null}
             </dl>
           </div>
 
@@ -98,26 +107,28 @@ export default async function KontaktPage() {
               </ul>
             </section>
 
-            <section className={s.card} aria-labelledby="kontakt-sklepy">
-              <h2 id="kontakt-sklepy" className={s.cardTitle}>
-                Nasze sklepy
-              </h2>
-              <ul className={s.stores}>
-                {openStores.map((store) => (
-                  <li key={store.id}>
-                    <span>
-                      <span className={s.city}>{store.city}</span> {store.street}
-                    </span>
-                    <a href={store.maps} target="_blank" rel="noreferrer">
-                      Wyznacz trasę →
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <Link className={s.more} href="/sklepy">
-                Godziny otwarcia i mapa →
-              </Link>
-            </section>
+            {openStores.length ? (
+              <section className={s.card} aria-labelledby="kontakt-sklepy">
+                <h2 id="kontakt-sklepy" className={s.cardTitle}>
+                  Nasze sklepy
+                </h2>
+                <ul className={s.stores}>
+                  {openStores.map((store) => (
+                    <li key={store.id}>
+                      <span>
+                        <span className={s.city}>{store.city}</span> {store.street}
+                      </span>
+                      <a href={store.maps} target="_blank" rel="noreferrer">
+                        Wyznacz trasę →
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <Link className={s.more} href="/sklepy">
+                  Godziny otwarcia i mapa →
+                </Link>
+              </section>
+            ) : null}
           </div>
         </div>
       </Section>

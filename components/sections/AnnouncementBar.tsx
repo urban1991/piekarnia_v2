@@ -62,19 +62,21 @@ export function AnnouncementBar({ announcements }: { announcements: Announcement
     const half = halfRef.current;
     if (!bar || !half) return;
     const measure = () => {
-      const halfWidth = half.getBoundingClientRect().width;
-      const listWidth = halfWidth / repeats;
+      // measure one list directly: dividing the half by the copy count fed back into itself when
+      // reduced-motion CSS hides the extra copies (the half stopped growing, the count did not)
+      const list = half.firstElementChild;
+      const listWidth = list ? list.getBoundingClientRect().width : 0;
       if (listWidth <= 0) return;
       const needed = marqueeCopies(bar.getBoundingClientRect().width, listWidth);
       setRepeats((current) => (current === needed ? current : needed));
-      setDuration(marqueeDuration(halfWidth));
+      setDuration(marqueeDuration(listWidth * needed));
     };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(bar);
     observer.observe(half);
     return () => observer.disconnect();
-  }, [repeats, announcements]);
+  }, [announcements]);
 
   if (announcements.length === 0) return null;
 

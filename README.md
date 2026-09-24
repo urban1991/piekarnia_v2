@@ -85,7 +85,7 @@ dla `cdn.sanity.io`). Zdjęcia wnętrza i logo poza treścią zarządzaną w Stu
    `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`,
    `SANITY_WEBHOOK_SECRET` (jako Secret) — **bez** `SANITY_API_WRITE_TOKEN` (token zapisu potrzebny tylko
    lokalnie do skryptów).
-   Strony zależne od daty (`/`, `/sklepy`, `/o-nas`) mają `revalidate = 3600`: po upływie godziny pierwsze
+   Strony zależne od daty (`/`, `/sklepy`, `/o-nas`, `/kontakt`) mają `revalidate = 3600`: po upływie godziny pierwsze
    wejście dostaje jeszcze poprzednią wersję i uruchamia przebudowę w tle. Gdyby to przeszkadzało, można
    dodać Vercel Cron wywołujący `revalidatePath` (było w historii: commit „feat(cron)”).
 3. Po deployu dodać domenę Vercel do listy CORS origins w Sanity: Manage → API → CORS origins,
@@ -99,7 +99,8 @@ Panel menadżera opisany jest w [`docs/ADMIN.md`](docs/ADMIN.md).
 
 1. **Godziny otwarcia sklepów** — obecna strona ich nie podaje; w danych są wartości przykładowe.
 2. **Składy produktów** — strona podaje tylko wartości odżywcze na 100 g.
-3. **Adres e-mail, pełna nazwa firmy, NIP** — brak na stronie.
+3. **Adres e-mail** — strona Kontakt pokazuje `piekarnia@biezynski.pl` (Ustawienia strony w Studio), polityka
+   prywatności podaje `biezynski@op.pl` (z PDF-u, `lib/company.ts`). Potwierdzić, który jest właściwy.
 4. **Zdjęcia** części pozycji z „Innych wypieków” oraz zdjęcie rodziny na „O nas”.
 5. **Treści prawne** — `/polityka-prywatnosci` i `/nota-prawna` (tekst w kodzie, dane spółki w `lib/company.ts`)
    przygotowane na podstawie PDF-ów ze stycznia 2025; do przejrzenia przez prawnika, w tym adres e-mail

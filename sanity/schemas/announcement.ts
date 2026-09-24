@@ -1,9 +1,10 @@
 import { defineField, defineType } from 'sanity';
+import { isSafeLink } from '../../lib/links';
 
-/** A page on this site ("/chleby") or a full web address; "www.…" alone would become a broken relative link. */
+/** Studio rule for the announcement link; see isSafeLink. */
 export function checkAnnouncementLink(link?: string): true | string {
   if (!link) return true;
-  return /^\/(?!\/)|^https?:\/\//.test(link) ? true : 'Zacznij od / (strona tego serwisu, np. /chleby) albo od https://';
+  return isSafeLink(link) ? true : 'Zacznij od / (strona tego serwisu, np. /chleby) albo od https://';
 }
 
 /** Document-level rule: an announcement's window must not end before (or when) it starts. */

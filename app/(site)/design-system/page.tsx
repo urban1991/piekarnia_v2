@@ -390,7 +390,7 @@ export default async function DesignSystemPage() {
           <div className={s.labeled}>
             <div className={s.meta}>CopyButton · kopiuje adres e-mail do schowka (strona Kontakt)</div>
             <div>
-              <CopyButton value={settings.email || 'piekarnia@biezynski.pl'} />
+              <CopyButton value={settings.email || 'piekarnia@biezynski.pl'} what="adres e-mail" />
             </div>
           </div>
         </section>

@@ -9,7 +9,7 @@ type State = 'idle' | 'copied' | 'failed';
  * Copies a value (e.g. the e-mail address) to the clipboard. A mailto: link alone often does
  * nothing on a computer without a configured mail app, so the address can be pasted anywhere.
  */
-export function CopyButton({ value, label = 'Kopiuj' }: { value: string; label?: string }) {
+export function CopyButton({ value, what, label = 'Kopiuj' }: { value: string; what: string; label?: string }) {
   const [state, setState] = useState<State>('idle');
 
   useEffect(() => {
@@ -29,7 +29,12 @@ export function CopyButton({ value, label = 'Kopiuj' }: { value: string; label?:
   }
 
   return (
-    <button type="button" className={s.button + (state === 'copied' ? ' ' + s.copied : '')} onClick={copy}>
+    <button
+      type="button"
+      className={s.button + (state === 'copied' ? ' ' + s.copied : '')}
+      onClick={copy}
+      aria-label={`${label} ${what}`}
+    >
       <span aria-hidden={state !== 'idle'}>{state === 'idle' ? label : null}</span>
       <span aria-live="polite">
         {state === 'copied' ? 'Skopiowano ✓' : state === 'failed' ? 'Zaznacz i skopiuj ręcznie' : null}

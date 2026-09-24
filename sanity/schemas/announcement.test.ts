@@ -34,7 +34,7 @@ describe('checkAnnouncementLink', () => {
     },
   );
 
-  it.each(['www.facebook.com/piekarniabiezynski', 'chleby', '//evil.example', 'javascript:alert(1)', 'mailto:x@y.pl'])(
+  it.each(['www.facebook.com/piekarniabiezynski', 'chleby', '//evil.example', '/\\evil.example', 'javascript:alert(1)', 'mailto:x@y.pl'])(
     'rejects %j, which would lead nowhere or off-site unexpectedly',
     (link) => {
       expect(checkAnnouncementLink(link)).toMatch(/Zacznij od/);
