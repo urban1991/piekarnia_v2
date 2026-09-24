@@ -24,10 +24,13 @@ function popupContent(store: Pinned, badge: string): HTMLElement {
   add('strong', s.popupCity, store.city);
   add('span', s.popupStreet, store.street);
   if (store.label) add('span', s.popupLabel, store.label);
-  const link = add('a', s.popupLink, 'Wyznacz trasę →') as HTMLAnchorElement;
-  link.href = store.maps;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
+  // a raw DOM href skips React's javascript: guard, so only web links get through
+  if (/^https?:\/\//.test(store.maps)) {
+    const link = add('a', s.popupLink, 'Wyznacz trasę →') as HTMLAnchorElement;
+    link.href = store.maps;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  }
   return root;
 }
 

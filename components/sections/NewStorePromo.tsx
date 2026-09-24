@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useId } from 'react';
 import { Button } from '../ui/Button';
 import { Tag } from '../ui/Tag';
 import { countdownLabel, formatOpeningDate } from '../../lib/opening';
@@ -33,6 +34,7 @@ export function NewStorePromo({
   fallbackImage: string;
   showAllStores?: boolean;
 }) {
+  const titleId = useId();
   const { store, phase, days } = promotion;
   const date = formatOpeningDate(store.openingDate!);
   const upcoming = phase === 'upcoming';
@@ -41,7 +43,7 @@ export function NewStorePromo({
   const image = store.image || fallbackImage;
 
   return (
-    <article className={s.card} aria-labelledby="new-store-title">
+    <article className={s.card} aria-labelledby={titleId}>
       <div className={s.media}>
         {image ? <Image src={image} alt="" fill sizes="(max-width: 1100px) 100vw, 50vw" /> : null}
         <div className={s.sticker} aria-hidden="true">
@@ -55,7 +57,7 @@ export function NewStorePromo({
           <Tag tone="neutral">{upcoming ? `Otwarcie ${date}` : `Od ${date}`}</Tag>
         </div>
         <div className={s.city}>{store.city}</div>
-        <h2 id="new-store-title" className={s.title}>
+        <h2 id={titleId} className={s.title}>
           {store.street}
         </h2>
         <p className={s.lead}>

@@ -12,8 +12,10 @@ cp .env.example .env.local
 ```
 
 Uzupełnić w `.env.local`: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`,
-`NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_WRITE_TOKEN` (tylko lokalnie, do seeda),
-`SANITY_WEBHOOK_SECRET`.
+`NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_WRITE_TOKEN` (tylko lokalnie, do skryptów),
+`SANITY_WEBHOOK_SECRET`, `CRON_SECRET`. Opcjonalnie `NEXT_PUBLIC_SITE_URL` — adres używany w sitemap,
+canonicalach i podglądach linków; bez niego brana jest domena produkcyjna z Vercela
+(`VERCEL_PROJECT_PRODUCTION_URL`, po podpięciu własnej domeny — ta domena).
 
 Flaga `NEXT_PUBLIC_SHOW_DEV_NOTES=true` pokazuje na stronie robocze notatki (np. „godziny
 przykładowe — do potwierdzenia”) — ustaw na `false` albo usuń przed startem produkcyjnym.
@@ -35,14 +37,18 @@ Panel menadżera (Sanity Studio): `http://localhost:3000/studio` — patrz `docs
     sanity/                  konfiguracja klienta, env, obrazy, GROQ queries, schematy, structure Studio
     app/studio/              Sanity Studio pod /studio
     app/api/revalidate/      webhook Sanity odświeżający cache (revalidateTag)
-    scripts/seed-sanity.ts   jednorazowy skrypt migracji data/products.json → Sanity
+    app/api/cron/refresh/    co godzinę (vercel.json) odświeża strony zależne od daty
+    lib/opening.ts           daty otwarcia nowych sklepów (strefa Europe/Warsaw), odmiana liczby sklepów
+    lib/site.ts              adres strony, lista stron do sitemap
+    scripts/seed-sanity.ts   jednorazowa migracja data/products.json → Sanity (już wykonana; odmawia pracy
+                             na zbiorze z treścią, bo nadpisałaby zmiany ze Studio — tylko z --force)
     data/products.json       (tylko do migracji, usuwane po seedzie) treść pobrana z biezynski.swidnica.pl
     public/photos/           (tylko do migracji, usuwane po seedzie) zdjęcia wgrywane przez seed do Sanity
     components/ui/           Button, Tag, FilterChips, Grid
     components/layout/       Header, Footer, Container, Section, SectionHeading
     components/cards/        CategoryCard, ProductCard, StoreCard, TestimonialCard
-    components/sections/     Hero, PageHeader, FeatureBand, CtaBand, MapEmbed, StoreList,
-                             InstagramGrid, Timeline, ContactForm, ProductGrid
+    components/sections/     Hero, PageHeader, FeatureBand, CtaBand, StoreMap, StoreList, NewStorePromo,
+                             AnnouncementBar, InstagramGrid, Timeline, ContactForm, ProductGrid
     app/(site)/              strony App Routera (grupa z layoutem/stopką) + /design-system
     public/                  logo + zdjęcia
 
@@ -63,7 +69,9 @@ jako wartości początkowej. Nie twórz kategorii ręcznie w Studio — id musi 
     <Button href variant="primary|secondary|inverse|ghostOnDark" size="md|sm" block />
     <ProductGrid products filters highlightId highlightLabel />   client: filtrowanie po tagach
     <Header variant="solid|onHero" />                onHero = przezroczysty nad hero (strona główna)
-    <MapEmbed src />                                 bez src rysuje placeholder mapy
+    <StoreMap stores />                              OpenStreetMap (Leaflet), pinezki z pola „Lokalizacja” sklepów
+    <NewStorePromo promotion fallbackImage />        reklama nowego sklepu; promotion z promotedStore() w lib/opening.ts
+    <AnnouncementBar announcements />                pasek ogłoszeń w pętli, daty ustawiane w Studio
 
 ## Obrazy
 
@@ -76,7 +84,10 @@ dla `cdn.sanity.io`). Zdjęcia wnętrza i logo poza treścią zarządzaną w Stu
 1. Zaimportować repo w Vercel.
 2. Ustawić zmienne środowiskowe (Project Settings → Environment Variables):
    `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`,
-   `SANITY_WEBHOOK_SECRET` — **bez** `SANITY_API_WRITE_TOKEN` (token zapisu potrzebny tylko lokalnie do seeda).
+   `SANITY_WEBHOOK_SECRET` i `CRON_SECRET` (oba jako Secret) — **bez** `SANITY_API_WRITE_TOKEN`
+   (token zapisu potrzebny tylko lokalnie do skryptów).
+   `CRON_SECRET` jest potrzebny zadaniom z `vercel.json`: 24 zadania po jednym na każdą godzinę, bo plan
+   Hobby pozwala na zadanie raz dziennie — razem dają odświeżanie co godzinę na każdym planie.
 3. Po deployu dodać domenę Vercel do listy CORS origins w Sanity: Manage → API → CORS origins,
    z zaznaczoną opcją „Allow credentials” — bez tego Studio pod `/studio` nie zaloguje się na produkcji.
 4. Skonfigurować webhook w Sanity (Manage → API → Webhooks) wskazujący na `/api/revalidate`

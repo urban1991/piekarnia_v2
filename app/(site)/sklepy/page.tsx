@@ -19,7 +19,7 @@ export const metadata = {
   description: 'Sklepy firmowe w Świdnicy, Jaworzynie Śląskiej i Bielawie: adresy, godziny otwarcia i mapa.',
 };
 
-// the new-shop banner and the "Wkrótce" badges depend on today's date, not only on content
+// the new-shop banner and the opening badges depend on today's date, not only on content (see also /api/cron/refresh)
 export const revalidate = 3600;
 
 export default async function SklepyPage() {

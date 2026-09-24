@@ -1,5 +1,11 @@
 import { defineField, defineType } from 'sanity';
 
+/** A page on this site ("/chleby") or a full web address; "www.…" alone would become a broken relative link. */
+export function checkAnnouncementLink(link?: string): true | string {
+  if (!link) return true;
+  return /^\/(?!\/)|^https?:\/\//.test(link) ? true : 'Zacznij od / (strona tego serwisu, np. /chleby) albo od https://';
+}
+
 /** Document-level rule: an announcement's window must not end before (or when) it starts. */
 export function endsAfterStart(startDate?: string, endDate?: string): true | string {
   if (!startDate || !endDate) return true;
@@ -24,6 +30,7 @@ export const announcement = defineType({
       name: 'link',
       title: 'Link (opcjonalnie)',
       type: 'string',
+      validation: (r) => r.custom((link) => checkAnnouncementLink(link as string | undefined)),
       description: 'Adres strony, np. /chleby albo pełny https://…',
     }),
     defineField({

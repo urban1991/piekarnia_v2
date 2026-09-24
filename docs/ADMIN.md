@@ -33,21 +33,21 @@ Dodaj sklep jak każdy inny (Treść → Sklepy → +) i wypełnij **„Data otw
 - **od dnia otwarcia przez 14 dni** — reklama mówi „Już otwarte!”, sklep ma plakietkę „Nowy sklep”;
 - **potem** reklama znika, a sklep zostaje zwykłym sklepem. Liczba sklepów na stronie („5 sklepów firmowych”) zwiększa się sama w dniu otwarcia.
 
-Opcjonalnie: **„Oferta na otwarcie”** (pokazuje się w reklamie do dnia otwarcia włącznie) i **„Zdjęcie”** lokalu — dopóki go nie ma, reklama pokazuje zdjęcie pieczywa. Zmiany pojawiają się od razu po publikacji; odliczanie przestawia się samo co dobę (najpóźniej godzinę po północy).
+Opcjonalnie: **„Oferta na otwarcie”** (pokazuje się w reklamie do dnia otwarcia włącznie) i **„Zdjęcie”** lokalu — dopóki go nie ma, reklama pokazuje zdjęcie pieczywa. Zmiany pojawiają się od razu po publikacji; odliczanie i plakietki przestawiają się same każdej nocy, najpóźniej godzinę po północy.
 
 ## Pasek ogłoszeń
 
 Treść → Ogłoszenia → „+". Uzupełnij:
 
 - **Treść** — krótki tekst (do 120 znaków), bo pasek przewija się w pętli pod zdjęciem hero na stronie głównej.
-- **Link (opcjonalnie)** — jeśli wpiszesz adres (np. `/chleby` albo pełny `https://…`), całe ogłoszenie na stronie stanie się klikalne.
+- **Link (opcjonalnie)** — jeśli wpiszesz adres (np. `/chleby` albo pełny `https://…`), całe ogłoszenie na stronie stanie się klikalne. Adres musi zaczynać się od `/` albo `https://` — sam `www.…` panel odrzuci, bo taki link prowadziłby donikąd.
 - **Pokazuj od / Pokazuj do** — zakres dat, w którym ogłoszenie ma być widoczne. Puste „od" znaczy „od zaraz", puste „do" znaczy „bez końca". Można ustawić tylko jedno z nich.
 - **Włączone** — wyłącz, żeby ukryć ogłoszenie bez kasowania (np. na potem).
 - **Kolejność** — mniejsza liczba = wyżej / wcześniej w pasku.
 
 Kliknij **Publikuj**. Zmiana pojawia się na stronie od razu (webhook czyści cache po publikacji), ale nawet bez
 żadnej publikacji strona sama sprawdza daty co godzinę — więc ogłoszenie zaplanowane wcześniej pojawi się
-i zniknie o wyznaczonym czasie automatycznie, z opóźnieniem do godziny.
+i zniknie automatycznie, zwykle w ciągu godziny od wyznaczonego czasu, najpóźniej po około dwóch godzinach.
 
 ## Ustawienia strony
 

@@ -44,7 +44,7 @@ export const store = defineType({
       type: 'date',
       options: { dateFormat: 'D MMMM YYYY' },
       description:
-        'Wypełnij tylko dla sklepu, który dopiero się otwiera. Do tego dnia strona pokazuje reklamę „Nowy sklep” z odliczaniem, a sklep ma plakietkę „Wkrótce”; przez 14 dni po otwarciu reklama mówi „Już otwarte!”, potem znika. Dla działających sklepów zostaw puste.',
+        'Wypełnij tylko dla sklepu, który dopiero się otwiera. Do tego dnia strona pokazuje reklamę „Nowy sklep” z odliczaniem, a sklep ma plakietkę „Otwarcie [data]”; przez 14 dni po otwarciu reklama mówi „Już otwarte!”, potem znika. Dla działających sklepów zostaw puste.',
     }),
     defineField({
       name: 'openingOffer',
@@ -67,7 +67,7 @@ export const store = defineType({
       name: 'mapsUrl',
       title: 'Link do map Google',
       type: 'url',
-      description: 'Przycisk „Nawiguj”. Puste = trasa wyznaczana z lokalizacji albo adresu.',
+      description: 'Przyciski „Nawiguj” i „Wyznacz trasę”. Puste = trasa wyznaczana z lokalizacji albo adresu.',
     }),
     defineField({ name: 'sortOrder', title: 'Kolejność', type: 'number', initialValue: 100 }),
   ],

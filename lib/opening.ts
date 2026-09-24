@@ -12,8 +12,15 @@ const DAY_MS = 24 * 60 * 60 * 1000;
  * "tomorrow" to "today" an hour or two late (or early) around midnight.
  */
 export function todayInWarsaw(now: Date = new Date()): string {
-  // en-CA formats as YYYY-MM-DD
-  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Warsaw' }).format(now);
+  // assembled from parts rather than relying on some locale happening to format as YYYY-MM-DD
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Warsaw',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+  const part = (type: 'year' | 'month' | 'day') => parts.find((p) => p.type === type)!.value;
+  return `${part('year')}-${part('month')}-${part('day')}`;
 }
 
 /** Whole calendar days from one YYYY-MM-DD to another; both read as UTC midnights, so DST cannot skew it. */

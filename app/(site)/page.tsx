@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import { Header } from '../../components/layout/Header';
 import { Section } from '../../components/layout/Section';
 import { SectionHeading } from '../../components/layout/SectionHeading';
@@ -59,7 +60,11 @@ export default async function HomePage() {
   const openStores = stores.filter((store) => isOpen(store, today)).length;
   return (
     <main>
-      <div className={s.heroWrap}>
+      <div
+        className={s.heroWrap}
+        // the hero leaves room for the ticker below it; with no active announcement there is no ticker
+        style={announcements.length ? undefined : ({ '--announcement-h': '0px' } as CSSProperties)}
+      >
         <Header variant="onDark" phone={settings.phone} phoneHref={settings.phoneHref} />
         <Hero
           eyebrow="Piekarnia rodzinna od 1991 · Świdnica"
