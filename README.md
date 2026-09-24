@@ -13,7 +13,7 @@ cp .env.example .env.local
 
 Uzupełnić w `.env.local`: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`,
 `NEXT_PUBLIC_SANITY_API_VERSION`, `SANITY_API_WRITE_TOKEN` (tylko lokalnie, do skryptów),
-`SANITY_WEBHOOK_SECRET`, `CRON_SECRET`. Opcjonalnie `NEXT_PUBLIC_SITE_URL` — adres używany w sitemap,
+`SANITY_WEBHOOK_SECRET`. Opcjonalnie `NEXT_PUBLIC_SITE_URL` — adres używany w sitemap,
 canonicalach i podglądach linków; bez niego brana jest domena produkcyjna z Vercela
 (`VERCEL_PROJECT_PRODUCTION_URL`, po podpięciu własnej domeny — ta domena).
 
@@ -37,7 +37,6 @@ Panel menadżera (Sanity Studio): `http://localhost:3000/studio` — patrz `docs
     sanity/                  konfiguracja klienta, env, obrazy, GROQ queries, schematy, structure Studio
     app/studio/              Sanity Studio pod /studio
     app/api/revalidate/      webhook Sanity odświeżający cache (revalidateTag)
-    app/api/cron/refresh/    co godzinę (vercel.json) odświeża strony zależne od daty
     lib/opening.ts           daty otwarcia nowych sklepów (strefa Europe/Warsaw), odmiana liczby sklepów
     lib/site.ts              adres strony, lista stron do sitemap
     scripts/seed-sanity.ts   jednorazowa migracja data/products.json → Sanity (już wykonana; odmawia pracy
@@ -84,10 +83,11 @@ dla `cdn.sanity.io`). Zdjęcia wnętrza i logo poza treścią zarządzaną w Stu
 1. Zaimportować repo w Vercel.
 2. Ustawić zmienne środowiskowe (Project Settings → Environment Variables):
    `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`,
-   `SANITY_WEBHOOK_SECRET` i `CRON_SECRET` (oba jako Secret) — **bez** `SANITY_API_WRITE_TOKEN`
-   (token zapisu potrzebny tylko lokalnie do skryptów).
-   `CRON_SECRET` jest potrzebny zadaniom z `vercel.json`: 24 zadania po jednym na każdą godzinę, bo plan
-   Hobby pozwala na zadanie raz dziennie — razem dają odświeżanie co godzinę na każdym planie.
+   `SANITY_WEBHOOK_SECRET` (jako Secret) — **bez** `SANITY_API_WRITE_TOKEN` (token zapisu potrzebny tylko
+   lokalnie do skryptów).
+   Strony zależne od daty (`/`, `/sklepy`, `/o-nas`) mają `revalidate = 3600`: po upływie godziny pierwsze
+   wejście dostaje jeszcze poprzednią wersję i uruchamia przebudowę w tle. Gdyby to przeszkadzało, można
+   dodać Vercel Cron wywołujący `revalidatePath` (było w historii: commit „feat(cron)”).
 3. Po deployu dodać domenę Vercel do listy CORS origins w Sanity: Manage → API → CORS origins,
    z zaznaczoną opcją „Allow credentials” — bez tego Studio pod `/studio` nie zaloguje się na produkcji.
 4. Skonfigurować webhook w Sanity (Manage → API → Webhooks) wskazujący na `/api/revalidate`

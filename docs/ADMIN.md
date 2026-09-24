@@ -33,7 +33,7 @@ Dodaj sklep jak każdy inny (Treść → Sklepy → +) i wypełnij **„Data otw
 - **od dnia otwarcia przez 14 dni** — reklama mówi „Już otwarte!”, sklep ma plakietkę „Nowy sklep”;
 - **potem** reklama znika, a sklep zostaje zwykłym sklepem. Liczba sklepów na stronie („5 sklepów firmowych”) zwiększa się sama w dniu otwarcia.
 
-Opcjonalnie: **„Oferta na otwarcie”** (pokazuje się w reklamie do dnia otwarcia włącznie) i **„Zdjęcie”** lokalu — dopóki go nie ma, reklama pokazuje zdjęcie pieczywa. Zmiany pojawiają się od razu po publikacji; odliczanie i plakietki przestawiają się same każdej nocy, najpóźniej godzinę po północy.
+Opcjonalnie: **„Oferta na otwarcie”** (pokazuje się w reklamie do dnia otwarcia włącznie) i **„Zdjęcie”** lokalu — dopóki go nie ma, reklama pokazuje zdjęcie pieczywa. Zmiany pojawiają się od razu po publikacji; odliczanie i plakietki przestawiają się same z dnia na dzień (pierwsza osoba rano może jeszcze zobaczyć wczorajszy licznik).
 
 ## Pasek ogłoszeń
 
@@ -47,7 +47,8 @@ Treść → Ogłoszenia → „+". Uzupełnij:
 
 Kliknij **Publikuj**. Zmiana pojawia się na stronie od razu (webhook czyści cache po publikacji), ale nawet bez
 żadnej publikacji strona sama sprawdza daty co godzinę — więc ogłoszenie zaplanowane wcześniej pojawi się
-i zniknie automatycznie, zwykle w ciągu godziny od wyznaczonego czasu, najpóźniej po około dwóch godzinach.
+i zniknie automatycznie. Uwaga: gdy przez dłuższy czas nikt nie wchodzi na stronę (np. w nocy), pierwsza osoba
+zobaczy jeszcze poprzednią wersję; jej wejście odświeża stronę i kolejni widzą już aktualną.
 
 ## Ustawienia strony
 
