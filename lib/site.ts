@@ -22,6 +22,14 @@ export function isIndexable(env: Env = process.env): boolean {
 
 type Route = { path: string; priority: number; changeFrequency: NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']> };
 
+/**
+ * Pages whose content depends on today's date (announcement windows, the new-shop countdown,
+ * the open-shop count). Their `revalidate = 3600` is stale-while-revalidate: on a quiet site the
+ * first visitor after a long gap would still get yesterday's page, so /api/cron/refresh
+ * re-renders them every hour, including right after midnight in Warsaw.
+ */
+export const DATE_DRIVEN_ROUTES = ['/', '/sklepy', '/o-nas'];
+
 /** Public pages for the sitemap; lib/site.test.ts fails when a page folder is added without an entry here. */
 export const INDEXABLE_ROUTES: Route[] = [
   { path: '/', priority: 1, changeFrequency: 'weekly' },
