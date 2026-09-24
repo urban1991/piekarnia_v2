@@ -71,7 +71,6 @@ export type SiteSettings = {
   facebook: string;
   instagram: string;
   catalogPdf: string;
-  legal: { nota: string; privacy: string; cookies: string };
   /** hero image URL (cdn.sanity.io); '' when unset */
   heroImage: string;
   /** CSS object-position from the Studio hotspot, e.g. '62% 30%'; '50% 50%' when unset */

@@ -33,5 +33,5 @@ export const announcementsQuery = defineQuery(
 );
 
 export const siteSettingsQuery = defineQuery(
-  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, legal, heroImage, homeGallery, aboutGallery, gallery }`,
+  `*[_type == "siteSettings" && _id == "siteSettings"][0] { phone, phoneHref, email, address, facebook, instagram, catalogPdf, heroImage, homeGallery, aboutGallery, gallery }`,
 );

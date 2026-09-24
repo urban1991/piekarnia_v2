@@ -70,7 +70,6 @@ type Raw = {
     facebook: string;
     instagram: string;
     catalogPdf: string;
-    legal: { nota: string; privacy: string; cookies: string };
   };
   history: { year: string; title: string; text: string }[];
   testimonials: { text: string; author: string; rating?: number; source?: string }[];
@@ -275,7 +274,6 @@ async function run() {
     facebook: raw.contact.facebook,
     instagram: raw.contact.instagram,
     catalogPdf: raw.contact.catalogPdf,
-    legal: raw.contact.legal,
     heroImage,
     homeGallery,
     aboutGallery,

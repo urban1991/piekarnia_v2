@@ -53,7 +53,6 @@ export type SettingsDoc = {
   facebook?: string | null;
   instagram?: string | null;
   catalogPdf?: string | null;
-  legal?: { nota?: string | null; privacy?: string | null; cookies?: string | null } | null;
   heroImage?: SanityImageRef;
   homeGallery?: SanityImageRef[] | null;
   aboutGallery?: SanityImageRef[] | null;
@@ -144,7 +143,6 @@ export function mapSettings(doc: SettingsDoc | null): SiteSettings {
     facebook: str(doc?.facebook),
     instagram: str(doc?.instagram),
     catalogPdf: str(doc?.catalogPdf),
-    legal: { nota: str(doc?.legal?.nota), privacy: str(doc?.legal?.privacy), cookies: str(doc?.legal?.cookies) },
     heroImage: imageUrl(doc?.heroImage),
     heroImagePosition: objectPosition(doc?.heroImage),
     ogImage: doc?.heroImage?.asset?._ref ? ogImageUrl(doc.heroImage) : '',

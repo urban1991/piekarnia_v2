@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Header } from '../../../components/layout/Header';
 import { Section } from '../../../components/layout/Section';
 import { PageHeader } from '../../../components/sections/PageHeader';
@@ -6,109 +7,39 @@ import s from './page.module.css';
 
 export const metadata = {
   alternates: { canonical: '/dokumenty' },
-  title: 'Nota prawna i polityki — Piekarnia Bieżyński',
-  description: 'Nota prawna, polityka prywatności i polityka cookies.',
+  title: 'Dokumenty — Piekarnia Bieżyński',
+  description: 'Nota prawna i polityka prywatności Piekarni Bieżyński.',
 };
 
-const toc = [
-  'Administrator danych',
-  'Zakres przetwarzanych danych',
-  'Cele i podstawy prawne',
-  'Odbiorcy danych',
-  'Okres przechowywania',
-  'Twoje prawa',
-  'Pliki cookie',
-  'Kontakt',
+const documents = [
+  {
+    title: 'Polityka prywatności',
+    text: 'Jakie dane przetwarzamy, gdy odwiedzasz stronę albo się z nami kontaktujesz, i jakie masz prawa. Także o plikach cookies — strona ich nie używa.',
+    href: '/polityka-prywatnosci',
+  },
+  {
+    title: 'Nota prawna',
+    text: 'Kto prowadzi stronę, dane spółki i zasady korzystania z serwisu.',
+    href: '/nota-prawna',
+  },
 ];
 
 export default async function DokumentyPage() {
-  const contact = await getSiteSettings();
-  const documents = [
-    { title: 'Nota prawna', text: 'Dane firmy, warunki korzystania z serwisu.', href: contact.legal.nota },
-    {
-      title: 'Polityka prywatności',
-      text: 'Jak przetwarzamy dane osobowe i jakie masz prawa.',
-      href: contact.legal.privacy,
-    },
-    {
-      title: 'Polityka cookies',
-      text: 'Jakich plików cookie używamy i jak je wyłączyć.',
-      href: contact.legal.cookies,
-    },
-  ];
+  const settings = await getSiteSettings();
   return (
     <main>
-      <Header phone={contact.phone} phoneHref={contact.phoneHref} />
-      <PageHeader
-        eyebrow="Dokumenty"
-        title="Nota prawna i polityki"
-        lead="Dokumenty do wglądu i pobrania. Wersja obowiązująca to plik PDF — tekst na stronie jest tożsamy z jego treścią."
-      />
+      <Header phone={settings.phone} phoneHref={settings.phoneHref} />
+      <PageHeader eyebrow="Dokumenty" title="Nota prawna i prywatność" lead="Zasady korzystania ze strony i to, jak dbamy o Twoje dane." />
 
       <Section flush>
         <div className={s.cards}>
           {documents.map((doc) => (
-            <a key={doc.title} className={s.card} href={doc.href}>
+            <Link key={doc.href} className={s.card} href={doc.href}>
               <span className={s.cardTitle}>{doc.title}</span>
               <span className={s.cardText}>{doc.text}</span>
-              <span className={s.cardLink}>Otwórz PDF →</span>
-            </a>
+              <span className={s.cardLink}>Czytaj →</span>
+            </Link>
           ))}
-        </div>
-      </Section>
-
-      <Section>
-        <div className={s.layout}>
-          <nav className={s.toc} aria-label="Na tej stronie">
-            <span className={s.tocTitle}>Na tej stronie</span>
-            {toc.map((item, index) => (
-              <a key={item} href={'#sekcja-' + (index + 1)}>
-                {index + 1}. {item}
-              </a>
-            ))}
-          </nav>
-
-          <article className={s.article}>
-            <p className={s.todo}>treść prawna do wklejenia z obecnych plików PDF</p>
-
-            <section id="sekcja-1">
-              <h2>1. Administrator danych</h2>
-              <p>
-                Administratorem danych osobowych jest Piekarnia Bieżyński z siedzibą w Świdnicy, ul. Składowa
-                3. Kontakt w sprawach danych: tel. {contact.phone}.
-              </p>
-            </section>
-
-            <section id="sekcja-2">
-              <h2>2. Zakres przetwarzanych danych</h2>
-              <ul>
-                <li>imię i dane kontaktowe podane w formularzu,</li>
-                <li>treść wiadomości,</li>
-                <li>adres IP i informacje o przeglądarce.</li>
-              </ul>
-            </section>
-
-            <section id="sekcja-7">
-              <h2>7. Pliki cookie</h2>
-              <div className={s.table}>
-                <div className={s.tableHead}>
-                  <span>Nazwa</span>
-                  <span>Cel</span>
-                  <span>Czas</span>
-                </div>
-                <div className={s.tableRow}>
-                  <span>cookie_consent</span>
-                  <span>Zapis zgody</span>
-                  <span>12 miesięcy</span>
-                </div>
-                <div className={s.tableRow}>
-                  <span>_ga</span>
-                  <span>Statystyki odwiedzin</span>
-                  <span>24 miesiące</span>
-                </div>
-              </div>
-            </section>
-          </article>
         </div>
       </Section>
     </main>

@@ -63,7 +63,7 @@ export function ContactForm({ onSubmit }: { onSubmit?: (data: FormData) => Promi
       {sent ? <p className={s.sent}>Dziękujemy — odezwiemy się najszybciej, jak to możliwe.</p> : null}
 
       <p className={s.consent}>
-        Wysyłając, akceptujesz naszą <a href="/dokumenty">politykę prywatności</a>.
+        Wysyłając, akceptujesz naszą <a href="/polityka-prywatnosci">politykę prywatności</a>.
       </p>
     </form>
   );

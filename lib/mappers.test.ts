@@ -126,7 +126,6 @@ describe('mapSettings', () => {
     const s = mapSettings(null);
     expect(s.phone).toBe('');
     expect(s.gallery).toEqual([]);
-    expect(s.legal).toEqual({ nota: '', privacy: '', cookies: '' });
   });
 
   it('maps gallery images to urls', () => {

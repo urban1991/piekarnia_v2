@@ -51,7 +51,7 @@ i zniknie automatycznie, zwykle w ciągu godziny od wyznaczonego czasu, najpóź
 
 ## Ustawienia strony
 
-Telefon, e-mail, adres, linki social, katalog PDF, dokumenty prawne, zdjęcie hero (strona główna),
+Telefon, e-mail, adres, linki social, katalog PDF, zdjęcie hero (strona główna),
 zdjęcia „O nas” na stronie głównej (2), zdjęcia strony „O nas” (3), galeria Instagram (6+).
 
 ## Dobre praktyki

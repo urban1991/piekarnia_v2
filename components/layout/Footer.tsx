@@ -49,9 +49,9 @@ export async function Footer() {
         <div className={s.bottom}>
           <span>© {new Date().getFullYear()} Piekarnia Bieżyński</span>
           <div className={s.legal}>
-            <Link href="/dokumenty">Nota prawna</Link>
-            <Link href="/dokumenty">Polityka prywatności</Link>
-            <Link href="/dokumenty">Polityka cookies</Link>
+            <Link href="/nota-prawna">Nota prawna</Link>
+            <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+            <Link href="/polityka-prywatnosci#cookies">Pliki cookies</Link>
           </div>
         </div>
       </Container>

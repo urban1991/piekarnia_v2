@@ -101,4 +101,6 @@ Panel menadżera opisany jest w [`docs/ADMIN.md`](docs/ADMIN.md).
 2. **Składy produktów** — strona podaje tylko wartości odżywcze na 100 g.
 3. **Adres e-mail, pełna nazwa firmy, NIP** — brak na stronie.
 4. **Zdjęcia** części pozycji z „Innych wypieków” oraz zdjęcie rodziny na „O nas”.
-5. **Treści prawne** — istnieją tylko jako PDF-y.
+5. **Treści prawne** — `/polityka-prywatnosci` i `/nota-prawna` (tekst w kodzie, dane spółki w `lib/company.ts`)
+   przygotowane na podstawie PDF-ów ze stycznia 2025; do przejrzenia przez prawnika, w tym adres e-mail
+   do spraw danych osobowych.

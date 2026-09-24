@@ -40,4 +40,6 @@ export const INDEXABLE_ROUTES: Route[] = [
   { path: '/kontakt', priority: 0.7, changeFrequency: 'yearly' },
   { path: '/o-nas', priority: 0.6, changeFrequency: 'yearly' },
   { path: '/dokumenty', priority: 0.2, changeFrequency: 'yearly' },
+  { path: '/polityka-prywatnosci', priority: 0.2, changeFrequency: 'yearly' },
+  { path: '/nota-prawna', priority: 0.2, changeFrequency: 'yearly' },
 ];
