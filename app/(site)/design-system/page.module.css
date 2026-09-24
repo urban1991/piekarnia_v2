@@ -197,7 +197,6 @@
 .inputFocus { border-color: var(--color-brand); box-shadow: 0 0 0 3px var(--color-brand-tint); outline: 0; }
 .inputError { border: 1.5px solid var(--color-brand); }
 .errorText { font-size: var(--text-caption); font-weight: 400; }
-.formDemo { max-width: 640px; }
 
 /* 09 sections */
 .demoNote { margin-bottom: var(--space-3); }

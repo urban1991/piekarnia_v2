@@ -43,11 +43,11 @@ Panel menadżera (Sanity Studio): `http://localhost:3000/studio` — patrz `docs
                              na zbiorze z treścią, bo nadpisałaby zmiany ze Studio — tylko z --force)
     data/products.json       (tylko do migracji, usuwane po seedzie) treść pobrana z biezynski.swidnica.pl
     public/photos/           (tylko do migracji, usuwane po seedzie) zdjęcia wgrywane przez seed do Sanity
-    components/ui/           Button, Tag, FilterChips, Grid
+    components/ui/           Button, Tag, FilterChips, Grid, CopyButton
     components/layout/       Header, Footer, Container, Section, SectionHeading
     components/cards/        CategoryCard, ProductCard, StoreCard, TestimonialCard
     components/sections/     Hero, PageHeader, FeatureBand, CtaBand, StoreMap, StoreList, NewStorePromo,
-                             AnnouncementBar, InstagramGrid, Timeline, ContactForm, ProductGrid
+                             AnnouncementBar, InstagramGrid, Timeline, ProductGrid, LegalDocument
     app/(site)/              strony App Routera (grupa z layoutem/stopką) + /design-system
     public/                  logo + zdjęcia
 

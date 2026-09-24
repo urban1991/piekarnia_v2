@@ -7,7 +7,7 @@ import { CategoryCard } from '../../../components/cards/CategoryCard';
 import { ProductCard } from '../../../components/cards/ProductCard';
 import { StoreCard } from '../../../components/cards/StoreCard';
 import { TestimonialCard } from '../../../components/cards/TestimonialCard';
-import { ContactForm } from '../../../components/sections/ContactForm';
+import { CopyButton } from '../../../components/ui/CopyButton';
 import { CtaBand } from '../../../components/sections/CtaBand';
 import { StoreMap } from '../../../components/sections/StoreMap';
 import { NewStorePromo } from '../../../components/sections/NewStorePromo';
@@ -388,9 +388,9 @@ export default async function DesignSystemPage() {
             </label>
           </div>
           <div className={s.labeled}>
-            <div className={s.meta}>ContactForm · walidacja po stronie klienta</div>
-            <div className={s.formDemo}>
-              <ContactForm />
+            <div className={s.meta}>CopyButton · kopiuje adres e-mail do schowka (strona Kontakt)</div>
+            <div>
+              <CopyButton value={settings.email || 'piekarnia@biezynski.pl'} />
             </div>
           </div>
         </section>
